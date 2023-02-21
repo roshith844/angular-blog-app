@@ -7,6 +7,7 @@ import { UserNavbarComponent } from './components/user/user-navbar/user-navbar.c
 import { HomePageComponent } from './components/pages/home-page/home-page.component';
 import { UserLoginComponent } from './components/user/user-login/user-login.component';
 import { HomePageContentComponent } from './components/user/home-page-content/home-page-content.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { HomePageContentComponent } from './components/user/home-page-content/ho
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
