@@ -6,7 +6,8 @@ import { type formData } from './../../types/formData'
   providedIn: 'root'
 })
 export class UserLoginService {
-  isLoggedIn = false
+  public isLoggedIn: boolean = false
+
 BASE_URL =  'http://localhost:3000/'
   constructor(private http: HttpClient) { }
   sendLoginFormData(formData:formData){

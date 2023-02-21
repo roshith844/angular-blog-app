@@ -12,7 +12,7 @@ import { type formData } from './../../../types/formData'
 export class UserLoginComponent {
   errorMessageForEmail = ''
   errorMessageForPassword = ''
-  constructor(private formBuilder: FormBuilder, public loginService: UserLoginService, private router: Router) {
+  constructor(private formBuilder: FormBuilder, private loginService: UserLoginService, private router: Router) {
 
   }
 
