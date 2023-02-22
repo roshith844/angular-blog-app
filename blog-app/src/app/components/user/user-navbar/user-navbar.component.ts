@@ -8,4 +8,10 @@ import { UserLoginService } from 'src/app/services/user/user-login.service';
 })
 export class UserNavbarComponent {
   constructor(public loginService: UserLoginService) { }
+  logout(){
+    localStorage.removeItem('accessToken')
+    localStorage.removeItem('refreshToken')
+    this.loginService.markAsLoggedOut()
+
+  }
 }

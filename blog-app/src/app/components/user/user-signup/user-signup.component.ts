@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { UserSignupService } from 'src/app/services/user/user-signup.service';
 import { FormBuilder } from '@angular/forms';
 import { type signupFormData } from './../../../types/formData';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-user-signup',
@@ -22,7 +23,7 @@ export class UserSignupComponent {
   errorMessageForPassword = ''
   errorMessageForConfirmPassword = ''
 
-  constructor(private signUpService: UserSignupService, private formBuilder: FormBuilder) {
+  constructor(private signUpService: UserSignupService, private formBuilder: FormBuilder, private router: Router) {
 
   }
 
@@ -71,8 +72,13 @@ export class UserSignupComponent {
         password: this.signupForm.value.password,
         confirmPassword: this.signupForm.value.confirmPassword
       }
-      this.signUpService.postSignupFormData(SIGNUP_FORMDATA).subscribe((response) => {
+      this.signUpService.postSignupFormData(SIGNUP_FORMDATA).subscribe((response: any) => {
         console.log(response)
+        if(response.success == true ){
+this.router.navigate(['login'])
+        }else{
+          this.router.navigate(['signup'])
+        }
       })
     }
 
