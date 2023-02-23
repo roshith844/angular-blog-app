@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ContentService } from 'src/app/services/content.service';
+import { FavoritesService } from 'src/app/services/user/interactions/favorites.service';
+import { UserLoginService } from 'src/app/services/user/user-login.service';
 
 @Component({
   selector: 'app-blog-content',
@@ -8,9 +10,9 @@ import { ContentService } from 'src/app/services/content.service';
   styleUrls: ['./blog-content.component.css']
 })
 export class BlogContentComponent implements OnInit {
-  data!: {slug: string, title: string, content: string, author: string}
+  data!: { slug: string, title: string, content: string, author: string }
   slug = ''
-  constructor(private activatedRoute: ActivatedRoute, private contentService: ContentService) {
+  constructor(private activatedRoute: ActivatedRoute, private contentService: ContentService, public loginService: UserLoginService, private favoritesService: FavoritesService) {
 
   }
 
@@ -23,9 +25,24 @@ export class BlogContentComponent implements OnInit {
         this.data = response.data
       })
     }
+    const ACCESS_TOKEN = localStorage.getItem('accessToken')
+    const REFRESH_TOKEN = localStorage.getItem('refreshToken')
+    if (ACCESS_TOKEN != null && REFRESH_TOKEN != null) {
+      this.loginService.markAsLoggedIn()
+    }
+  }
 
-
-
+  addToFavorites() {
+    const ACCESS_TOKEN = localStorage.getItem('accessToken')
+    if (ACCESS_TOKEN != null) {
+      this.favoritesService.addToFavorites(ACCESS_TOKEN).subscribe((response: any) => {
+        console.log(response)
+        if (response.success == true) {
+          console.log("added to favorites")
+        }
+      })
+    }
 
   }
+
 }
