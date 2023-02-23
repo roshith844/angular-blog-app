@@ -11,6 +11,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { UserSignupComponent } from './components/user/user-signup/user-signup.component';
 import { UserProfileComponent } from './components/user/user-profile/user-profile.component';
+import { BlogContentComponent } from './components/user/blog-content/blog-content.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { UserProfileComponent } from './components/user/user-profile/user-profil
     UserLoginComponent,
     HomePageContentComponent,
     UserSignupComponent,
-    UserProfileComponent
+    UserProfileComponent,
+    BlogContentComponent
   ],
   imports: [
     BrowserModule,
