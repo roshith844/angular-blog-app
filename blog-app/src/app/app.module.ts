@@ -10,6 +10,7 @@ import { HomePageContentComponent } from './components/user/home-page-content/ho
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { UserSignupComponent } from './components/user/user-signup/user-signup.component';
+import { UserProfileComponent } from './components/user/user-profile/user-profile.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { UserSignupComponent } from './components/user/user-signup/user-signup.c
     HomePageComponent,
     UserLoginComponent,
     HomePageContentComponent,
-    UserSignupComponent
+    UserSignupComponent,
+    UserProfileComponent
   ],
   imports: [
     BrowserModule,
