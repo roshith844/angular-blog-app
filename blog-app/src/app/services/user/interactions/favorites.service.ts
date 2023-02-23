@@ -9,6 +9,6 @@ export class FavoritesService {
   BASE_URL =  'http://localhost:3000/'
   constructor(private http: HttpClient) { }
   addToFavorites(token: string){
-         return this.http.patch(this.BASE_URL + 'favorites/add', {},{headers:{'Authorization': token}} )
+         return this.http.patch(this.BASE_URL + 'favorites/add', {},{headers:{'authorization': token}} )
   }
 }
