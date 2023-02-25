@@ -8,12 +8,13 @@ import { HomePageComponent } from './components/pages/home-page/home-page.compon
 import { UserLoginComponent } from './components/user/user-login/user-login.component';
 import { HomePageContentComponent } from './components/user/home-page-content/home-page-content.component';
 import { ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { UserSignupComponent } from './components/user/user-signup/user-signup.component';
 import { UserProfileComponent } from './components/user/user-profile/user-profile.component';
 import { BlogContentComponent } from './components/user/blog-content/blog-content.component';
 import { FavoritesComponent } from './components/user/favorites/favorites.component';
-
+import { HttpInterceptor } from '@angular/common/http';
+import { JwtTokenInterceptorService } from './services/interceptors/jwt-token-interceptor.service';
 @NgModule({
   declarations: [
     AppComponent,
@@ -32,7 +33,10 @@ import { FavoritesComponent } from './components/user/favorites/favorites.compon
     ReactiveFormsModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [{ provide: HTTP_INTERCEPTORS,
+     useClass: JwtTokenInterceptorService,
+    multi: true
+    }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
