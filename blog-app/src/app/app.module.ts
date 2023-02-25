@@ -12,6 +12,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { UserSignupComponent } from './components/user/user-signup/user-signup.component';
 import { UserProfileComponent } from './components/user/user-profile/user-profile.component';
 import { BlogContentComponent } from './components/user/blog-content/blog-content.component';
+import { FavoritesComponent } from './components/user/favorites/favorites.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { BlogContentComponent } from './components/user/blog-content/blog-conten
     HomePageContentComponent,
     UserSignupComponent,
     UserProfileComponent,
-    BlogContentComponent
+    BlogContentComponent,
+    FavoritesComponent
   ],
   imports: [
     BrowserModule,

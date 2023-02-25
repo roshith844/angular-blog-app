@@ -10,19 +10,22 @@ import { UserLoginService } from 'src/app/services/user/user-login.service';
   styleUrls: ['./blog-content.component.css']
 })
 export class BlogContentComponent implements OnInit {
-  data!: { slug: string, title: string, content: string, author: string }
+  articleId = ''
+  data!: { _id: string, slug: string, title: string, content: string, author: string }
   slug = ''
   constructor(private activatedRoute: ActivatedRoute, private contentService: ContentService, public loginService: UserLoginService, private favoritesService: FavoritesService) {
 
   }
 
   ngOnInit(): void {
+    
     const PARAM = this.activatedRoute.snapshot.paramMap.get('slug')
     if (PARAM != null) {
       this.slug = PARAM
       this.contentService.getBlogContent(PARAM).subscribe((response: any) => {
         console.log(response)
         this.data = response.data
+        this.articleId =this.data._id
       })
     }
     const ACCESS_TOKEN = localStorage.getItem('accessToken')
@@ -35,7 +38,7 @@ export class BlogContentComponent implements OnInit {
   addToFavorites() {
     const ACCESS_TOKEN = localStorage.getItem('accessToken')
     if (ACCESS_TOKEN != null) {
-      this.favoritesService.addToFavorites(ACCESS_TOKEN).subscribe((response: any) => {
+      this.favoritesService.addToFavorites(ACCESS_TOKEN, this.articleId).subscribe((response: any) => {
         console.log(response)
         if (response.success == true) {
           console.log("added to favorites")
