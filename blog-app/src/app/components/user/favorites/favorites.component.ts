@@ -12,7 +12,7 @@ export class FavoritesComponent implements OnInit {
    ngOnInit(): void {
     const ACCESS_TOKEN =  localStorage.getItem('accessToken')
     if(ACCESS_TOKEN == null) return
-     this.favoritesService.getFavoriteCards(ACCESS_TOKEN).subscribe((response: any )=>{
+     this.favoritesService.getFavoriteCards().subscribe((response: any )=>{
       this.favoriteCards = response.data
       console.log(response.data)
      })
