@@ -15,6 +15,7 @@ export class BlogContentComponent implements OnInit {
   data!: { _id: string, slug: string, title: string, content: string, author: string }
   slug = ''
   pageViews: number = 0
+  isFavorite: boolean = false
   constructor(private viewsService: UserViewsService, private activatedRoute: ActivatedRoute, private contentService: ContentService, public loginService: UserLoginService, private favoritesService: FavoritesService) {
 
   }
@@ -24,10 +25,13 @@ export class BlogContentComponent implements OnInit {
     if (PARAM == null) return
     this.slug = PARAM
     this.contentService.getBlogContent(PARAM).subscribe((response: any) => {
+      console.log("................................")
       console.log(response)
       this.data = response.data
       this.articleId = this.data._id
+      this.isFavorite = response.isFavorite
 
+      // views and Visits
       if (sessionStorage.getItem('visit') === null) {
         this.viewsService.incrementPageViewsAndVisits(this.articleId).subscribe((res) => {
           console.log(res)
@@ -45,24 +49,24 @@ export class BlogContentComponent implements OnInit {
       })
     })
 
-
     const ACCESS_TOKEN = localStorage.getItem('accessToken')
     const REFRESH_TOKEN = localStorage.getItem('refreshToken')
     if (ACCESS_TOKEN != null && REFRESH_TOKEN != null) {
       this.loginService.markAsLoggedIn()
     }
-    // show views
-
 
   }
 
   addToFavorites() {
     const ACCESS_TOKEN = localStorage.getItem('accessToken')
     if (ACCESS_TOKEN != null) {
-      this.favoritesService.addToFavorites(this.articleId).subscribe((response: any) => {
+      this.favoritesService.addOrRemoveFromFavorites(this.articleId).subscribe((response: any) => {
         console.log(response)
-        if (response.success == true) {
-          console.log("added to favorites")
+        if (response.status == 'add') {
+          this.isFavorite = true
+        }
+        if (response.status == 'remove') {
+          this.isFavorite = false
         }
       })
     }

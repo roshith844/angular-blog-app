@@ -8,8 +8,8 @@ export class FavoritesService {
 
   BASE_URL = 'http://localhost:3000/'
   constructor(private http: HttpClient) { }
-  addToFavorites( articleId: string) {
-    return this.http.patch(this.BASE_URL + 'favorites/add', { articleId: articleId })
+  addOrRemoveFromFavorites( articleId: string) {
+    return this.http.patch(this.BASE_URL + 'favorites/add-or-remove', { articleId: articleId })
   }
 
   getFavoriteCards() {
