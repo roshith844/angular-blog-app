@@ -14,4 +14,8 @@ export class UserViewsService {
     return this.http.patch(this.BASE_URL + 'page-view/increment', { articleId: articleId, incrementVisits: true })
   }
 
+  getPageViewsCount(articleId: string){
+    return this.http.get(this.BASE_URL + `page-view/${articleId}`)
+  }
+
 }

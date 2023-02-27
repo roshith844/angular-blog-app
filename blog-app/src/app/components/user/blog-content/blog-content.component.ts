@@ -14,6 +14,7 @@ export class BlogContentComponent implements OnInit {
   articleId = ''
   data!: { _id: string, slug: string, title: string, content: string, author: string }
   slug = ''
+  pageViews: number = 0
   constructor(private viewsService: UserViewsService, private activatedRoute: ActivatedRoute, private contentService: ContentService, public loginService: UserLoginService, private favoritesService: FavoritesService) {
 
   }
@@ -37,8 +38,12 @@ export class BlogContentComponent implements OnInit {
         })
       }
       sessionStorage.setItem('visit', 'x')
-    })
 
+      // get pageViews
+      this.viewsService.getPageViewsCount(this.articleId).subscribe((pageViewsResponse: any) => {
+        this.pageViews = pageViewsResponse.views
+      })
+    })
 
 
     const ACCESS_TOKEN = localStorage.getItem('accessToken')
@@ -46,6 +51,7 @@ export class BlogContentComponent implements OnInit {
     if (ACCESS_TOKEN != null && REFRESH_TOKEN != null) {
       this.loginService.markAsLoggedIn()
     }
+    // show views
 
 
   }
