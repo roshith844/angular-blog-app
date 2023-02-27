@@ -25,9 +25,6 @@ export class BlogContentComponent implements OnInit {
     if (PARAM == null) return
     this.slug = PARAM
     this.contentService.getBlogContent(PARAM).subscribe((response: any) => {
-      console.log("................................")
-      console.log(response)
-      this.data = response.data
       this.articleId = this.data._id
       this.isFavorite = response.isFavorite
 

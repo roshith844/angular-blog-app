@@ -22,7 +22,6 @@ export class UserLoginComponent {
   })
 
   onSubmit() {
-    console.log(this.loginForm.value)
     let emailInput = this.loginForm.value.email
     let passwordInput = this.loginForm.value.password
     const EMAIL_PATTERN = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
