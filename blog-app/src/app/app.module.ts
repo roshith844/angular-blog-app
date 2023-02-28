@@ -15,6 +15,8 @@ import { FavoritesComponent } from './components/user/favorites/favorites.compon
 import { HttpInterceptor } from '@angular/common/http';
 import { JwtTokenInterceptorService } from './services/interceptors/jwt-token-interceptor.service';
 import { UserPageComponent } from './components/pages/user/user-page/user-page.component';
+import { WriterDashboardComponent } from './components/pages/writer/writer-dashboard/writer-dashboard.component';
+import { WriterNavbarComponent } from './components/writer/writer-navbar/writer-navbar.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -25,7 +27,9 @@ import { UserPageComponent } from './components/pages/user/user-page/user-page.c
     BlogContentComponent,
     FavoritesComponent,
     UserPageComponent,
-    HomePageContentComponent
+    HomePageContentComponent,
+    WriterDashboardComponent,
+    WriterNavbarComponent
   ],
   imports: [
     BrowserModule,
