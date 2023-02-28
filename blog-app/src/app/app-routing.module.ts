@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { HomePageComponent } from './components/pages/home-page/home-page.component';
+import { UserPageComponent } from './components/pages/user/user-page/user-page.component';
 import { BlogContentComponent } from './components/user/blog-content/blog-content.component';
 import { FavoritesComponent } from './components/user/favorites/favorites.component';
 import { HomePageContentComponent } from './components/user/home-page-content/home-page-content.component';
@@ -10,13 +10,13 @@ import { UserSignupComponent } from './components/user/user-signup/user-signup.c
 
 const routes: Routes = [
   {
-    path: '', component: HomePageComponent, children: [
+    path: '', component: UserPageComponent, children: [
       { path: '', component: HomePageContentComponent },
       { path: 'login', component: UserLoginComponent },
       { path: 'signup', component: UserSignupComponent },
       { path: 'profile', component: UserProfileComponent },
       { path: 'blog/:slug', component: BlogContentComponent },
-      {path: 'favorites', component: FavoritesComponent}
+      { path: 'favorites', component: FavoritesComponent }
     ]
   },
   { path: 'login', component: UserLoginComponent }

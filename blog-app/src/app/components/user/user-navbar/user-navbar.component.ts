@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { BecomeWriterRequestService } from 'src/app/services/user/become-writer-request.service';
 import { UserLoginService } from 'src/app/services/user/user-login.service';
+import { WriterService } from 'src/app/services/writer/writer.service';
 
 @Component({
   selector: 'app-user-navbar',
@@ -7,12 +9,12 @@ import { UserLoginService } from 'src/app/services/user/user-login.service';
   styleUrls: ['./user-navbar.component.css']
 })
 export class UserNavbarComponent implements OnInit {
-  constructor(public loginService: UserLoginService) { }
+
+  constructor(public loginService: UserLoginService, private becomeWriterService: BecomeWriterRequestService, public writerService: WriterService) { }
   logout() {
     localStorage.removeItem('accessToken')
     localStorage.removeItem('refreshToken')
     this.loginService.markAsLoggedOut()
-
   }
 
   ngOnInit(): void {
@@ -22,6 +24,17 @@ export class UserNavbarComponent implements OnInit {
       this.loginService.markAsLoggedIn()
     }
 
+  }
+
+  applyForWriterRole(){
+    this.becomeWriterService.applyForWriterRole().subscribe((response: any )=>{
+      console.log(response)
+      if(response.isWriter === true){
+        this.writerService.markAsWriter()
+      }else{
+        this.writerService.markAsNotAWriter()
+      }
+    })
   }
 
 }
