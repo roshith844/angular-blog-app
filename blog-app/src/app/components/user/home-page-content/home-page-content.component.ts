@@ -7,7 +7,7 @@ import { ContentService } from 'src/app/services/content.service';
   styleUrls: ['./home-page-content.component.css']
 })
 export class HomePageContentComponent implements OnInit {
-  blogCards: { slug: string, title: string, content: string, author: string }[] = []
+  blogCards: any[] = [] //
   constructor(private contentService: ContentService) { }
   ngOnInit(): void {
 

@@ -12,7 +12,8 @@ import { UserLoginService } from 'src/app/services/user/user-login.service';
 })
 export class BlogContentComponent implements OnInit {
   articleId = ''
-  data!: { _id: string, slug: string, title: string, content: string, author: string }
+  data!: any
+  //  { _id: string, slug: string, title: string, content: string, author: string }
   slug = ''
   pageViews: number = 0
   isFavorite: boolean = false
