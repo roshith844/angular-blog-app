@@ -8,6 +8,7 @@ import { HomePageContentComponent } from './components/user/home-page-content/ho
 import { UserLoginComponent } from './components/user/user-login/user-login.component';
 import { UserProfileComponent } from './components/user/user-profile/user-profile.component';
 import { UserSignupComponent } from './components/user/user-signup/user-signup.component';
+import { CreateContentComponent } from './components/writer/create-content/create-content.component';
 
 const routes: Routes = [
   {
@@ -22,6 +23,7 @@ const routes: Routes = [
   },
   {
     path: 'writer', component: WriterDashboardComponent, children: [
+      { path: 'write', component: CreateContentComponent }
 
     ]
   }

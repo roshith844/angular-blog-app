@@ -9,3 +9,9 @@ export type signupFormData = {
     password: string,
     confirmPassword: string
 }
+
+export type contentFormData = {
+    title: string,
+    content: string,
+    slug: string
+}

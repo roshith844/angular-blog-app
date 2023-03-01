@@ -17,6 +17,8 @@ import { JwtTokenInterceptorService } from './services/interceptors/jwt-token-in
 import { UserPageComponent } from './components/pages/user/user-page/user-page.component';
 import { WriterDashboardComponent } from './components/pages/writer/writer-dashboard/writer-dashboard.component';
 import { WriterNavbarComponent } from './components/writer/writer-navbar/writer-navbar.component';
+import { CreateContentComponent } from './components/writer/create-content/create-content.component';
+import { EditorModule } from "@tinymce/tinymce-angular";
 @NgModule({
   declarations: [
     AppComponent,
@@ -29,13 +31,15 @@ import { WriterNavbarComponent } from './components/writer/writer-navbar/writer-
     UserPageComponent,
     HomePageContentComponent,
     WriterDashboardComponent,
-    WriterNavbarComponent
+    WriterNavbarComponent,
+    CreateContentComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    EditorModule
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,
