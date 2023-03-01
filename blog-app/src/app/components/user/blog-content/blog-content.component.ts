@@ -21,12 +21,18 @@ export class BlogContentComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    // Gets param
     const PARAM = this.activatedRoute.snapshot.paramMap.get('slug')
     if (PARAM == null) return
     this.slug = PARAM
+
     this.contentService.getBlogContent(PARAM).subscribe((response: any) => {
-      this.articleId = this.data._id
-      this.isFavorite = response.isFavorite
+      console.log("..........................")
+      console.log(response)
+      this.data = response.data
+      this.articleId = response.data._id
+      this.isFavorite = response.data.isFavorite
+     
 
       // views and Visits
       if (sessionStorage.getItem('visit') === null) {
