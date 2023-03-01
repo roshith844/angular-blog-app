@@ -1,46 +1,57 @@
-
-  <form (ngSubmit)="onSubmit()" [formGroup]="myForm">
-    <label class="title">Title
-      <input
-        [formControl]="myForm.controls.title"
-        placeholder="Title"
-        type="text"/>
-  
-      <div *ngIf="myForm.controls.title.hasError('required')">
-        Title is required
-      </div>
-    </label>
-    <label for="">Prefered Slug
-      <input
-      [formControl]="myForm.controls.slug"
-      placeholder="Slug"
-      type="text"/>
-    </label>
-  
-    <div>
-      <editor
-        apiKey="b9lapr6h6w2vaoo9zij0x5ilwf6df0j09if7w9s83ga8cmpu"
-        [formControl]="myForm.controls.body"
-        class="mat-elevation-z1"
-        (onInit)="handleEditorInit($event)"
-        [init]="{
-          icons: 'material',
-          skin: 'borderless',
-          plugins: 'wordcount',
-          menubar: false,
-          min_height: 150
-        }"
-      ></editor>
-  
-      <div class="mat-form-field-subscript-wrapper">
-  
-        <div *ngIf="myForm.controls.body.touched && myForm.controls.body.hasError('required')">
-          This form is required
+<div class="flex flex-col justify-center items-center h-screen">
+  <div class="container mx-auto px-4 py-8">
+    <!-- Your elements go here -->
+    <form (ngSubmit)="onSubmit()" [formGroup]="myForm">
+      <label class="title">Title
+        <input
+        class="border border-gray-400 rounded-lg py-2 px-4 w-full focus:outline-none focus:border-blue-500" 
+          [formControl]="myForm.controls.title"
+          placeholder="Title"
+          type="text"/>
+    
+        <div *ngIf="myForm.controls.title.hasError('required')">
+          Title is required
         </div>
-      </div>
+      </label>
+      <label for="">Prefered Slug
+
+
+        <input
+        class="border border-gray-400 rounded-lg py-2 px-4 w-full focus:outline-none focus:border-blue-500" 
+        [formControl]="myForm.controls.slug"
+        placeholder="Slug"
+        type="text"/>
+      </label>
+    
       <div>
-        <button type="submit">Submit </button>
+        <editor
+          apiKey="b9lapr6h6w2vaoo9zij0x5ilwf6df0j09if7w9s83ga8cmpu"
+          [formControl]="myForm.controls.body"
+          class="mat-elevation-z1"
+          (onInit)="handleEditorInit($event)"
+          [init]="{
+            icons: 'material',
+            skin: 'borderless',
+            plugins: 'wordcount',
+            menubar: false,
+            min_height: 150
+          }"
+        ></editor>
+    
+        <div class="mat-form-field-subscript-wrapper">
+    
+          <div *ngIf="myForm.controls.body.touched && myForm.controls.body.hasError('required')">
+            This form is required
+          </div>
+        </div>
+        <div>
+          <button type="submit">Submit </button>
+        </div>
+        
       </div>
-      
-    </div>
-  </form>
+    </form>
+  
+  </div>
+</div>
+
+ 
