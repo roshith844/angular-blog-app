@@ -10,17 +10,26 @@ export class UserProfileComponent implements OnInit {
   name = ''
   email = ''
   role = ''
-
+  canShowEditProfile = false
+  profile = {
+    name: '',
+    email: '',
+    role : ''
+  }
   constructor(private getProfileService: GetProfileService) { }
 
   ngOnInit(): void {
     this.getProfileService.getProfile().subscribe((response: any) => {
       console.log(response)
-      this.name = response.name
-      this.email = response.email
-      this.role = response.role
+      this.profile.name= response.name
+      this.profile.email = response.email
+      this.profile.role = response.role
 
     })
+  }
+
+  closeModal() {
+    this.canShowEditProfile = false
   }
 
 }

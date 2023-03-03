@@ -19,6 +19,7 @@ import { WriterDashboardComponent } from './components/pages/writer/writer-dashb
 import { WriterNavbarComponent } from './components/writer/writer-navbar/writer-navbar.component';
 import { CreateContentComponent } from './components/writer/create-content/create-content.component';
 import { EditorModule } from "@tinymce/tinymce-angular";
+import { EditProfileComponent } from './components/user/edit-profile/edit-profile.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -32,7 +33,8 @@ import { EditorModule } from "@tinymce/tinymce-angular";
     HomePageContentComponent,
     WriterDashboardComponent,
     WriterNavbarComponent,
-    CreateContentComponent
+    CreateContentComponent,
+    EditProfileComponent
   ],
   imports: [
     BrowserModule,
