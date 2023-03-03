@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core'
 import { HttpClient } from '@angular/common/http'
-import { formData } from 'src/app/types/formData'
+import { signupFormData } from 'src/app/types/formData'
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +12,7 @@ export class UserSignupService {
   constructor(private http: HttpClient) {
 
   }
-  postSignupFormData(data: formData) {
+  postSignupFormData(data: signupFormData) {
     return this.http.post(this.BASE_URL + 'signup', data)
   }
 }
