@@ -39,9 +39,19 @@ export class UserSignupComponent {
 
     const NAME_PATTERN = /^[a-z ,.'-]+$/i
     const EMAIL_PATTERN = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+    /* 
+Password should be
+At least 8 characters long
+Must contain at least one uppercase letter
+Must contain at least one lowercase letter
+Must contain at least one number
+Must contain at least one special character (@$!%*?&)
+  */
+    const PASSWORD_PATTERN = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/
+
     const PHONE_PATTERN = /^\d{10}$/
     // Form Validation 
-    if (typeof EMAIL !== "string" || typeof PHONE !== "string" || typeof PASSWORD !== "string" || typeof NAME !== "string" || typeof CONFIRM_PASSWORD !== "string" ) {
+    if (typeof EMAIL !== "string" || typeof PHONE !== "string" || typeof PASSWORD !== "string" || typeof NAME !== "string" || typeof CONFIRM_PASSWORD !== "string") {
       this.errorMessageForEmail = 'Invalid '
       return
     }
@@ -65,15 +75,16 @@ export class UserSignupComponent {
     } else if (PASSWORD.length >= 50) {
       this.errorMessageForPassword = "password is should exceed 10 characters";
       return;
-    }
-
-    if (CONFIRM_PASSWORD != PASSWORD) {
+    } else if (!PASSWORD_PATTERN.test(PASSWORD)) {
+      this.errorMessageForPassword = 'password should have 1 uppercase, 1 lowecase, one special character'
+      return
+    }else if (CONFIRM_PASSWORD != PASSWORD) {
       this.errorMessageForConfirmPassword = 'password Doesnot Match'
       return
     }
 
     // API Request 
-    if (typeof (this.signupForm.value.name) == 'string' && typeof (this.signupForm.value.email) == 'string'  && typeof (this.signupForm.value.phone) == 'string' && typeof (this.signupForm.value.password) == 'string' && typeof (this.signupForm.value.confirmPassword) == 'string') {
+    if (typeof (this.signupForm.value.name) == 'string' && typeof (this.signupForm.value.email) == 'string' && typeof (this.signupForm.value.phone) == 'string' && typeof (this.signupForm.value.password) == 'string' && typeof (this.signupForm.value.confirmPassword) == 'string') {
       const SIGNUP_FORMDATA: signupFormData = {
         name: this.signupForm.value.name,
         email: this.signupForm.value.email,
@@ -83,9 +94,9 @@ export class UserSignupComponent {
       }
       this.signUpService.postSignupFormData(SIGNUP_FORMDATA).subscribe((response: any) => {
         console.log(response)
-        if(response.success == true ){
-this.router.navigate(['login'])
-        }else{
+        if (response.success == true) {
+          this.router.navigate(['login'])
+        } else {
           this.router.navigate(['signup'])
         }
       })
