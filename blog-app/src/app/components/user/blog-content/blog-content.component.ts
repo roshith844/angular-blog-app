@@ -28,13 +28,10 @@ export class BlogContentComponent implements OnInit {
     this.slug = PARAM
 
     this.contentService.getBlogContent(PARAM).subscribe((response: any) => {
-      console.log("..........................")
-      console.log(response)
       this.data = response.data
       this.articleId = response.data._id
-      this.isFavorite = response.data.isFavorite
+      this.isFavorite = response.isFavorite
      
-
       // views and Visits
       if (sessionStorage.getItem('visit') === null) {
         this.viewsService.incrementPageViewsAndVisits(this.articleId).subscribe((res) => {
