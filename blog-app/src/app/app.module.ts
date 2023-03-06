@@ -20,6 +20,7 @@ import { WriterNavbarComponent } from './components/writer/writer-navbar/writer-
 import { CreateContentComponent } from './components/writer/create-content/create-content.component';
 import { EditorModule } from "@tinymce/tinymce-angular";
 import { EditProfileComponent } from './components/user/edit-profile/edit-profile.component';
+import { StoreModule } from '@ngrx/store';
 @NgModule({
   declarations: [
     AppComponent,
@@ -41,7 +42,8 @@ import { EditProfileComponent } from './components/user/edit-profile/edit-profil
     AppRoutingModule,
     ReactiveFormsModule,
     HttpClientModule,
-    EditorModule
+    EditorModule,
+    StoreModule.forRoot({}, {})
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,
