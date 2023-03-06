@@ -21,6 +21,7 @@ import { CreateContentComponent } from './components/writer/create-content/creat
 import { EditorModule } from "@tinymce/tinymce-angular";
 import { EditProfileComponent } from './components/user/edit-profile/edit-profile.component';
 import { StoreModule } from '@ngrx/store';
+import { PostsManagementComponent } from './components/writer/posts-management/posts-management.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -35,7 +36,8 @@ import { StoreModule } from '@ngrx/store';
     WriterDashboardComponent,
     WriterNavbarComponent,
     CreateContentComponent,
-    EditProfileComponent
+    EditProfileComponent,
+    PostsManagementComponent
   ],
   imports: [
     BrowserModule,

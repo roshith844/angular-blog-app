@@ -12,4 +12,5 @@ export class PostContentService {
   postContent(content: contentFormData){
     return this.http.post(this.BASE_URL + 'writer/blog/create',content)
   }
+  
 }

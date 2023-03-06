@@ -9,6 +9,7 @@ import { UserLoginComponent } from './components/user/user-login/user-login.comp
 import { UserProfileComponent } from './components/user/user-profile/user-profile.component';
 import { UserSignupComponent } from './components/user/user-signup/user-signup.component';
 import { CreateContentComponent } from './components/writer/create-content/create-content.component';
+import { PostsManagementComponent } from './components/writer/posts-management/posts-management.component';
 
 const routes: Routes = [
   {
@@ -23,7 +24,8 @@ const routes: Routes = [
   },
   {
     path: 'writer', component: WriterDashboardComponent, children: [
-      { path: 'write', component: CreateContentComponent }
+      { path: 'write', component: CreateContentComponent },
+      { path: 'posts', component: PostsManagementComponent },
 
     ]
   }
