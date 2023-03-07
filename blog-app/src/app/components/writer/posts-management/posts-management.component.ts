@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { WriterPostManangementService } from 'src/app/services/writer/writer-post-manangement.service';
+import { WriterPostManangementService } from 'src/app/services/writer/writer-blog-manangement.service';
 
 @Component({
   selector: 'app-posts-management',

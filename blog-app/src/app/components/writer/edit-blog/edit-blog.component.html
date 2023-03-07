@@ -1,0 +1,60 @@
+<!-- Notification  -->
+<div *ngIf="notificationMessage.length != 0" class="bg-red-500 p-4 rounded-lg shadow-lg">
+  <div class="flex items-center justify-between">
+    <div class="flex items-center">
+      <svg class="h-6 w-6 text-white mr-2" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+      </svg>
+      <span class="text-white font-medium">Something went wrong</span>
+    </div>
+    <button class="text-white hover:text-gray-200 focus:outline-none focus:text-gray-200" aria-label="Close">
+      <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+      </svg>
+    </button>
+  </div>
+</div>
+<!--  -->
+<div class="flex flex-col justify-center items-center h-screen">
+  <div class="container mx-auto px-4 py-8">
+    <form (ngSubmit)="onSubmit()" [formGroup]="editBlogForm">
+      <label class="title">Title
+        <input class="border border-gray-400 rounded-lg py-2 px-4 w-full focus:outline-none focus:border-blue-500"
+          [formControl]="editBlogForm.controls.title" placeholder="Title" type="text" value="{{title}}" />
+
+        <div *ngIf="editBlogForm.controls.title.hasError('required')">
+          Title is required
+        </div>
+      </label>
+      <label for="">Prefered Slug
+
+
+        <input class="border border-gray-400 rounded-lg py-2 px-4 w-full focus:outline-none focus:border-blue-500"
+          [formControl]="editBlogForm.controls.slug" placeholder="Slug" type="text" value="{{slug}}" />
+      </label>
+
+      <div>
+        <editor apiKey="b9lapr6h6w2vaoo9zij0x5ilwf6df0j09if7w9s83ga8cmpu" [formControl]="editBlogForm.controls.body"
+          class="mat-elevation-z1" (onInit)="handleEditorInit($event)" [init]="{
+              icons: 'material',
+              skin: 'borderless',
+              plugins: 'wordcount',
+              menubar: false,
+              min_height: 150
+            }"></editor>
+
+        <div class="mat-form-field-subscript-wrapper">
+
+          <div *ngIf="editBlogForm.controls.body.touched && editBlogForm.controls.body.hasError('required')">
+            This form is required
+          </div>
+        </div>
+        <div>
+          <button type="submit">Submit </button>
+        </div>
+
+      </div>
+    </form>
+
+  </div>
+</div>

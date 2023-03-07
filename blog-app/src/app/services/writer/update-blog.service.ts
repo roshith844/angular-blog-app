@@ -5,10 +5,10 @@ import { contentFormData } from 'src/app/types/formData';
 @Injectable({
   providedIn: 'root'
 })
-export class PostContentService {
+export class UpdateBlogService {
   BASE_URL = 'http://localhost:3000/'
   constructor(private http: HttpClient) { }
-  postContent(content: contentFormData) {
-    return this.http.post(this.BASE_URL + 'writer/blog/create', content)
+  updateBlog(data: contentFormData) {
+    return this.http.patch(`${this.BASE_URL}writer/blog/update`, data)
   }
 }

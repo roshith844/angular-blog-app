@@ -22,6 +22,7 @@ import { EditorModule } from "@tinymce/tinymce-angular";
 import { EditProfileComponent } from './components/user/edit-profile/edit-profile.component';
 import { StoreModule } from '@ngrx/store';
 import { PostsManagementComponent } from './components/writer/posts-management/posts-management.component';
+import { EditBlogComponent } from './components/writer/edit-blog/edit-blog.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -37,7 +38,8 @@ import { PostsManagementComponent } from './components/writer/posts-management/p
     WriterNavbarComponent,
     CreateContentComponent,
     EditProfileComponent,
-    PostsManagementComponent
+    PostsManagementComponent,
+    EditBlogComponent
   ],
   imports: [
     BrowserModule,

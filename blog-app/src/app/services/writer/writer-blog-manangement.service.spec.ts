@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 
-import { WriterPostManangementService } from './writer-post-manangement.service';
+import { WriterPostManangementService } from './writer-blog-manangement.service';
 
 describe('WriterPostManangementService', () => {
   let service: WriterPostManangementService;
