@@ -15,4 +15,10 @@ export class WriterPostManangementService {
   addAllBlogs(data: any[]) {
     this.allBlogs = [...data]
   }
+
+  removeBlog(blogId: string) {
+    console.log(this.allBlogs)
+    this.allBlogs = this.allBlogs.filter(obj => obj._id !== blogId);
+  }
+
 }
