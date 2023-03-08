@@ -1,14 +1,15 @@
-import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
 
 @Injectable({
   providedIn: 'root'
 })
-export class GetProfileService {
+export class EditUserProfileService {
   BASE_URL =  'http://localhost:3000/'
   constructor(private http: HttpClient) { }
 
-  getProfile(){
-    return this.http.get(this.BASE_URL + 'user/profile/details' )
+  editProfile(data: any){
+    return this.http.patch(this.BASE_URL + 'user/profile/edit', data )
   }
 }
+

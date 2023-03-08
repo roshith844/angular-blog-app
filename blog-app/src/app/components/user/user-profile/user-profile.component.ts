@@ -14,6 +14,7 @@ export class UserProfileComponent implements OnInit {
   profile = {
     name: '',
     email: '',
+    phone: '',
     role : ''
   }
   constructor(private getProfileService: GetProfileService) { }
@@ -23,6 +24,7 @@ export class UserProfileComponent implements OnInit {
       console.log(response)
       this.profile.name= response.name
       this.profile.email = response.email
+      this.profile.phone = response.phone
       this.profile.role = response.role
 
     })
@@ -31,5 +33,4 @@ export class UserProfileComponent implements OnInit {
   closeModal() {
     this.canShowEditProfile = false
   }
-
 }
