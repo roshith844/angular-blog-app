@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
+import { Router } from '@angular/router';
 import { EditUserProfileService } from 'src/app/services/user/profile/edit-user-profile.service';
 
 @Component({
@@ -13,7 +14,7 @@ export class EditProfileComponent {
   @Input() profileDetails: { name: string, email: string, phone: string } = { name: 'loading', email: 'loading', phone: '' }
 
   onClose = new EventEmitter()
-  constructor(private formBuilder: FormBuilder, private editUserProfileService: EditUserProfileService) { }
+  constructor(private formBuilder: FormBuilder, private editUserProfileService: EditUserProfileService, private router: Router) { }
   emitCloseModalEvent() {
     this.closeModalEvent.emit(false);
   }
@@ -26,8 +27,11 @@ export class EditProfileComponent {
   onSubmit() {
     console.log(this.editProfileForm.value)
     if (this.editProfileForm.value.name === null || this.editProfileForm.value.email === null || this.editProfileForm.value.phone === null) return
-    this.editUserProfileService.editProfile(this.editProfileForm.value).subscribe((res) => {
-      console.log(res)
+    this.editUserProfileService.editProfile(this.editProfileForm.value).subscribe((response: any) => {
+      if (response.success !== true) {
+        this.router.navigate(['profile'])
+      }
+      this.emitCloseModalEvent()
     })
   }
 
