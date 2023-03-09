@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { EditUserProfileService } from 'src/app/services/user/profile/edit-user-profile.service';
 import { GetProfileService } from 'src/app/services/user/profile/get-profile.service';
 
 @Component({
@@ -17,7 +18,7 @@ export class UserProfileComponent implements OnInit {
     phone: '',
     role : ''
   }
-  constructor(private getProfileService: GetProfileService) { }
+  constructor(private getProfileService: GetProfileService, private editUserProfileService: EditUserProfileService ) { }
 
   ngOnInit(): void {
     this.getProfileService.getProfile().subscribe((response: any) => {
@@ -32,5 +33,14 @@ export class UserProfileComponent implements OnInit {
 
   closeModal() {
     this.canShowEditProfile = false
+  }
+
+  onFileSelected(event: any) {
+    const file: File = event.target.files[0];
+    const formData: FormData = new FormData();
+    formData.append('image', file, file.name);
+    this.editUserProfileService.uploadImage(formData).subscribe(response=>{
+      console.log(response)
+    })
   }
 }

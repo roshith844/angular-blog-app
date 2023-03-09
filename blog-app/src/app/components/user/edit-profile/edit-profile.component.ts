@@ -24,6 +24,7 @@ export class EditProfileComponent {
     phone: ''
   })
 
+ 
   onSubmit() {
     console.log(this.editProfileForm.value)
     if (this.editProfileForm.value.name === null || this.editProfileForm.value.email === null || this.editProfileForm.value.phone === null) return
@@ -34,5 +35,6 @@ export class EditProfileComponent {
       this.emitCloseModalEvent()
     })
   }
+
 
 }
