@@ -10,4 +10,8 @@ export class CommentService {
   addComment(blogId: string, comment: string) {
     return this.http.post(this.BASE_URL + 'blog/comments/add', { blogId: blogId, comment: comment })
   }
+
+  getComment(blogId: string){
+    return this.http.get(this.BASE_URL + 'blog/comments/get/'+ blogId)
+  }
 }
