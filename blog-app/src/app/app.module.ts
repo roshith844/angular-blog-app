@@ -23,6 +23,7 @@ import { EditProfileComponent } from './components/user/edit-profile/edit-profil
 import { StoreModule } from '@ngrx/store';
 import { PostsManagementComponent } from './components/writer/posts-management/posts-management.component';
 import { EditBlogComponent } from './components/writer/edit-blog/edit-blog.component';
+import { BlogCommentsComponent } from './components/user/blog-comments/blog-comments.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -39,7 +40,8 @@ import { EditBlogComponent } from './components/writer/edit-blog/edit-blog.compo
     CreateContentComponent,
     EditProfileComponent,
     PostsManagementComponent,
-    EditBlogComponent
+    EditBlogComponent,
+    BlogCommentsComponent
   ],
   imports: [
     BrowserModule,

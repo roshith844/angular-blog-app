@@ -11,6 +11,7 @@ import { UserLoginService } from 'src/app/services/user/user-login.service';
   styleUrls: ['./blog-content.component.css']
 })
 export class BlogContentComponent implements OnInit {
+  
   articleId = ''
   data!: any
   //  { _id: string, slug: string, title: string, content: string, author: string }
