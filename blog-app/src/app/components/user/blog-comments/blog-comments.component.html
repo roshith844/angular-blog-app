@@ -22,8 +22,7 @@
             <div class="flex items-center">
                 <p class="inline-flex items-center mr-3 text-sm text-gray-900 dark:text-white"><img
                         class="mr-2 w-6 h-6 rounded-full"
-                        src="https://flowbite.com/docs/images/people/profile-picture-2.jpg" alt="Michael Gough">Michael
-                    Gough</p>
+                        src="https://flowbite.com/docs/images/people/profile-picture-2.jpg" alt="Michael Gough">{{ comment.userDetails.name}}</p>
                 <p class="text-sm text-gray-600 dark:text-gray-400"><time pubdate datetime="2022-02-08"
                         title="February 8th, 2022">Feb. 8, 2022</time></p>
             </div>
@@ -58,7 +57,7 @@
                 </ul>
             </div> -->
         </footer>
-        <p>{{ comment.message }}</p>
+        <p>{{ comment.comments.message }}</p>
         <div class="flex items-center mt-4 space-x-4">
             <button type="button" class="flex items-center text-sm text-gray-500 hover:underline dark:text-gray-400">
                 <svg aria-hidden="true" class="mr-1 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"

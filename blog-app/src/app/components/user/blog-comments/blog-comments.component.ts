@@ -18,7 +18,7 @@ export class BlogCommentsComponent implements OnInit {
     this.commentService.getComment(this.blogId).subscribe((response: any)=>{
 
 if(response.success === true){
-  console.log(response.comments )
+  console.log(response)
   this.comments = response.comments 
 
 }
