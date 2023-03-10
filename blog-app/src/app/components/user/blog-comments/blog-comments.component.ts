@@ -9,6 +9,7 @@ import { CommentService } from 'src/app/services/user/comments/comment.service';
 })
 export class BlogCommentsComponent implements OnInit {
   @Input() blogId = '';
+  isDropdownVisible = true
   comments!: any[]
   constructor(private formBuilder: FormBuilder,
     private commentService: CommentService
