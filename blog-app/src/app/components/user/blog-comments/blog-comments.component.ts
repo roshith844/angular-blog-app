@@ -21,7 +21,6 @@ export class BlogCommentsComponent implements OnInit {
 if(response.success === true){
   console.log(response)
   this.comments = response.comments 
-
 }
     })
   }
@@ -34,12 +33,17 @@ if(response.success === true){
     if (this.commentForm.value.comment === undefined || this.commentForm.value.comment === null) return
     if (this.blogId === undefined || this.blogId === null) return
     const comment: string = this.commentForm.value.comment
+
     this.commentService.addComment(this.blogId, comment).subscribe((response: any) => {
-    console.log(response)
       if(response.success === true){
         this.commentForm.reset()
       }
     })
+  }
 
+  deleteComment(commentId: any, ){
+      this.commentService.deleteComment(this.blogId, commentId).subscribe((response)=>{
+        console.log(response)
+      })
   }
 }

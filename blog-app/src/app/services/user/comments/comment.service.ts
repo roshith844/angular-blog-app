@@ -14,4 +14,8 @@ export class CommentService {
   getComment(blogId: string){
     return this.http.get(this.BASE_URL + 'blog/comments/get/'+ blogId)
   }
+
+  deleteComment(blogId: string, commentId: string){
+ return this.http.delete(`${this.BASE_URL}blog/comments/blogId/${blogId}/comment/${commentId}`)
+  }
 }
