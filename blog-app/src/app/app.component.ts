@@ -14,6 +14,8 @@ export class AppComponent implements OnInit {
   ngOnInit(): void {
 
     this.userDetailsService.getUserDetails().subscribe((response: any) => {
+      console.log("appcomponent")
+      console.log(response)
       if (response.role == 'writer') {
         this.writerService.markAsWriter()
       } else {
@@ -22,9 +24,12 @@ export class AppComponent implements OnInit {
 
       if (response.loggedIn == true) {
         this.userLoginService.markAsLoggedIn()
+        this.userDetailsService.modifyNameOfUser(response.name)
+
       } else {
         this.userLoginService.markAsLoggedOut()
       }
+
     })
 
 
