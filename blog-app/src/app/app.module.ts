@@ -24,6 +24,14 @@ import { StoreModule } from '@ngrx/store';
 import { PostsManagementComponent } from './components/writer/posts-management/posts-management.component';
 import { EditBlogComponent } from './components/writer/edit-blog/edit-blog.component';
 import { BlogCommentsComponent } from './components/user/blog-comments/blog-comments.component';
+import { AdminLoginComponent } from './components/admin/admin-login/admin-login.component';
+import { AdminPageComponent } from './components/pages/admin/admin-page/admin-page.component';
+import { AdminNavbarComponent } from './components/admin/admin-navbar/admin-navbar.component';
+import { AdminDashboardComponent } from './components/admin/admin-dashboard/admin-dashboard.component';
+import { CommonModule } from '@angular/common';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastrModule } from 'ngx-toastr'
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -41,7 +49,11 @@ import { BlogCommentsComponent } from './components/user/blog-comments/blog-comm
     EditProfileComponent,
     PostsManagementComponent,
     EditBlogComponent,
-    BlogCommentsComponent
+    BlogCommentsComponent,
+    AdminLoginComponent,
+    AdminPageComponent,
+    AdminNavbarComponent,
+    AdminDashboardComponent
   ],
   imports: [
     BrowserModule,
@@ -49,6 +61,9 @@ import { BlogCommentsComponent } from './components/user/blog-comments/blog-comm
     ReactiveFormsModule,
     HttpClientModule,
     EditorModule,
+    CommonModule,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot(),
     StoreModule.forRoot({}, {})
   ],
   providers: [{

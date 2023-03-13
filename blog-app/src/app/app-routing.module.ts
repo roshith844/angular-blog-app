@@ -1,5 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AdminDashboardComponent } from './components/admin/admin-dashboard/admin-dashboard.component';
+import { AdminLoginComponent } from './components/admin/admin-login/admin-login.component';
+import { AdminPageComponent } from './components/pages/admin/admin-page/admin-page.component';
 import { UserPageComponent } from './components/pages/user/user-page/user-page.component';
 import { WriterDashboardComponent } from './components/pages/writer/writer-dashboard/writer-dashboard.component';
 import { BlogContentComponent } from './components/user/blog-content/blog-content.component';
@@ -11,7 +14,6 @@ import { UserSignupComponent } from './components/user/user-signup/user-signup.c
 import { CreateContentComponent } from './components/writer/create-content/create-content.component';
 import { EditBlogComponent } from './components/writer/edit-blog/edit-blog.component';
 import { PostsManagementComponent } from './components/writer/posts-management/posts-management.component';
-
 const routes: Routes = [
   {
     path: '', component: UserPageComponent, children: [
@@ -28,6 +30,13 @@ const routes: Routes = [
       { path: 'write', component: CreateContentComponent },
       { path: 'posts', component: PostsManagementComponent },
       { path: 'edit/:slug', component: EditBlogComponent },
+    ]
+  },
+
+  {
+    path: 'admin', component: AdminPageComponent, children: [
+      { path: '', component: AdminDashboardComponent },
+      { path: 'login', component: AdminLoginComponent }
     ]
   }
 
