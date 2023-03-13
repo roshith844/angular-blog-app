@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AdminDashboardComponent } from './components/admin/admin-dashboard/admin-dashboard.component';
 import { AdminLoginComponent } from './components/admin/admin-login/admin-login.component';
+import { PostsManagementByAdminComponent } from './components/admin/posts-management-by-admin/posts-management-by-admin.component';
 import { AdminPageComponent } from './components/pages/admin/admin-page/admin-page.component';
 import { UserPageComponent } from './components/pages/user/user-page/user-page.component';
 import { WriterDashboardComponent } from './components/pages/writer/writer-dashboard/writer-dashboard.component';
@@ -36,7 +37,8 @@ const routes: Routes = [
   {
     path: 'admin', component: AdminPageComponent, children: [
       { path: '', component: AdminDashboardComponent },
-      { path: 'login', component: AdminLoginComponent }
+      { path: 'login', component: AdminLoginComponent },
+      {path: 'posts', component: PostsManagementByAdminComponent}
     ]
   }
 

@@ -30,7 +30,8 @@ import { AdminNavbarComponent } from './components/admin/admin-navbar/admin-navb
 import { AdminDashboardComponent } from './components/admin/admin-dashboard/admin-dashboard.component';
 import { CommonModule } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { ToastrModule } from 'ngx-toastr'
+import { ToastrModule } from 'ngx-toastr';
+import { PostsManagementByAdminComponent } from './components/admin/posts-management-by-admin/posts-management-by-admin.component'
 
 @NgModule({
   declarations: [
@@ -53,7 +54,8 @@ import { ToastrModule } from 'ngx-toastr'
     AdminLoginComponent,
     AdminPageComponent,
     AdminNavbarComponent,
-    AdminDashboardComponent
+    AdminDashboardComponent,
+    PostsManagementByAdminComponent
   ],
   imports: [
     BrowserModule,
