@@ -70,11 +70,9 @@ export class AdminLoginComponent {
         password: this.loginForm.value.password
       }
       this.adminLoginService.loginAdmin(LOGIN_FORMDATA).subscribe((response: any) => {
-        console.log(response)
         if (response.success === true) {
-
-          localStorage.setItem('accessToken', response.accessToken)
-          localStorage.setItem('refreshToken', response.refreshToken)
+          localStorage.setItem('admin-accessToken', response.accessToken)
+          localStorage.setItem('admin-refreshToken', response.refreshToken)
           this.adminLoginService.markAsLoggedIn()
           this.showSuccess()
           this.router.navigate(['admin'])
@@ -83,7 +81,6 @@ export class AdminLoginComponent {
         }
       })
     }
-
   }
 
   showSuccess() {

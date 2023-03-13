@@ -9,8 +9,11 @@ import { WriterService } from 'src/app/services/writer/writer.service';
   styleUrls: ['./user-navbar.component.css']
 })
 export class UserNavbarComponent implements OnInit {
-
-  constructor(public loginService: UserLoginService, private becomeWriterService: BecomeWriterRequestService, public writerService: WriterService) { }
+  isMenuOptionsVisible = false
+  constructor(public loginService: UserLoginService,
+    private becomeWriterService: BecomeWriterRequestService,
+    public writerService: WriterService) { }
+    
   logout() {
     localStorage.removeItem('accessToken')
     localStorage.removeItem('refreshToken')
@@ -26,15 +29,23 @@ export class UserNavbarComponent implements OnInit {
 
   }
 
-  applyForWriterRole(){
-    this.becomeWriterService.applyForWriterRole().subscribe((response: any )=>{
+  applyForWriterRole() {
+    this.becomeWriterService.applyForWriterRole().subscribe((response: any) => {
       console.log(response)
-      if(response.isWriter === true){
+      if (response.isWriter === true) {
         this.writerService.markAsWriter()
-      }else{
+      } else {
         this.writerService.markAsNotAWriter()
       }
     })
+  }
+
+  toggleMenu() {
+    if (this.isMenuOptionsVisible === false) {
+      this.isMenuOptionsVisible = true
+    } else {
+      this.isMenuOptionsVisible = false
+    }
   }
 
 }
