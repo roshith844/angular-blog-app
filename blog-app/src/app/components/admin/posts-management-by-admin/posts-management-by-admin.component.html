@@ -1,1 +1,39 @@
-<p>posts-management-by-admin works!</p>
+<div class="overflow-x-auto">
+    <table class="table-auto w-full">
+        <thead>
+            <tr class="bg-gray-200">
+                <th class="px-4 py-2">#</th>
+                <th class="px-4 py-2">Created Date</th>
+                <th class="px-4 py-2">Updated Date</th>
+                <th class="px-4 py-2">Post ID</th>
+                <th class="px-4 py-2">Title</th>
+                <th class="px-4 py-2">Author</th>
+                <th class="px-4 py-2">Slug</th>
+                <th class="px-4 py-2">Status</th>
+                <th class="px-4 py-2">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let post of posts; index as i" class="border-b border-gray-200">
+                <td class="px-4 py-2">{{ i + 1 }}</td>
+                <td class="px-4 py-2">{{ post.createdAt }}</td>
+                <td class="px-4 py-2">{{ post.updatedAt }}</td>
+                <td class="px-4 py-2">{{ post._id }}</td>
+                <td class="px-4 py-2">{{ post.title }}</td>
+                <td class="px-4 py-2">{{ post.author_details.name }}</td>
+                <td class="px-4 py-2">{{ post.slug }}</td>
+                <td class="px-4 py-2">{{ post.status }}</td>
+                <td class="px-4 py-2">
+                    <button routerLink="/blog/{{ post.slug }}"
+                        class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-3 px-4 mx-3 rounded">
+                        View Blog
+                    </button>
+                    <button *ngIf="post.status === 'pending'" (click)="approveBlog( post._id )"
+                        class="ml-2 text-blue-600 hover:text-blue-800">Approve</button>
+                    <button *ngIf="post.status === 'pending'" (click)="rejectBlog( post._id )"
+                        class="ml-2 text-red-600 hover:text-red-800">Reject</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
