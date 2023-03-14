@@ -27,6 +27,10 @@ export class AdminNavbarComponent implements OnInit {
     }
   }
 
+  toggleMenuOptionsVisibility() {
+    this.isMenuOptionsVisible = !this.isMenuOptionsVisible;
+  }
+
   logout() {
     localStorage.removeItem('admin-accessToken')
     localStorage.removeItem('admin-refreshToken')

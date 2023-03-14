@@ -1,0 +1,13 @@
+@media (max-width: 767px) {
+    .collapse.navbar-collapse.show {
+        display: block !important;
+    }
+
+    .navbar .dropdown-menu {
+        display: none;
+    }
+
+    .navbar .dropdown.show .dropdown-menu {
+        display: block;
+    }
+}
