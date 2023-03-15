@@ -32,7 +32,8 @@ import { CommonModule } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { PostsManagementByAdminComponent } from './components/admin/posts-management-by-admin/posts-management-by-admin.component';
-import { CommentManagementByAdminComponent } from './components/admin/comment-management-by-admin/comment-management-by-admin.component'
+import { CommentManagementByAdminComponent } from './components/admin/comment-management-by-admin/comment-management-by-admin.component';
+import { UserManagementByAdminComponent } from './components/admin/user-management-by-admin/user-management-by-admin.component'
 
 @NgModule({
   declarations: [
@@ -57,7 +58,8 @@ import { CommentManagementByAdminComponent } from './components/admin/comment-ma
     AdminNavbarComponent,
     AdminDashboardComponent,
     PostsManagementByAdminComponent,
-    CommentManagementByAdminComponent
+    CommentManagementByAdminComponent,
+    UserManagementByAdminComponent
   ],
   imports: [
     BrowserModule,

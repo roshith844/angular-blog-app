@@ -1,0 +1,27 @@
+<div class="overflow-x-auto">
+    <table class="table-auto w-full">
+        <thead>
+            <tr class="bg-gray-200">
+                <th class="px-4 py-2">#</th>
+                <th class="px-4 py-2">Name</th>
+                <th class="px-4 py-2">Email</th>
+                <th class="px-4 py-2">Phone Number</th>
+                <th class="px-4 py-2">Status</th>
+                <th class="px-4 py-2">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let user of users; index as i" class="border-b border-gray-200">
+                <td class="px-4 py-2">{{ i + 1 }}</td>
+                <td class="px-4 py-2">{{ user.name }}</td>
+                <td class="px-4 py-2">{{ user.email }}</td>
+                <td class="px-4 py-2">{{ user.phone }}</td>
+                <td class="px-4 py-2">{{ user.status }}</td>
+                <td class="px-4 py-2">
+                    <button *ngIf="user.status == 'active'" (click)="blockUser(user._id)" class="ml-2 text-red-600 hover:text-red-800">Block</button>
+                    <button *ngIf="user.status == 'blocked'" (click)="unBlockUser(user._id)" class="ml-2 text-blue-600 hover:text-blue-800">Unblock</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

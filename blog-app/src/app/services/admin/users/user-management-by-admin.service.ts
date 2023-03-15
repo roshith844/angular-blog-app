@@ -8,8 +8,17 @@ import { Observable } from 'rxjs';
 export class UserManagementByAdminService {
   BASE_URL = 'http://localhost:3000/admin/user/'
   constructor(private http: HttpClient) { }
+
+  getAllUsers() {
+    return this.http.get(this.BASE_URL + 'all')
+  }
+
   blockUser(userId: string) {
-    return this.http.patch(this.BASE_URL + 'block', {userId: userId} )
+    return this.http.patch(this.BASE_URL + 'block', { userId: userId })
+  }
+
+  unBlockUser(userId: string){
+    return this.http.patch(this.BASE_URL + 'unblock', { userId: userId })
   }
 
 }
