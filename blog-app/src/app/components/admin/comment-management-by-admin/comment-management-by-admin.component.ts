@@ -20,7 +20,6 @@ export class CommentManagementByAdminComponent implements OnInit {
   blockUser(userId: string) {
     this.userManagementByAdminService.blockUser(userId).subscribe((response: any) => {
       if (response.success === true) {
-
         for (var i = 0; i < this.comments.length; i++) {
           if (this.comments[i].user_details._id === userId) {
             this.comments[i].user_details.status = 'blocked'
