@@ -28,7 +28,7 @@ export class CreatorManagementByAdminComponent implements OnInit {
     })
   }
 
-  
+
   unBlockUser(userId: string) {
     this.userManagementByAdminService.unBlockUser(userId).subscribe((response: any) => {
       if (response.success == true) {
@@ -39,5 +39,14 @@ export class CreatorManagementByAdminComponent implements OnInit {
       }
 
     })
+  }
+
+  dismissCreator(userId: string) {
+    this.creatorManagementByAdminService.dismissCreator(userId).subscribe((response: any) => {
+      if (response.success === true) {
+        this.creators = this.creators.filter(obj => obj._id !== userId)
+      }
+    })
+
   }
 }

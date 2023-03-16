@@ -13,4 +13,9 @@ export class CreatorManagementByAdminService {
   getAllCreators(): Observable<object> {
     return this.http.get(this.BASE_URL + 'all')
   }
+
+  dismissCreator(userId: string){
+             return this.http.patch(this.BASE_URL + 'dismiss', {userId: userId} )
+  }
+
 }
