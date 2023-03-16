@@ -5,6 +5,4 @@ import { Component } from '@angular/core';
   templateUrl: './writer-navbar.component.html',
   styleUrls: ['./writer-navbar.component.css']
 })
-export class WriterNavbarComponent {
-
-}
+export class WriterNavbarComponent { }

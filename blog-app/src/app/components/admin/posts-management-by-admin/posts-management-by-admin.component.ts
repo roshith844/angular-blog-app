@@ -19,6 +19,7 @@ export class PostsManagementByAdminComponent implements OnInit {
   }
 
   approveBlog(postId: string) {
+    if (!confirm("Are you sure you want to Approve this Blog?")) return
     this.adminPostManagementService.approveBlog(postId).subscribe((response: any) => {
       if (response.success === true) {
         const element = this.posts.find(item => item._id === postId);
@@ -34,9 +35,10 @@ export class PostsManagementByAdminComponent implements OnInit {
   }
 
   rejectBlog(postId: string) {
+    if (!confirm("Are you sure you want to Reject this Blog?")) return
     this.adminPostManagementService.rejectBlog(postId).subscribe((response: any) => {
       if (response.success === true) {
-        const element = this.posts.find(item => item._id === postId);
+        const element = this.posts.find(item => item._id === postId)
         if (element) {
           element.status = 'rejected';
         }

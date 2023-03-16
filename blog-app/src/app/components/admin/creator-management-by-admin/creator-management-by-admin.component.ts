@@ -19,6 +19,7 @@ export class CreatorManagementByAdminComponent implements OnInit {
   }
 
   blockUser(userId: string) {
+    if (!confirm("Are you sure you want to Block this User?")) return
     this.userManagementByAdminService.blockUser(userId).subscribe((response: any) => {
       if (response.success == true) {
         const element = this.creators.find(item => item._id === userId)
@@ -35,6 +36,7 @@ export class CreatorManagementByAdminComponent implements OnInit {
 
 
   unBlockUser(userId: string) {
+    if (!confirm("Are you sure you want to Unblock this User?")) return
     this.userManagementByAdminService.unBlockUser(userId).subscribe((response: any) => {
       if (response.success == true) {
         const element = this.creators.find(item => item._id === userId)
@@ -50,6 +52,7 @@ export class CreatorManagementByAdminComponent implements OnInit {
   }
 
   dismissCreator(userId: string) {
+    if (!confirm("Are you sure you want to Dismiss this Creator?")) return
     this.creatorManagementByAdminService.dismissCreator(userId).subscribe((response: any) => {
       if (response.success === true) {
         this.creators = this.creators.filter(obj => obj._id !== userId)

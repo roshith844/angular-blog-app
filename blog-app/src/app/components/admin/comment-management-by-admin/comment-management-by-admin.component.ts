@@ -21,6 +21,7 @@ export class CommentManagementByAdminComponent implements OnInit {
   }
 
   blockUser(userId: string) {
+    if (!confirm("Are you sure you want to Block this user?")) return
     this.userManagementByAdminService.blockUser(userId).subscribe((response: any) => {
       if (response.success === true) {
         for (var i = 0; i < this.comments.length; i++) {
@@ -36,6 +37,7 @@ export class CommentManagementByAdminComponent implements OnInit {
   }
 
   removeComment(blogId: string, commentId: string) {
+    if (!confirm("Are you sure you want to Remove this Comment?")) return
     this.adminCommentManagementService.removeComment(blogId, commentId).subscribe((response: any) => {
       if (response.success === true) {
         this.comments = this.comments.filter(function (obj) {
