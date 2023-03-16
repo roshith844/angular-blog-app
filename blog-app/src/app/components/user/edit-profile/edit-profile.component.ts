@@ -43,4 +43,13 @@ export class EditProfileComponent {
     })
   }
 
+  onFileSelected(event: any) {
+    const file: File = event.target.files[0];
+    const formData: FormData = new FormData();
+    formData.append('image', file, file.name);
+    this.editUserProfileService.uploadImage(formData).subscribe(response=>{
+      console.log(response)
+    })
+  }
+
 }

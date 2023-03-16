@@ -4,7 +4,7 @@
     <div class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
       <!-- Background overlay -->
       <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" aria-hidden="true"></div>
-      
+
       <!-- Modal panel -->
       <div
         class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full">
@@ -16,9 +16,23 @@
           <div class="mt-4">
             <label for="name" class="block text-sm font-medium text-gray-700">Name</label>
             <div class="mt-1">
+              <label for="file-input"
+                class="inline-block px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md cursor-pointer hover:bg-gray-50 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 focus:ring-offset-1">
+                Update image <input id="file-input" type="file" (change)="onFileSelected($event)">
+              </label>
+              <!-- <input formControlName="name" type="text" name="name" id="name"
+                class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md"
+                placeholder="" [(ngModel)]="profileDetails.name" value="{{ profileDetails.name }}"> -->
+            </div>
+          </div>
+
+
+          <div class="mt-4">
+            <label for="name" class="block text-sm font-medium text-gray-700">Name</label>
+            <div class="mt-1">
               <input formControlName="name" type="text" name="name" id="name"
                 class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md"
-                placeholder="" [(ngModel)]="profileDetails.name"  value="{{ profileDetails.name }}">
+                placeholder="" [(ngModel)]="profileDetails.name" value="{{ profileDetails.name }}">
             </div>
           </div>
           <div class="mt-4">
@@ -26,7 +40,7 @@
             <div class="mt-1">
               <input formControlName="email" type="email" name="email" id="email"
                 class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md"
-                placeholder=""  [(ngModel)]="profileDetails.email" value="{{ profileDetails.email }}">
+                placeholder="" [(ngModel)]="profileDetails.email" value="{{ profileDetails.email }}">
             </div>
           </div>
           <div class="mt-4">
@@ -34,7 +48,7 @@
             <div class="mt-1">
               <input formControlName="phone" type="tel" name="phone" id="phone"
                 class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md"
-                placeholder=""  [(ngModel)]="profileDetails.phone" value="{{profileDetails.phone}}">
+                placeholder="" [(ngModel)]="profileDetails.phone" value="{{profileDetails.phone}}">
             </div>
           </div>
           <div class="mt-4 flex justify-end">
