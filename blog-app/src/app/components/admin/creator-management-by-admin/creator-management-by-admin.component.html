@@ -1,0 +1,31 @@
+<div class="overflow-x-auto">
+    <table class="table-auto w-full">
+        <thead>
+            <tr class="bg-gray-200">
+                <th class="px-4 py-2">#</th>
+                <th class="px-4 py-2">Creator Id</th>
+                <th class="px-4 py-2">Creator Name</th>
+                <th class="px-4 py-2">Email</th>
+                <th class="px-4 py-2">Phone Number</th>
+                <th class="px-4 py-2">Status</th>
+                <th class="px-4 py-2">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let creator of creators; index as i" class="border-b border-gray-200">
+                <td class="px-4 py-2">{{ i + 1 }}</td>
+                <td class="px-4 py-2">{{ creator._id }}</td>
+                <td class="px-4 py-2">{{ creator.name }}</td>
+                <td class="px-4 py-2">{{ creator.email }}</td>
+                <td class="px-4 py-2">{{ creator.phone }}</td>
+                <td class="px-4 py-2">{{ creator.status }}</td>
+                <td class="px-4 py-2">
+                    <button *ngIf="creator.status == 'active'" (click)=" blockUser(creator._id)"
+                        class="ml-2 text-red-600 hover:text-red-800">Block</button>
+                    <button *ngIf="creator.status == 'blocked'" (click)="unBlockUser(creator._id)"
+                        class="ml-2 text-blue-600 hover:text-blue-800">Unblock</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

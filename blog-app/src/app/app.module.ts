@@ -33,7 +33,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { PostsManagementByAdminComponent } from './components/admin/posts-management-by-admin/posts-management-by-admin.component';
 import { CommentManagementByAdminComponent } from './components/admin/comment-management-by-admin/comment-management-by-admin.component';
-import { UserManagementByAdminComponent } from './components/admin/user-management-by-admin/user-management-by-admin.component'
+import { UserManagementByAdminComponent } from './components/admin/user-management-by-admin/user-management-by-admin.component';
+import { CreatorManagementByAdminComponent } from './components/admin/creator-management-by-admin/creator-management-by-admin.component'
 
 @NgModule({
   declarations: [
@@ -59,7 +60,8 @@ import { UserManagementByAdminComponent } from './components/admin/user-manageme
     AdminDashboardComponent,
     PostsManagementByAdminComponent,
     CommentManagementByAdminComponent,
-    UserManagementByAdminComponent
+    UserManagementByAdminComponent,
+    CreatorManagementByAdminComponent
   ],
   imports: [
     BrowserModule,

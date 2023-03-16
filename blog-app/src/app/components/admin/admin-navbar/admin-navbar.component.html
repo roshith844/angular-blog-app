@@ -25,19 +25,24 @@
                 </li>
                 <li *ngIf="adminLoginService.isLoggedIn === true">
                     <a routerLink="/admin/posts"
-                      class="block py-2 pl-3 pr-4 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 md:dark:text-white dark:bg-blue-600 md:dark:bg-transparent"
-                      aria-current="page">Posts</a>
-                  </li>
-                  <li *ngIf="adminLoginService.isLoggedIn === true">
+                        class="block py-2 pl-3 pr-4 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 md:dark:text-white dark:bg-blue-600 md:dark:bg-transparent"
+                        aria-current="page">Posts</a>
+                </li>
+                <li *ngIf="adminLoginService.isLoggedIn === true">
                     <a routerLink="/admin/comments"
-                      class="block py-2 pl-3 pr-4 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 md:dark:text-white dark:bg-blue-600 md:dark:bg-transparent"
-                      aria-current="page">Comments</a>
-                  </li>
-                  <li *ngIf="adminLoginService.isLoggedIn === true">
+                        class="block py-2 pl-3 pr-4 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 md:dark:text-white dark:bg-blue-600 md:dark:bg-transparent"
+                        aria-current="page">Comments</a>
+                </li>
+                <li *ngIf="adminLoginService.isLoggedIn === true">
                     <a routerLink="/admin/users"
-                      class="block py-2 pl-3 pr-4 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 md:dark:text-white dark:bg-blue-600 md:dark:bg-transparent"
-                      aria-current="page">Users</a>
-                  </li>
+                        class="block py-2 pl-3 pr-4 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 md:dark:text-white dark:bg-blue-600 md:dark:bg-transparent"
+                        aria-current="page">Users</a>
+                </li>
+                <li *ngIf="adminLoginService.isLoggedIn === true">
+                    <a routerLink="/admin/creators"
+                        class="block py-2 pl-3 pr-4 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 md:dark:text-white dark:bg-blue-600 md:dark:bg-transparent"
+                        aria-current="page">creators</a>
+                </li>
 
                 <li *ngIf="adminLoginService.isLoggedIn === true">
                     <button (click)="toggleMenu()" id="dropdownNavbarLink" data-dropdown-toggle="dropdownNavbar"
@@ -49,7 +54,7 @@
                                 clip-rule="evenodd"></path>
                         </svg></button>
                     <!-- Dropdown menu -->
-                    <div  [ngClass]="{'hidden' : !isMenuOptionsVisible}" id="dropdownNavbar"
+                    <div [ngClass]="{'hidden' : !isMenuOptionsVisible}" id="dropdownNavbar"
                         class="absolute top-10 right-10  z-10 font-normal bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 dark:divide-gray-600">
                         <ul class="py-2 text-sm text-gray-700 dark:text-gray-400" aria-labelledby="dropdownLargeButton">
                             <li>
