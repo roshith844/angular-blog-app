@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
 import { AdminCommentManagementService } from 'src/app/services/admin/comments/admin-comment-management.service';
 import { UserManagementByAdminService } from 'src/app/services/admin/users/user-management-by-admin.service';
 
@@ -9,7 +10,9 @@ import { UserManagementByAdminService } from 'src/app/services/admin/users/user-
 })
 export class CommentManagementByAdminComponent implements OnInit {
   comments: any[] = []
-  constructor(private adminCommentManagementService: AdminCommentManagementService, private userManagementByAdminService: UserManagementByAdminService) { }
+  constructor(private adminCommentManagementService: AdminCommentManagementService,
+     private userManagementByAdminService: UserManagementByAdminService,
+    private toastr: ToastrService ) { }
   ngOnInit(): void {
     this.adminCommentManagementService.getAllComments().subscribe((response: any) => {
       console.log(response)
@@ -25,7 +28,9 @@ export class CommentManagementByAdminComponent implements OnInit {
             this.comments[i].user_details.status = 'blocked'
           }
         }
-
+        this.showSuccess('User Blocked', '')
+      } else {
+        this.showFailure()
       }
     })
   }
@@ -34,9 +39,21 @@ export class CommentManagementByAdminComponent implements OnInit {
     this.adminCommentManagementService.removeComment(blogId, commentId).subscribe((response: any) => {
       if (response.success === true) {
         this.comments = this.comments.filter(function (obj) {
-          return obj.comments._id !== commentId;
-        });
+          return obj.comments._id !== commentId
+        })
+        this.showSuccess('Comment Removed', '')
+      } else {
+        this.showFailure()
       }
     })
   }
+
+  showSuccess(title: string, description: string) {
+    this.toastr.success(title, description)
+  }
+
+  showFailure() {
+    this.toastr.error('Some went wrong', 'Please Try again!')
+  }
+
 }

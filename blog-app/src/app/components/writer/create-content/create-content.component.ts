@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
 import { AsyncSubject, Subject } from 'rxjs';
 import { PostContentService } from 'src/app/services/writer/post-content.service';
 import { type contentFormData } from 'src/app/types/formData';
@@ -14,7 +15,8 @@ import { type contentFormData } from 'src/app/types/formData';
 export class CreateContentComponent {
   private editorSubject: Subject<any> = new AsyncSubject();
 
-  constructor(private postContentService: PostContentService) { }
+  constructor(private postContentService: PostContentService,
+    private toastr: ToastrService) { }
 
   public myForm = new FormGroup({
     title: new FormControl(""), //
@@ -28,8 +30,8 @@ export class CreateContentComponent {
   }
 
   onSubmit() {
-    if ( this.myForm.value.title === '' || this.myForm.value.body == ''|| this.myForm.value.slug === '') return
-    if (typeof this.myForm.value.title != 'string' || typeof this.myForm.value.body != 'string'|| typeof this.myForm.value.slug  != 'string' ) return
+    if (this.myForm.value.title === '' || this.myForm.value.body == '' || this.myForm.value.slug === '') return
+    if (typeof this.myForm.value.title != 'string' || typeof this.myForm.value.body != 'string' || typeof this.myForm.value.slug != 'string') return
 
     const CONTENT: contentFormData = {
       title: this.myForm.value.title,
@@ -37,8 +39,12 @@ export class CreateContentComponent {
       slug: this.myForm.value.slug
 
     }
-    this.postContentService.postContent(CONTENT).subscribe((response)=>{
-      console.log(response)
+    this.postContentService.postContent(CONTENT).subscribe((response: any) => {
+      if (response.success === true) {
+        this.toastr.success('Your Post was submitted')
+      } else {
+        this.toastr.error('Something Went Wrong')
+      }
     })
     this.myForm.reset()
   }

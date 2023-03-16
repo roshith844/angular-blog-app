@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
 import { AdminLoginService } from 'src/app/services/admin/admin-login.service';
 
 @Component({
@@ -8,7 +9,7 @@ import { AdminLoginService } from 'src/app/services/admin/admin-login.service';
 })
 export class AdminNavbarComponent implements OnInit {
   isMenuOptionsVisible = false
-  constructor(public adminLoginService: AdminLoginService) { }
+  constructor(public adminLoginService: AdminLoginService, private toastr: ToastrService) { }
 
 
 
@@ -35,7 +36,11 @@ export class AdminNavbarComponent implements OnInit {
     localStorage.removeItem('admin-accessToken')
     localStorage.removeItem('admin-refreshToken')
     this.adminLoginService.markAsLoggedOut()
+    this.showSuccess()
   }
 
+  showSuccess() {
+    this.toastr.success('Logged Out', 'See You soon!')
+  }
 
 }

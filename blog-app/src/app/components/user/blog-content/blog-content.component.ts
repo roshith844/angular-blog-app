@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { ContentService } from 'src/app/services/content.service';
 import { FavoritesService } from 'src/app/services/user/interactions/favorites.service';
 import { UserViewsService } from 'src/app/services/user/statistics/user-views.service';
@@ -11,16 +12,17 @@ import { UserLoginService } from 'src/app/services/user/user-login.service';
   styleUrls: ['./blog-content.component.css']
 })
 export class BlogContentComponent implements OnInit {
-  
+
   articleId = ''
   data!: any
-  //  { _id: string, slug: string, title: string, content: string, author: string }
   slug = ''
   pageViews: number = 0
   isFavorite: boolean = false
-  constructor(private viewsService: UserViewsService, private activatedRoute: ActivatedRoute, private contentService: ContentService, public loginService: UserLoginService, private favoritesService: FavoritesService) {
-
-  }
+  constructor(private viewsService: UserViewsService,
+    private activatedRoute: ActivatedRoute,
+    private contentService: ContentService, public loginService: UserLoginService,
+    private favoritesService: FavoritesService,
+    private toastr: ToastrService) { }
 
   ngOnInit(): void {
     // Gets param
@@ -32,7 +34,7 @@ export class BlogContentComponent implements OnInit {
       this.data = response.data
       this.articleId = response.data._id
       this.isFavorite = response.isFavorite
-     
+
       // views and Visits
       if (sessionStorage.getItem('visit') === null) {
         this.viewsService.incrementPageViewsAndVisits(this.articleId).subscribe((res) => {
@@ -66,13 +68,24 @@ export class BlogContentComponent implements OnInit {
         console.log(response)
         if (response.status == 'add') {
           this.isFavorite = true
-        }
-        if (response.status == 'remove') {
+          this.showSuccess('Added to Favorites','')
+        }else if (response.status == 'remove') {
           this.isFavorite = false
+          this.showSuccess('Removed From Favorites', '')
+        }else{
+          this.showFailure()
         }
       })
     }
-
   }
+
+  showSuccess(title: string, description: string) {
+    this.toastr.success(title, description)
+  }
+
+  showFailure() {
+    this.toastr.error('Some went wrong', 'Please Try again!')
+  }
+
 
 }

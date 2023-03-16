@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
 import { BecomeWriterRequestService } from 'src/app/services/user/become-writer-request.service';
 import { UserLoginService } from 'src/app/services/user/user-login.service';
 import { WriterService } from 'src/app/services/writer/writer.service';
@@ -12,12 +13,14 @@ export class UserNavbarComponent implements OnInit {
   isMenuOptionsVisible = false
   constructor(public loginService: UserLoginService,
     private becomeWriterService: BecomeWriterRequestService,
-    public writerService: WriterService) { }
-    
+    public writerService: WriterService,
+    private toastr: ToastrService) { }
+
   logout() {
     localStorage.removeItem('accessToken')
     localStorage.removeItem('refreshToken')
     this.loginService.markAsLoggedOut()
+    this.toastr.success('Logged Out Successfully')
   }
 
   ngOnInit(): void {
@@ -26,7 +29,6 @@ export class UserNavbarComponent implements OnInit {
     if (ACCESS_TOKEN != null && REFRESH_TOKEN != null) {
       this.loginService.markAsLoggedIn()
     }
-
   }
 
   applyForWriterRole() {
@@ -34,8 +36,10 @@ export class UserNavbarComponent implements OnInit {
       console.log(response)
       if (response.isWriter === true) {
         this.writerService.markAsWriter()
+        this.toastr.success("Success!!", 'Now you can write blogs :)')
       } else {
         this.writerService.markAsNotAWriter()
+        this.toastr.error('Something went wrong')
       }
     })
   }

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { UserLoginService } from 'src/app/services/user/user-login.service';
 import { type formData } from './../../../types/formData'
 
@@ -12,9 +13,10 @@ import { type formData } from './../../../types/formData'
 export class UserLoginComponent {
   errorMessageForEmail = ''
   errorMessageForPassword = ''
-  constructor(private formBuilder: FormBuilder, private loginService: UserLoginService, private router: Router) {
-
-  }
+  constructor(private formBuilder: FormBuilder,
+    private loginService: UserLoginService,
+    private router: Router,
+    private toastr: ToastrService) { }
 
   loginForm = this.formBuilder.group({
     email: '',
@@ -51,7 +53,7 @@ export class UserLoginComponent {
     } else if (passwordInput.length >= 50) {
       this.errorMessageForPassword = "password is should exceed 10 characters";
       return;
-    }else  if (!PASSWORD_PATTERN.test(passwordInput)) {
+    } else if (!PASSWORD_PATTERN.test(passwordInput)) {
       this.errorMessageForPassword = 'Invalid Password Format'
       return
     }
@@ -69,23 +71,17 @@ export class UserLoginComponent {
         password: this.loginForm.value.password
       }
       this.loginService.sendLoginFormData(LOGIN_FORMDATA).subscribe((response: any) => {
-        console.log(response)
         if (response.success == true) {
           localStorage.setItem('accessToken', response.accessToken)
           localStorage.setItem('refreshToken', response.refreshToken)
           this.loginService.markAsLoggedIn()
           this.router.navigate([''])
+          this.toastr.success('Logged In Successfully')
         } else {
-          this.router.navigate(['signup'])
+          this.toastr.error('Login Failed', 'Please Signup to Login or Try logging In Again')
         }
 
       })
-
     }
-
-
-
-
-    // this.loginForm.reset()
   }
 }

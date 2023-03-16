@@ -6,6 +6,7 @@ import { GetContentService } from 'src/app/services/writer/get-content.service';
 import { PostContentService } from 'src/app/services/writer/post-content.service';
 import { NgZone } from '@angular/core';
 import { UpdateBlogService } from 'src/app/services/writer/update-blog.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-edit-blog',
@@ -21,7 +22,8 @@ export class EditBlogComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
     private ngZone: NgZone,
     private updateBlogService: UpdateBlogService,
-    private router: Router
+    private router: Router,
+    private toastr: ToastrService
   ) { }
 
   title = ''
@@ -46,7 +48,6 @@ export class EditBlogComponent implements OnInit {
     if (PARAM == null) return
     this.slug = PARAM
     this.getContentService.getBlog(PARAM).subscribe((response: any) => {
-      console.log(response)
       if (response.success == true) {
         this.articleId = response.data._id
         this.title = response.data.title
@@ -65,11 +66,9 @@ export class EditBlogComponent implements OnInit {
     if (typeof this.editBlogForm.value.title != 'string' || typeof this.editBlogForm.value.body != 'string' || typeof this.editBlogForm.value.slug != 'string' || typeof this.articleId !== 'string') return
 
     // Update form control values with form values
-    this.editBlogForm.controls.title.setValue(this.editBlogForm.value.title);
-    this.editBlogForm.controls.slug.setValue(this.editBlogForm.value.slug);
-    this.editBlogForm.controls.body.setValue(this.editBlogForm.value.body);
-
-    console.log(this.editBlogForm.value);
+    this.editBlogForm.controls.title.setValue(this.editBlogForm.value.title)
+    this.editBlogForm.controls.slug.setValue(this.editBlogForm.value.slug)
+    this.editBlogForm.controls.body.setValue(this.editBlogForm.value.body)
 
     const CONTENT: any = {
       title: this.editBlogForm.value.title,
@@ -78,11 +77,12 @@ export class EditBlogComponent implements OnInit {
       articleId: this.articleId
     }
     this.updateBlogService.updateBlog(CONTENT).subscribe((response: any) => {
-      console.log(response)
       if (response.success == true) {
         this.router.navigate(['writer/posts'])
+        this.toastr.success('Success', 'The Blog was Updated')
       } else {
         this.notificationMessage = 'Something Went Wrong'
+        this.toastr.error('something Went Wrong')
       }
     })
   }

@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
 import { UserDetailsService } from 'src/app/services/user-details.service';
 import { CommentService } from 'src/app/services/user/comments/comment.service';
 
@@ -14,7 +15,8 @@ export class BlogCommentsComponent implements OnInit {
   comments!: any[]
   constructor(private formBuilder: FormBuilder,
     private commentService: CommentService,
-    public userDetailsService: UserDetailsService
+    public userDetailsService: UserDetailsService,
+    private toastr: ToastrService
   ) { }
 
   ngOnInit(): void {
@@ -41,6 +43,9 @@ export class BlogCommentsComponent implements OnInit {
         let newComment = { comments: response.data, userDetails: this.userDetailsService.getNameOfUser() }
         this.comments.unshift(newComment)
         this.commentForm.reset()
+        this.showSuccess('Success', 'Your comment was published')
+      }else{
+        this.showFailure()
       }
     })
   }
@@ -50,7 +55,19 @@ export class BlogCommentsComponent implements OnInit {
       console.log(response)
       if (response.success === true) {
         this.comments = this.comments.filter((element) => element.comments._id !== commentId)
+        this.showSuccess('Comment Deleted Successfully','')
+      }else{
+        this.showFailure()
       }
     })
   }
+
+  showSuccess(title: string, description: string) {
+    this.toastr.success(title, description)
+  }
+
+  showFailure() {
+    this.toastr.error('Some went wrong', 'Please Try again!')
+  }
+
 }

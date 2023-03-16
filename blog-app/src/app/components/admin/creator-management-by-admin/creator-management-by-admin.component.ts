@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
 import { CreatorManagementByAdminService } from 'src/app/services/admin/creators/creator-management-by-admin.service';
 import { UserManagementByAdminService } from 'src/app/services/admin/users/user-management-by-admin.service';
 
@@ -9,7 +10,7 @@ import { UserManagementByAdminService } from 'src/app/services/admin/users/user-
 })
 export class CreatorManagementByAdminComponent implements OnInit {
   creators: any[] = []
-  constructor(private creatorManagementByAdminService: CreatorManagementByAdminService, private userManagementByAdminService: UserManagementByAdminService) { }
+  constructor(private creatorManagementByAdminService: CreatorManagementByAdminService, private userManagementByAdminService: UserManagementByAdminService, private toastr: ToastrService) { }
   ngOnInit(): void {
     this.creatorManagementByAdminService.getAllCreators().subscribe((response: any) => {
       console.log(response)
@@ -24,6 +25,10 @@ export class CreatorManagementByAdminComponent implements OnInit {
         if (element) {
           element.status = 'blocked';
         }
+        this.showSuccess('Blocked Successfully', '')
+
+      } else {
+        this.showFailure()
       }
     })
   }
@@ -36,6 +41,9 @@ export class CreatorManagementByAdminComponent implements OnInit {
         if (element) {
           element.status = 'active';
         }
+        this.showSuccess('UnBlocked Successfully', '')
+      }else{
+        this.showFailure()
       }
 
     })
@@ -45,8 +53,20 @@ export class CreatorManagementByAdminComponent implements OnInit {
     this.creatorManagementByAdminService.dismissCreator(userId).subscribe((response: any) => {
       if (response.success === true) {
         this.creators = this.creators.filter(obj => obj._id !== userId)
+        this.showSuccess('Dismissed', 'writer is Now an Ordinary User')
+      }else{
+        this.showFailure()
       }
     })
 
+  }
+
+
+  showSuccess(title: string, description: string) {
+    this.toastr.success(title, description)
+  }
+
+  showFailure() {
+    this.toastr.error('Some went wrong', 'Please Try again!')
   }
 }

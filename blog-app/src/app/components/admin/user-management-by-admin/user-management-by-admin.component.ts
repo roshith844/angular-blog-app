@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
 import { UserManagementByAdminService } from 'src/app/services/admin/users/user-management-by-admin.service';
 
 @Component({
@@ -8,7 +9,8 @@ import { UserManagementByAdminService } from 'src/app/services/admin/users/user-
 })
 export class UserManagementByAdminComponent implements OnInit {
   users: any[] = []
-  constructor(private userManagementByAdminService: UserManagementByAdminService) { }
+  constructor(private userManagementByAdminService: UserManagementByAdminService,
+    private toastr: ToastrService) { }
   ngOnInit(): void {
     this.userManagementByAdminService.getAllUsers().subscribe((response: any) => {
       this.users = response.data
@@ -23,6 +25,9 @@ export class UserManagementByAdminComponent implements OnInit {
         if (element) {
           element.status = 'blocked';
         }
+        this.showSuccess('User Blocked Successfully', '')
+      }else{
+        this.showFailure()
       }
     })
   }
@@ -34,8 +39,19 @@ export class UserManagementByAdminComponent implements OnInit {
         if (element) {
           element.status = 'active';
         }
+        this.showSuccess('User Unblocked Successfully', '')
+      }else{
+        this.showFailure()
       }
 
     })
+  }
+
+  showSuccess(title: string, description: string) {
+    this.toastr.success(title, description)
+  }
+
+  showFailure() {
+    this.toastr.error('Some went wrong', 'Please Try again!')
   }
 }

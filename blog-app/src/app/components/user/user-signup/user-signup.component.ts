@@ -3,6 +3,7 @@ import { UserSignupService } from 'src/app/services/user/user-signup.service';
 import { FormBuilder } from '@angular/forms';
 import { type signupFormData } from './../../../types/formData';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-user-signup',
@@ -25,7 +26,10 @@ export class UserSignupComponent {
   errorMessageForPassword = ''
   errorMessageForConfirmPassword = ''
 
-  constructor(private signUpService: UserSignupService, private formBuilder: FormBuilder, private router: Router) {
+  constructor(private signUpService: UserSignupService,
+    private formBuilder: FormBuilder,
+    private router: Router,
+    private toastr: ToastrService) {
 
   }
 
@@ -78,7 +82,7 @@ Must contain at least one special character (@$!%*?&)
     } else if (!PASSWORD_PATTERN.test(PASSWORD)) {
       this.errorMessageForPassword = 'password should have 1 uppercase, 1 lowecase, one special character'
       return
-    }else if (CONFIRM_PASSWORD != PASSWORD) {
+    } else if (CONFIRM_PASSWORD != PASSWORD) {
       this.errorMessageForConfirmPassword = 'password Doesnot Match'
       return
     }
@@ -93,11 +97,11 @@ Must contain at least one special character (@$!%*?&)
         confirmPassword: this.signupForm.value.confirmPassword
       }
       this.signUpService.postSignupFormData(SIGNUP_FORMDATA).subscribe((response: any) => {
-        console.log(response)
         if (response.success == true) {
           this.router.navigate(['login'])
+          this.toastr.success('Sign Up Success', 'Please Login')
         } else {
-          this.router.navigate(['signup'])
+          this.toastr.error('Sign Up unsuccessful')
         }
       })
     }

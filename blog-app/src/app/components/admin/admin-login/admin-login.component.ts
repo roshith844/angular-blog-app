@@ -84,7 +84,7 @@ export class AdminLoginComponent {
   }
 
   showSuccess() {
-    this.toastr.success('Success', 'Welcome!');
+    this.toastr.success('Success', 'Welcome!')
   }
   showFailure() {
     this.toastr.error('Login Unsuccessful', 'Please Try again!')
