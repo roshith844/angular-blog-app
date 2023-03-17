@@ -35,6 +35,8 @@ import { PostsManagementByAdminComponent } from './components/admin/posts-manage
 import { CommentManagementByAdminComponent } from './components/admin/comment-management-by-admin/comment-management-by-admin.component';
 import { UserManagementByAdminComponent } from './components/admin/user-management-by-admin/user-management-by-admin.component';
 import { CreatorManagementByAdminComponent } from './components/admin/creator-management-by-admin/creator-management-by-admin.component'
+import { UserAuthGuard } from './guards/user/user-auth.guard';
+import { WriterAuthGuard } from './guards/writer/writer-auth.guard';
 
 @NgModule({
   declarations: [
@@ -78,7 +80,7 @@ import { CreatorManagementByAdminComponent } from './components/admin/creator-ma
     provide: HTTP_INTERCEPTORS,
     useClass: JwtTokenInterceptorService,
     multi: true
-  }],
+  }, UserAuthGuard, WriterAuthGuard ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
