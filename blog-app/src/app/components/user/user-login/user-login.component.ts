@@ -11,12 +11,15 @@ import { type formData } from './../../../types/formData'
   styleUrls: ['./user-login.component.css']
 })
 export class UserLoginComponent {
+  currentRoute: string = ''
   errorMessageForEmail = ''
   errorMessageForPassword = ''
   constructor(private formBuilder: FormBuilder,
     private loginService: UserLoginService,
     private router: Router,
-    private toastr: ToastrService) { }
+    private toastr: ToastrService) {
+    this.currentRoute = this.router.url
+  }
 
   loginForm = this.formBuilder.group({
     email: '',
@@ -75,7 +78,12 @@ export class UserLoginComponent {
           localStorage.setItem('accessToken', response.accessToken)
           localStorage.setItem('refreshToken', response.refreshToken)
           this.loginService.markAsLoggedIn()
-          this.router.navigate([''])
+
+          if (this.currentRoute === '/login') {
+            this.router.navigate([''])
+          } else if (this.currentRoute === '/writer/login') {
+            this.router.navigate(['/writer/'])
+          }
           this.toastr.success('Logged In Successfully')
         } else {
           this.toastr.error('Login Failed', 'Please Signup to Login or Try logging In Again')

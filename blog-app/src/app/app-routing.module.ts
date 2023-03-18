@@ -37,6 +37,7 @@ const routes: Routes = [
   {
     path: 'writer', component: WriterPageComponent, children: [
       { path: '', component: WriterDashboardComponent, canActivate: [WriterAuthGuard] },
+      { path: 'login', component: UserLoginComponent },
       { path: 'write', component: CreateContentComponent, canActivate: [WriterAuthGuard] },
       { path: 'posts', component: PostsManagementComponent, canActivate: [WriterAuthGuard] },
       { path: 'edit/:slug', component: EditBlogComponent, canActivate: [WriterAuthGuard] },

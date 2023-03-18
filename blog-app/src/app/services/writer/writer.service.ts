@@ -4,7 +4,7 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class WriterService {
-  public isWriter!: boolean ;
+  public isWriter : boolean = false
   markAsWriter() {
     this.isWriter = true
   }
