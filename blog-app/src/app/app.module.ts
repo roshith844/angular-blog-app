@@ -12,10 +12,8 @@ import { UserSignupComponent } from './components/user/user-signup/user-signup.c
 import { UserProfileComponent } from './components/user/user-profile/user-profile.component';
 import { BlogContentComponent } from './components/user/blog-content/blog-content.component';
 import { FavoritesComponent } from './components/user/favorites/favorites.component';
-import { HttpInterceptor } from '@angular/common/http';
 import { JwtTokenInterceptorService } from './services/interceptors/jwt-token-interceptor.service';
 import { UserPageComponent } from './components/pages/user/user-page/user-page.component';
-import { WriterDashboardComponent } from './components/pages/writer/writer-dashboard/writer-dashboard.component';
 import { WriterNavbarComponent } from './components/writer/writer-navbar/writer-navbar.component';
 import { CreateContentComponent } from './components/writer/create-content/create-content.component';
 import { EditorModule } from "@tinymce/tinymce-angular";
@@ -38,6 +36,8 @@ import { CreatorManagementByAdminComponent } from './components/admin/creator-ma
 import { UserAuthGuard } from './guards/user/user-auth.guard';
 import { WriterAuthGuard } from './guards/writer/writer-auth.guard';
 import { AdminAuthGuard } from './guards/admin/admin-auth.guard';
+import { WriterPageComponent } from './components/pages/writer/writer-page/writer-page.component';
+import { WriterDashboardComponent } from './components/writer/writer-dashboard/writer-dashboard.component';
 
 @NgModule({
   declarations: [
@@ -64,7 +64,9 @@ import { AdminAuthGuard } from './guards/admin/admin-auth.guard';
     PostsManagementByAdminComponent,
     CommentManagementByAdminComponent,
     UserManagementByAdminComponent,
-    CreatorManagementByAdminComponent
+    CreatorManagementByAdminComponent,
+    WriterPageComponent,
+
   ],
   imports: [
     BrowserModule,
@@ -81,7 +83,7 @@ import { AdminAuthGuard } from './guards/admin/admin-auth.guard';
     provide: HTTP_INTERCEPTORS,
     useClass: JwtTokenInterceptorService,
     multi: true
-  }, UserAuthGuard, WriterAuthGuard, AdminAuthGuard ],
+  }, UserAuthGuard, WriterAuthGuard, AdminAuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

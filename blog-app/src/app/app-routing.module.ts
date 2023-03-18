@@ -8,7 +8,8 @@ import { PostsManagementByAdminComponent } from './components/admin/posts-manage
 import { UserManagementByAdminComponent } from './components/admin/user-management-by-admin/user-management-by-admin.component';
 import { AdminPageComponent } from './components/pages/admin/admin-page/admin-page.component';
 import { UserPageComponent } from './components/pages/user/user-page/user-page.component';
-import { WriterDashboardComponent } from './components/pages/writer/writer-dashboard/writer-dashboard.component';
+// import { WriterDashboardComponent } from './components/pages/writer/writer-dashboard/writer-dashboard.component';
+import { WriterPageComponent } from './components/pages/writer/writer-page/writer-page.component';
 import { BlogContentComponent } from './components/user/blog-content/blog-content.component';
 import { FavoritesComponent } from './components/user/favorites/favorites.component';
 import { HomePageContentComponent } from './components/user/home-page-content/home-page-content.component';
@@ -18,6 +19,7 @@ import { UserSignupComponent } from './components/user/user-signup/user-signup.c
 import { CreateContentComponent } from './components/writer/create-content/create-content.component';
 import { EditBlogComponent } from './components/writer/edit-blog/edit-blog.component';
 import { PostsManagementComponent } from './components/writer/posts-management/posts-management.component';
+import { WriterDashboardComponent } from './components/writer/writer-dashboard/writer-dashboard.component';
 import { AdminAuthGuard } from './guards/admin/admin-auth.guard';
 import { UserAuthGuard } from './guards/user/user-auth.guard';
 import { WriterAuthGuard } from './guards/writer/writer-auth.guard';
@@ -33,11 +35,12 @@ const routes: Routes = [
     ]
   },
   {
-    path: 'writer', component: WriterDashboardComponent, children: [
+    path: 'writer', component: WriterPageComponent, children: [
+      { path: '', component: WriterDashboardComponent, canActivate: [WriterAuthGuard] },
       { path: 'write', component: CreateContentComponent, canActivate: [WriterAuthGuard] },
       { path: 'posts', component: PostsManagementComponent, canActivate: [WriterAuthGuard] },
       { path: 'edit/:slug', component: EditBlogComponent, canActivate: [WriterAuthGuard] },
-    ], canActivate: [WriterAuthGuard]
+    ]
   },
 
   {
