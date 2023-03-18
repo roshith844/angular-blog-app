@@ -17,6 +17,7 @@ export class PostsManagementComponent implements OnInit {
   ngOnInit(): void {
     this.writerPostManangementService.getBlogs().subscribe((response: any) => {
       this.writerPostManangementService.addAllBlogs(response.data)
+      console.log( new Date(response.data[0].createdAt).toLocaleString() )
     })
   }
 
