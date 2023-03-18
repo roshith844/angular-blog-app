@@ -37,6 +37,7 @@ import { UserManagementByAdminComponent } from './components/admin/user-manageme
 import { CreatorManagementByAdminComponent } from './components/admin/creator-management-by-admin/creator-management-by-admin.component'
 import { UserAuthGuard } from './guards/user/user-auth.guard';
 import { WriterAuthGuard } from './guards/writer/writer-auth.guard';
+import { AdminAuthGuard } from './guards/admin/admin-auth.guard';
 
 @NgModule({
   declarations: [
@@ -80,7 +81,7 @@ import { WriterAuthGuard } from './guards/writer/writer-auth.guard';
     provide: HTTP_INTERCEPTORS,
     useClass: JwtTokenInterceptorService,
     multi: true
-  }, UserAuthGuard, WriterAuthGuard ],
+  }, UserAuthGuard, WriterAuthGuard, AdminAuthGuard ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -18,6 +18,7 @@ import { UserSignupComponent } from './components/user/user-signup/user-signup.c
 import { CreateContentComponent } from './components/writer/create-content/create-content.component';
 import { EditBlogComponent } from './components/writer/edit-blog/edit-blog.component';
 import { PostsManagementComponent } from './components/writer/posts-management/posts-management.component';
+import { AdminAuthGuard } from './guards/admin/admin-auth.guard';
 import { UserAuthGuard } from './guards/user/user-auth.guard';
 import { WriterAuthGuard } from './guards/writer/writer-auth.guard';
 const routes: Routes = [
@@ -33,20 +34,20 @@ const routes: Routes = [
   },
   {
     path: 'writer', component: WriterDashboardComponent, children: [
-      { path: 'write', component: CreateContentComponent, canActivate: [WriterAuthGuard ]},
-      { path: 'posts', component: PostsManagementComponent, canActivate: [WriterAuthGuard ] },
-      { path: 'edit/:slug', component: EditBlogComponent, canActivate: [WriterAuthGuard ] },
-    ],  canActivate: [WriterAuthGuard]
+      { path: 'write', component: CreateContentComponent, canActivate: [WriterAuthGuard] },
+      { path: 'posts', component: PostsManagementComponent, canActivate: [WriterAuthGuard] },
+      { path: 'edit/:slug', component: EditBlogComponent, canActivate: [WriterAuthGuard] },
+    ], canActivate: [WriterAuthGuard]
   },
 
   {
     path: 'admin', component: AdminPageComponent, children: [
-      { path: '', component: AdminDashboardComponent },
+      { path: '', component: AdminDashboardComponent, canActivate: [AdminAuthGuard] },
       { path: 'login', component: AdminLoginComponent },
-      { path: 'posts', component: PostsManagementByAdminComponent },
-      { path: 'comments', component: CommentManagementByAdminComponent },
-      { path: 'users', component: UserManagementByAdminComponent },
-      { path: 'creators', component: CreatorManagementByAdminComponent }
+      { path: 'posts', component: PostsManagementByAdminComponent, canActivate: [AdminAuthGuard] },
+      { path: 'comments', component: CommentManagementByAdminComponent, canActivate: [AdminAuthGuard] },
+      { path: 'users', component: UserManagementByAdminComponent, canActivate: [AdminAuthGuard] },
+      { path: 'creators', component: CreatorManagementByAdminComponent, canActivate: [AdminAuthGuard] }
     ]
   }
 
