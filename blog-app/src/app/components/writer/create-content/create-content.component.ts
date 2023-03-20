@@ -30,8 +30,17 @@ export class CreateContentComponent {
   }
 
   onSubmit() {
-    if (this.myForm.value.title === '' || this.myForm.value.body == '' || this.myForm.value.slug === '') return
-    if (typeof this.myForm.value.title != 'string' || typeof this.myForm.value.body != 'string' || typeof this.myForm.value.slug != 'string') return
+    if (!confirm("Are you sure you want to Submit this Blog?")) return
+    if (this.myForm.value.title === '' || this.myForm.value.body == '' || this.myForm.value.slug === '') {
+      this.toastr.error("Cant't post empty strings")
+      return
+    }
+
+    if (typeof this.myForm.value.title != 'string' || typeof this.myForm.value.body != 'string' || typeof this.myForm.value.slug != 'string') {
+      this.toastr.error("Something went Wrong")
+      return
+    }
+
 
     const CONTENT: contentFormData = {
       title: this.myForm.value.title,

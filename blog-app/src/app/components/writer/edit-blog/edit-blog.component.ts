@@ -62,8 +62,14 @@ export class EditBlogComponent implements OnInit {
   }
 
   onSubmit() {
+    console.log('submit data')
+    console.log(this.editBlogForm.value.title)
+    console.log(this.editBlogForm.value.body)
+    console.log( this.editBlogForm.value.slug )
+    console.log(this.articleId)
+    if (this.editBlogForm.value.title === '' || this.editBlogForm.value.body == '' || this.editBlogForm.value.slug === '' || this.articleId === '') return
     if (typeof this.editBlogForm.value.title != 'string' || typeof this.editBlogForm.value.body != 'string' || typeof this.editBlogForm.value.slug != 'string' || typeof this.articleId !== 'string') return
-
+    console.log('submitiing')
     // Update form control values with form values
     this.editBlogForm.controls.title.setValue(this.editBlogForm.value.title)
     this.editBlogForm.controls.slug.setValue(this.editBlogForm.value.slug)
