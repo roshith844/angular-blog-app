@@ -30,6 +30,7 @@ export class EditProfileComponent {
 
 
   onSubmit() {
+    console.log(this.editProfileForm.value)
     if (this.editProfileForm.value.name === null || this.editProfileForm.value.email === null || this.editProfileForm.value.phone === null) return
     this.editUserProfileService.editProfile(this.editProfileForm.value).subscribe((response: any) => {
       if (response.success !== true) {

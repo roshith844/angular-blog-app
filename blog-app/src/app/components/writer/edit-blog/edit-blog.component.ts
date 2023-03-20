@@ -7,6 +7,8 @@ import { PostContentService } from 'src/app/services/writer/post-content.service
 import { NgZone } from '@angular/core';
 import { UpdateBlogService } from 'src/app/services/writer/update-blog.service';
 import { ToastrService } from 'ngx-toastr';
+import { EditorModule } from '@tinymce/tinymce-angular';
+
 
 @Component({
   selector: 'app-edit-blog',
@@ -27,7 +29,7 @@ export class EditBlogComponent implements OnInit {
   ) { }
 
   title = ''
-  content = ''
+  content: string = ''
   slug = ''
   articleId = ''
   public editBlogForm = new FormGroup({
@@ -54,33 +56,28 @@ export class EditBlogComponent implements OnInit {
         this.slug = response.data.slug
         this.editorSubject.subscribe(editor => {
           this.ngZone.run(() => {
-            editor.setContent(response.data.content);
-          });
+            this.content = editor.setContent(response.data.content);
+          })
         });
       }
     })
   }
 
   onSubmit() {
-    console.log('submit data')
-    console.log(this.editBlogForm.value.title)
-    console.log(this.editBlogForm.value.body)
-    console.log( this.editBlogForm.value.slug )
-    console.log(this.articleId)
-    if (this.editBlogForm.value.title === '' || this.editBlogForm.value.body == '' || this.editBlogForm.value.slug === '' || this.articleId === '') return
+    if (!confirm("Are you sure you want to Submit this Blog?")) return
     if (typeof this.editBlogForm.value.title != 'string' || typeof this.editBlogForm.value.body != 'string' || typeof this.editBlogForm.value.slug != 'string' || typeof this.articleId !== 'string') return
-    console.log('submitiing')
-    // Update form control values with form values
+
     this.editBlogForm.controls.title.setValue(this.editBlogForm.value.title)
     this.editBlogForm.controls.slug.setValue(this.editBlogForm.value.slug)
     this.editBlogForm.controls.body.setValue(this.editBlogForm.value.body)
 
     const CONTENT: any = {
       title: this.editBlogForm.value.title,
-      content: this.editBlogForm.value.body,
+      content: this.content,
       slug: this.editBlogForm.value.slug,
       articleId: this.articleId
     }
+
     this.updateBlogService.updateBlog(CONTENT).subscribe((response: any) => {
       if (response.success == true) {
         this.router.navigate(['writer/posts'])

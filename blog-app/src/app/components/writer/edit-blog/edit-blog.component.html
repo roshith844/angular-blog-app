@@ -16,11 +16,12 @@
 </div>
 <!--  -->
 <div class="flex flex-col justify-center items-center h-screen">
-  <div class="container mx-auto px-4 py-8 border border-gray-400 rounded-lg p-4" >
+  <div class="container mx-auto px-4 py-8 border border-gray-400 rounded-lg p-4">
     <form (ngSubmit)="onSubmit()" [formGroup]="editBlogForm">
       <label class="title">Title
         <input class="border border-gray-400 rounded-lg py-2 px-4 w-full focus:outline-none focus:border-blue-500"
-          [formControl]="editBlogForm.controls.title" placeholder="Title" type="text" value="{{title}}" />
+          formControlName="title" [formControl]="editBlogForm.controls.title" placeholder="Title" type="text"
+          [(ngModel)]="title" value="{{title}}" />
 
         <div *ngIf="editBlogForm.controls.title.hasError('required')">
           Title is required
@@ -30,12 +31,14 @@
 
 
         <input class="border border-gray-400 rounded-lg py-2 px-4 w-full focus:outline-none focus:border-blue-500"
-          [formControl]="editBlogForm.controls.slug" placeholder="Slug" type="text" value="{{slug}}" />
+          formControlName="slug" [formControl]="editBlogForm.controls.slug" placeholder="Slug" type="text"
+          [(ngModel)]="slug" value="{{slug}}" />
       </label>
 
       <div>
-        <editor apiKey="b9lapr6h6w2vaoo9zij0x5ilwf6df0j09if7w9s83ga8cmpu" [formControl]="editBlogForm.controls.body"
-          class="mat-elevation-z1" (onInit)="handleEditorInit($event)" [init]="{
+        <editor [(ngModel)]="content" id="editorTextArea" apiKey="b9lapr6h6w2vaoo9zij0x5ilwf6df0j09if7w9s83ga8cmpu" formControlName="content"
+          [formControl]="editBlogForm.controls.body" class="mat-elevation-z1" (onInit)="handleEditorInit($event)"
+          [init]="{
               icons: 'material',
               skin: 'borderless',
               plugins: 'wordcount',
