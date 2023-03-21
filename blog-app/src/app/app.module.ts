@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
+import { FormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { UserNavbarComponent } from './components/user/user-navbar/user-navbar.component';
@@ -77,7 +77,8 @@ import { WriterDashboardComponent } from './components/writer/writer-dashboard/w
     CommonModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
-    StoreModule.forRoot({}, {})
+    StoreModule.forRoot({}, {}),
+    FormsModule
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,

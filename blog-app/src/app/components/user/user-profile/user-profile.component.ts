@@ -11,23 +11,25 @@ export class UserProfileComponent implements OnInit {
   name = ''
   email = ''
   role = ''
+
   canShowEditProfile = false
+
   profile = {
     name: '',
     email: '',
     phone: '',
-    role: ''
+    role: '',
+    image: ''
   }
   constructor(private getProfileService: GetProfileService, private editUserProfileService: EditUserProfileService) { }
 
   ngOnInit(): void {
     this.getProfileService.getProfile().subscribe((response: any) => {
-      console.log(response)
       this.profile.name = response.name
       this.profile.email = response.email
       this.profile.phone = response.phone
       this.profile.role = response.role
-
+      this.profile.image = response.image
     })
   }
 
@@ -40,7 +42,7 @@ export class UserProfileComponent implements OnInit {
     const formData: FormData = new FormData();
     formData.append('image', file, file.name);
     this.editUserProfileService.uploadImage(formData).subscribe(response => {
-      console.log(response)
+
     })
   }
 }

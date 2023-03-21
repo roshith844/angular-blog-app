@@ -8,10 +8,17 @@ export class EditUserProfileService {
   BASE_URL =  'http://localhost:3000/'
   constructor(private http: HttpClient) { }
 
-  uploadImage(formData: any){
-   return this.http.post(this.BASE_URL +'user/profile/upload/profile-image', formData,{
-    headers: { "content-type": "multipart/form-data" }
-})
+  uploadImage(fileToUpload: any){
+    const formData: FormData = new FormData();
+    formData.append('image', fileToUpload, fileToUpload.name)
+    console.log(formData)
+    console.log(fileToUpload)
+    return this.http.post(this.BASE_URL +'user/profile/upload/profile-image', formData )
+  // return this.http.patch(this.BASE_URL + 'user/profile/edit', formData )
+    
+//    return this.http.post(this.BASE_URL +'user/profile/upload/profile-image', formData,{
+//     headers: { "content-type": "multipart/form-data" }
+// })
   }
 
   editProfile(data: any){
