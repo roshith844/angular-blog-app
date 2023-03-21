@@ -1,0 +1,23 @@
+<div class="flex flex-col items-center justify-center min-h-screen bg-gray-100">
+    <div class="max-w-md w-full bg-white shadow-lg rounded-lg overflow-hidden py-6">
+      <div class="flex justify-center items-center mb-4">
+        <div class="relative">
+          <img class="rounded-full w-32 h-32 object-cover" src="{{ profile.image }}" alt="Profile picture">
+        </div>
+      </div>
+      <div class="text-center">
+        <h2 class="text-2xl font-bold text-gray-900">{{ profile.name }}</h2>
+        <p class="text-lg font-medium text-gray-500 mb-4">{{ profile.role }}</p>
+        <p class="text-gray-600 mb-2">Email: {{ profile.email }}</p>
+        <p class="text-gray-600 mb-4">Phone:{{profile.phone}}</p>
+        <div class="flex justify-center">
+          <button (click)="this.canShowEditProfile = true"
+            class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full">
+            Edit Profile
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <app-admin-edit-profile (closeModalEvent)="closeModal()" [show]="canShowEditProfile"
+    [profileDetails]="profile"></app-admin-edit-profile>

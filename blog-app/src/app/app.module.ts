@@ -38,6 +38,8 @@ import { WriterAuthGuard } from './guards/writer/writer-auth.guard';
 import { AdminAuthGuard } from './guards/admin/admin-auth.guard';
 import { WriterPageComponent } from './components/pages/writer/writer-page/writer-page.component';
 import { WriterDashboardComponent } from './components/writer/writer-dashboard/writer-dashboard.component';
+import { AdminProfileComponent } from './components/admin/admin-profile/admin-profile.component';
+import { AdminEditProfileComponent } from './components/admin/admin-edit-profile/admin-edit-profile.component';
 
 @NgModule({
   declarations: [
@@ -66,6 +68,8 @@ import { WriterDashboardComponent } from './components/writer/writer-dashboard/w
     UserManagementByAdminComponent,
     CreatorManagementByAdminComponent,
     WriterPageComponent,
+    AdminProfileComponent,
+    AdminEditProfileComponent,
 
   ],
   imports: [

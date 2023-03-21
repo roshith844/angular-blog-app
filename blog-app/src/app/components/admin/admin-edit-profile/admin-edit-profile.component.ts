@@ -2,14 +2,14 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { EditUserProfileService } from 'src/app/services/user/profile/edit-user-profile.service';
+import { AdminProfileService } from 'src/app/services/admin/profile/admin-profile.service';
 
 @Component({
-  selector: 'app-edit-profile',
-  templateUrl: './edit-profile.component.html',
-  styleUrls: ['./edit-profile.component.css']
+  selector: 'app-admin-edit-profile',
+  templateUrl: './admin-edit-profile.component.html',
+  styleUrls: ['./admin-edit-profile.component.css']
 })
-export class EditProfileComponent {
+export class AdminEditProfileComponent {
   imageUrl = ''
 
   @Input() show = true;
@@ -20,7 +20,7 @@ export class EditProfileComponent {
 
   fileUpload!: File | null;
   constructor(private formBuilder: FormBuilder,
-    private editUserProfileService: EditUserProfileService,
+    private adminProfileService: AdminProfileService,
     private router: Router,
     private toastr: ToastrService) { }
 
@@ -35,9 +35,11 @@ export class EditProfileComponent {
 
 
   onSubmit() {
+    const TOKEN = localStorage.getItem('admin-accessToken')
+    if(!TOKEN) return
     if (this.editProfileForm.value === null || this.editProfileForm.value.name === null ||
       this.editProfileForm.value.email === null || this.editProfileForm.value.phone === null) return
-    this.editUserProfileService.editProfile(this.editProfileForm.value).subscribe((response: any) => {
+    this.adminProfileService.editProfile(this.editProfileForm.value, TOKEN).subscribe((response: any) => {
       if (response.success === true) {
         this.router.navigate(['profile'])
         this.toastr.success('Profile Updated')
@@ -50,6 +52,8 @@ export class EditProfileComponent {
   }
 
   handleFileInput(file: any) {
+    const TOKEN = localStorage.getItem('admin-accessToken')
+    if(!TOKEN) return
     if (file === null) return
 
     file = file.target.files
@@ -61,7 +65,7 @@ export class EditProfileComponent {
     if (this.fileUpload != null) {
       reader.readAsDataURL(this.fileUpload)
     }
-    this.editUserProfileService.uploadImage(this.fileUpload).subscribe((response: any) => {
+    this.adminProfileService.uploadImage(this.fileUpload, TOKEN).subscribe((response: any) => {
 
       if (response.success === true) {
         this.profileDetails.image = response.data
@@ -69,5 +73,4 @@ export class EditProfileComponent {
       }
     })
   }
-
 }

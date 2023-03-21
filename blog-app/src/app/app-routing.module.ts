@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AdminDashboardComponent } from './components/admin/admin-dashboard/admin-dashboard.component';
 import { AdminLoginComponent } from './components/admin/admin-login/admin-login.component';
+import { AdminProfileComponent } from './components/admin/admin-profile/admin-profile.component';
 import { CommentManagementByAdminComponent } from './components/admin/comment-management-by-admin/comment-management-by-admin.component';
 import { CreatorManagementByAdminComponent } from './components/admin/creator-management-by-admin/creator-management-by-admin.component';
 import { PostsManagementByAdminComponent } from './components/admin/posts-management-by-admin/posts-management-by-admin.component';
@@ -41,6 +42,8 @@ const routes: Routes = [
       { path: 'write', component: CreateContentComponent, canActivate: [WriterAuthGuard] },
       { path: 'posts', component: PostsManagementComponent, canActivate: [WriterAuthGuard] },
       { path: 'edit/:slug', component: EditBlogComponent, canActivate: [WriterAuthGuard] },
+      { path: 'profile', component: UserProfileComponent, canActivate: [WriterAuthGuard] },
+
     ]
   },
 
@@ -51,7 +54,8 @@ const routes: Routes = [
       { path: 'posts', component: PostsManagementByAdminComponent, canActivate: [AdminAuthGuard] },
       { path: 'comments', component: CommentManagementByAdminComponent, canActivate: [AdminAuthGuard] },
       { path: 'users', component: UserManagementByAdminComponent, canActivate: [AdminAuthGuard] },
-      { path: 'creators', component: CreatorManagementByAdminComponent, canActivate: [AdminAuthGuard] }
+      { path: 'creators', component: CreatorManagementByAdminComponent, canActivate: [AdminAuthGuard] },
+      { path: 'profile', component: AdminProfileComponent, canActivate: [AdminAuthGuard] },
     ]
   }
 
