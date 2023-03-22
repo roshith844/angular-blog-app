@@ -10,21 +10,24 @@ import { AdminPostManagementService } from 'src/app/services/admin/posts/admin-p
 })
 export class PostsManagementByAdminComponent implements OnInit {
   posts!: any[]
-  constructor(private adminPostManagementService: AdminPostManagementService, private toastr: ToastrService) { }
+  constructor(private adminPostManagementService: AdminPostManagementService,
+    private toastr: ToastrService,
+
+  ) { }
   dtOptions: DataTables.Settings = {};
- dtTrigger: Subject<any> = new Subject<any>()
+  dtTrigger: Subject<any> = new Subject<any>()
   ngOnInit(): void {
     this.dtOptions = {
       pagingType: 'full_numbers'
-     }
+    }
     this.adminPostManagementService.getAllPosts().subscribe((response: any) => {
       this.posts = response.data
       this.dtTrigger.next(null)
     })
 
- 
+
   }
-  
+
   approveBlog(postId: string) {
     if (!confirm("Are you sure you want to Approve this Blog?")) return
     this.adminPostManagementService.approveBlog(postId).subscribe((response: any) => {

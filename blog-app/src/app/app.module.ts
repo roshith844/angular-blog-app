@@ -41,6 +41,8 @@ import { WriterDashboardComponent } from './components/writer/writer-dashboard/w
 import { AdminProfileComponent } from './components/admin/admin-profile/admin-profile.component';
 import { AdminEditProfileComponent } from './components/admin/admin-edit-profile/admin-edit-profile.component';
 import { DataTablesModule } from 'angular-datatables';
+import { NgxUiLoaderModule, NgxUiLoaderHttpModule } from 'ngx-ui-loader';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -83,7 +85,9 @@ import { DataTablesModule } from 'angular-datatables';
     ToastrModule.forRoot(),
     StoreModule.forRoot({}, {}),
     FormsModule,
-    DataTablesModule
+    DataTablesModule,
+    NgxUiLoaderModule,
+    NgxUiLoaderHttpModule.forRoot({ showForeground: true })
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,
