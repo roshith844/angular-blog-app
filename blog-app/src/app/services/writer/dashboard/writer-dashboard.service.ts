@@ -11,4 +11,6 @@ export class WriterDashboardService {
   getStatistics() {
     return this.http.get(this.BASE_URL + '/')
   }
+
+
 }
