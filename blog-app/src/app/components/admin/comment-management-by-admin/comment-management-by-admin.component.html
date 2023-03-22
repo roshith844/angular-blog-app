@@ -1,5 +1,5 @@
-<div class="overflow-x-auto">
-    <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger"  class="table-auto w-full">
+<div class="overflow-x-auto mx-6 my-6 ">  
+    <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="table-auto w-full">
         <thead>
             <tr class="bg-gray-200">
                 <th class="px-4 py-2">#</th>
@@ -14,7 +14,7 @@
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let item of comments; index as i" class="border-b border-gray-200">
+            <tr *ngFor="let item of comments; index as i" class="border-b border-gray-200 ">
                 <td class="px-4 py-2">{{ i + 1 }}</td>
                 <td class="px-4 py-2">{{item.comments.created | date : 'short' }}</td>
                 <td class="px-4 py-2">{{item.comments._id }}</td>
@@ -22,19 +22,22 @@
                 <td class="px-4 py-2">{{ item._id }}</td>
                 <td class="px-4 py-2">{{item.user_details.name }}</td>
                 <td class="px-4 py-2">{{item.user_details.email }}</td>
-                <td class="px-4 py-2">{{item.user_details.status }}</td>
-                <td class="px-4 py-2">
-                    <div class="flex items-center justify-between">
-                        <button (click)="blockUser(item.user_details._id)"
-                            class="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded">
-                            Block User
-                        </button>
-                        <button (click)="removeComment(item._id, item.comments._id)"
-                            class="bg-gray-500 hover:bg-gray-600 text-white font-bold py-2 px-4 rounded">
-                            Remove Comment
-                        </button>
-                    </div>
-                </td>
+                <td class="px-4 py-2"
+                    [ngClass]="{'text-red-600': item.user_details.status  === 'blocked', 'text-blue-600': item.user_details.status  ===  'active'}">
+                    {{item.user_details.status }}</td>
+                    <td class="px-4 py-2">
+                        <div class="flex items-center justify-between">
+                            <button (click)="blockUser(item.user_details._id)"
+                                    class="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded mx-4 my-2">
+                                Block User
+                            </button>
+                            <button (click)="removeComment(item._id, item.comments._id)"
+                                    class="bg-gray-500 hover:bg-gray-600 text-white font-bold py-2 px-4 rounded mx-4 my-2">
+                                Remove Comment
+                            </button>
+                        </div>
+                    </td>
+                    
             </tr>
         </tbody>
     </table>

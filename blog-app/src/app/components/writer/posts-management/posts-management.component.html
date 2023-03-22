@@ -14,9 +14,8 @@
     </button>
   </div>
 </div>
-<!--  -->
-<div class="overflow-x-auto">
-  <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger"  class="table-auto w-full">
+<div class="overflow-x-auto mx-6 my-6 ">
+  <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="table-auto w-full">
     <thead>
       <tr class="bg-gray-200">
         <th class="px-4 py-2">#</th>
@@ -33,13 +32,13 @@
     <tbody>
       <tr *ngFor="let blog of writerPostManangementService.allBlogs; index as i" class="border-b border-gray-200">
         <td class="px-4 py-2">{{ i + 1 }}</td>
-        <td class="px-4 py-2">{{  blog.createdAt | date : 'short'  }}</td>
-        <td class="px-4 py-2">{{blog.updatedAt  | date : 'short'  }}</td>
+        <td class="px-4 py-2">{{ blog.createdAt | date : 'short' }}</td>
+        <td class="px-4 py-2">{{blog.updatedAt | date : 'short' }}</td>
         <td class="px-4 py-2">{{blog._id}}</td>
         <td class="px-4 py-2">{{blog.title}}</td>
         <td class="px-4 py-2">{{blog.slug}}</td>
         <td class="px-4 py-2">{{blog.pageviews}}</td>
-        <td class="px-4 py-2">{{blog.status}}</td>
+        <td class="px-4 py-2" [ngClass]="{'text-red-600': blog.status === 'rejected', 'text-blue-600': blog.status === 'published', 'text-yellow-400':blog.status === 'pending'}">{{blog.status}}</td>
         <td class="px-4 py-2">
           <button routerLink="/writer/edit/{{blog._id}}" class="text-blue-600 hover:text-blue-800">Edit</button>
           <button (click)="deleteBlog(blog._id)" class="ml-2 text-red-600 hover:text-red-800">Delete</button>

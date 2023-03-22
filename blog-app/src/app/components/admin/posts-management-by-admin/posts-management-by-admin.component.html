@@ -1,4 +1,4 @@
-<div class="overflow-x-auto">
+<div class="overflow-x-auto mx-6 my-6">
     <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="table-auto w-full">
         <thead>
             <tr class="bg-gray-200">
@@ -16,13 +16,15 @@
         <tbody>
             <tr *ngFor="let post of posts; index as i" class="border-b border-gray-200">
                 <td class="px-4 py-2">{{ i + 1 }}</td>
-                <td class="px-4 py-2">{{ post.createdAt  | date : 'short'  }}</td>
-                <td class="px-4 py-2">{{ post.updatedAt  | date : 'short'  }}</td>
+                <td class="px-4 py-2">{{ post.createdAt | date : 'short' }}</td>
+                <td class="px-4 py-2">{{ post.updatedAt | date : 'short' }}</td>
                 <td class="px-4 py-2">{{ post._id }}</td>
                 <td class="px-4 py-2">{{ post.title }}</td>
                 <td class="px-4 py-2">{{ post.author_details.name }}</td>
                 <td class="px-4 py-2">{{ post.slug }}</td>
-                <td class="px-4 py-2">{{ post.status }}</td>
+                <td class="px-4 py-2"
+                    [ngClass]="{'text-red-600': post.status === 'rejected', 'text-blue-600': post.status  === 'published', 'text-yellow-400': post.status === 'pending'}">
+                    {{ post.status }}</td>
                 <td class="px-4 py-2">
                     <button routerLink="/blog/{{ post.slug }}"
                         class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-3 px-4 mx-3 rounded">
