@@ -8,6 +8,6 @@ export class AdminDashboardService {
 
   constructor(private http: HttpClient) { }
   getStatistics() {
-    return this.http.get(this.BASE_URL + '/')
+    return this.http.get(this.BASE_URL )
   }
 }

@@ -35,11 +35,9 @@ export class AdminEditProfileComponent {
 
 
   onSubmit() {
-    const TOKEN = localStorage.getItem('admin-accessToken')
-    if(!TOKEN) return
     if (this.editProfileForm.value === null || this.editProfileForm.value.name === null ||
       this.editProfileForm.value.email === null || this.editProfileForm.value.phone === null) return
-    this.adminProfileService.editProfile(this.editProfileForm.value, TOKEN).subscribe((response: any) => {
+    this.adminProfileService.editProfile(this.editProfileForm.value).subscribe((response: any) => {
       if (response.success === true) {
         this.router.navigate(['profile'])
         this.toastr.success('Profile Updated')
@@ -65,7 +63,7 @@ export class AdminEditProfileComponent {
     if (this.fileUpload != null) {
       reader.readAsDataURL(this.fileUpload)
     }
-    this.adminProfileService.uploadImage(this.fileUpload, TOKEN).subscribe((response: any) => {
+    this.adminProfileService.uploadImage(this.fileUpload).subscribe((response: any) => {
 
       if (response.success === true) {
         this.profileDetails.image = response.data

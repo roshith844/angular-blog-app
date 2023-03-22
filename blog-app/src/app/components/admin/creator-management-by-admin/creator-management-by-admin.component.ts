@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
+import { Subject } from 'rxjs';
 import { CreatorManagementByAdminService } from 'src/app/services/admin/creators/creator-management-by-admin.service';
 import { UserManagementByAdminService } from 'src/app/services/admin/users/user-management-by-admin.service';
 
@@ -10,11 +11,16 @@ import { UserManagementByAdminService } from 'src/app/services/admin/users/user-
 })
 export class CreatorManagementByAdminComponent implements OnInit {
   creators: any[] = []
+  dtOptions: DataTables.Settings = {};
+  dtTrigger: Subject<any> = new Subject<any>()
   constructor(private creatorManagementByAdminService: CreatorManagementByAdminService, private userManagementByAdminService: UserManagementByAdminService, private toastr: ToastrService) { }
   ngOnInit(): void {
+    this.dtOptions = {
+      pagingType: 'full_numbers'
+     }
     this.creatorManagementByAdminService.getAllCreators().subscribe((response: any) => {
-      console.log(response)
       this.creators = response.data
+      this.dtTrigger.next(null)
     })
   }
 

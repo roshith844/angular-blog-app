@@ -25,9 +25,7 @@ export class AdminProfileComponent {
   constructor(private adminProfileService: AdminProfileService) { }
 
   ngOnInit(): void {
-    const TOKEN = localStorage.getItem('admin-accessToken')
-    if(!TOKEN) return
-    this.adminProfileService.getProfile(TOKEN).subscribe((response: any) => {
+    this.adminProfileService.getProfile().subscribe((response: any) => {
       this.profile.name = response.name
       this.profile.email = response.email
       this.profile.phone = response.phone

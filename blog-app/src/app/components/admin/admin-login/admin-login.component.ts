@@ -71,8 +71,8 @@ export class AdminLoginComponent {
       }
       this.adminLoginService.loginAdmin(LOGIN_FORMDATA).subscribe((response: any) => {
         if (response.success === true) {
-          localStorage.setItem('admin-accessToken', response.accessToken)
-          localStorage.setItem('admin-refreshToken', response.refreshToken)
+          localStorage.setItem('accessToken', response.accessToken)
+          localStorage.setItem('refreshToken', response.refreshToken)
           this.adminLoginService.markAsLoggedIn()
           this.showSuccess()
           this.router.navigate(['admin'])

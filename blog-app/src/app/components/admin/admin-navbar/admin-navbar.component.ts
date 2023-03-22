@@ -36,8 +36,8 @@ export class AdminNavbarComponent implements OnInit {
   }
 
   logout() {
-    localStorage.removeItem('admin-accessToken')
-    localStorage.removeItem('admin-refreshToken')
+    localStorage.removeItem('accessToken')
+    localStorage.removeItem('refreshToken')
     this.adminLoginService.markAsLoggedOut()
     this.router.navigate(['/admin/login'])
     this.toastr.success('Logged Out', 'See You soon!')

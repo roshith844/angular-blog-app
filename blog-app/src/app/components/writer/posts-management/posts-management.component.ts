@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
+import { Subject } from 'rxjs';
 import { DeleteBlogService } from 'src/app/services/writer/delete-blog.service';
 import { WriterPostManangementService } from 'src/app/services/writer/writer-blog-manangement.service';
 
@@ -10,14 +11,19 @@ import { WriterPostManangementService } from 'src/app/services/writer/writer-blo
 })
 export class PostsManagementComponent implements OnInit {
   notificationMessage = ''
+  dtOptions: DataTables.Settings = {};
+  dtTrigger: Subject<any> = new Subject<any>()
   constructor(public writerPostManangementService: WriterPostManangementService,
     private deleteBlogService: DeleteBlogService,
     private toastr: ToastrService) { }
 
   ngOnInit(): void {
+    this.dtOptions = {
+      pagingType: 'full_numbers'
+    }
     this.writerPostManangementService.getBlogs().subscribe((response: any) => {
       this.writerPostManangementService.addAllBlogs(response.data)
-      console.log( new Date(response.data[0].createdAt).toLocaleString() )
+      this.dtTrigger.next(null)
     })
   }
 

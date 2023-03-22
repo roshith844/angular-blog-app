@@ -40,7 +40,7 @@ import { WriterPageComponent } from './components/pages/writer/writer-page/write
 import { WriterDashboardComponent } from './components/writer/writer-dashboard/writer-dashboard.component';
 import { AdminProfileComponent } from './components/admin/admin-profile/admin-profile.component';
 import { AdminEditProfileComponent } from './components/admin/admin-edit-profile/admin-edit-profile.component';
-
+import { DataTablesModule } from 'angular-datatables';
 @NgModule({
   declarations: [
     AppComponent,
@@ -82,7 +82,8 @@ import { AdminEditProfileComponent } from './components/admin/admin-edit-profile
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
     StoreModule.forRoot({}, {}),
-    FormsModule
+    FormsModule,
+    DataTablesModule
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,

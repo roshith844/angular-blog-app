@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
+import { Subject } from 'rxjs';
 import { AdminCommentManagementService } from 'src/app/services/admin/comments/admin-comment-management.service';
 import { UserManagementByAdminService } from 'src/app/services/admin/users/user-management-by-admin.service';
 
@@ -10,13 +11,18 @@ import { UserManagementByAdminService } from 'src/app/services/admin/users/user-
 })
 export class CommentManagementByAdminComponent implements OnInit {
   comments: any[] = []
+  dtOptions: DataTables.Settings = {};
+  dtTrigger: Subject<any> = new Subject<any>()
   constructor(private adminCommentManagementService: AdminCommentManagementService,
      private userManagementByAdminService: UserManagementByAdminService,
     private toastr: ToastrService ) { }
   ngOnInit(): void {
+    this.dtOptions = {
+      pagingType: 'full_numbers'
+     };
     this.adminCommentManagementService.getAllComments().subscribe((response: any) => {
-      console.log(response)
       this.comments = response.data
+      this.dtTrigger.next(null)
     })
   }
 
