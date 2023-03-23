@@ -18,9 +18,7 @@ export class HomePageContentComponent implements OnInit {
     private toastr: ToastrService) { }
   ngOnInit(): void {
     this.contentService.getBlogCardContent().subscribe((response: any) => {
-      console.log(response)
       this.blogCardsService.addBlogCards(response.cards)
-      console.log(response.cards)
     })
   }
   addToFavorites(articleId: string) {

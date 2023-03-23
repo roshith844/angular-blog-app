@@ -68,11 +68,11 @@ export class BlogContentComponent implements OnInit {
         console.log(response)
         if (response.status == 'add') {
           this.isFavorite = true
-          this.showSuccess('Added to Favorites','')
-        }else if (response.status == 'remove') {
+          this.showSuccess('Added to Favorites', '')
+        } else if (response.status == 'remove') {
           this.isFavorite = false
           this.showSuccess('Removed From Favorites', '')
-        }else{
+        } else {
           this.showFailure()
         }
       })
