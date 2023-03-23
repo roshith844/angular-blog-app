@@ -20,8 +20,10 @@ export class BlogCommentsComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    console.log('this should be equal')
+  console.log(this.userDetailsService.userId)  
     this.commentService.getComment(this.blogId).subscribe((response: any) => {
-
+      console.log(response)
       if (response.success === true) {
         console.log(response)
         this.comments = response.comments
@@ -41,8 +43,9 @@ export class BlogCommentsComponent implements OnInit {
     this.commentService.addComment(this.blogId, comment).subscribe((response: any) => {
 
       if (response.success === true) {
-        console.log(response)
-        console.log(this.userDetailsService.getProfilePictureOfUser())
+        // console.log(response)
+        // console.log(this.userDetailsService.getProfilePictureOfUser())
+
         let newComment = { comments: response.data, userDetails: { name: this.userDetailsService.getNameOfUser(), profie_picture_url: this.userDetailsService.getProfilePictureOfUser()  } }
         this.comments.unshift(newComment)
         this.commentForm.reset()

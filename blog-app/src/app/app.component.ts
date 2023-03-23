@@ -21,6 +21,8 @@ export class AppComponent implements OnInit {
 
         this.userDetailsService.modifyNameOfUser(response.name)
         this.userDetailsService.modifyProfilePictureOfUser(response.image)
+        this.userDetailsService.modifyIdOfUser(response.userId)
+
 
         if (response.role == 'user') {
           this.userLoginService.markAsLoggedIn()

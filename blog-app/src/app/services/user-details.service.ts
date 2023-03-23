@@ -6,6 +6,7 @@ import { HttpClient } from '@angular/common/http';
 export class UserDetailsService {
   public name = 'unknown'
   public profilePictureUrl = ''
+  public userId = ''
   BASE_URL = 'http://localhost:3000/'
   constructor(private http: HttpClient) { }
   getUserDetails() {
@@ -20,11 +21,17 @@ export class UserDetailsService {
     this.profilePictureUrl = ProfilePictureUrl
   }
 
+  modifyIdOfUser(userId: string) {
+    this.userId = userId
+  }
+
+  getIdOfUser(){
+    return this.userId
+  }
+
   getProfilePictureOfUser() {
     return this.profilePictureUrl
   }
-
-
 
   getNameOfUser() {
     return this.name
