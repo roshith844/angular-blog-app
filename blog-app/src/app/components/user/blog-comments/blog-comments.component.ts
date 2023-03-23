@@ -3,6 +3,7 @@ import { FormBuilder } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { UserDetailsService } from 'src/app/services/user-details.service';
 import { CommentService } from 'src/app/services/user/comments/comment.service';
+import { UserLoginService } from 'src/app/services/user/user-login.service';
 
 @Component({
   selector: 'app-blog-comments',
@@ -16,7 +17,8 @@ export class BlogCommentsComponent implements OnInit {
   constructor(private formBuilder: FormBuilder,
     private commentService: CommentService,
     public userDetailsService: UserDetailsService,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    public loginService: UserLoginService
   ) { }
 
   ngOnInit(): void {
@@ -39,9 +41,7 @@ export class BlogCommentsComponent implements OnInit {
     this.commentService.addComment(this.blogId, comment).subscribe((response: any) => {
 
       if (response.success === true) {
-        // console.log(response)
-        // console.log(this.userDetailsService.getProfilePictureOfUser())
-
+        
         let newComment = { comments: response.data, userDetails: { name: this.userDetailsService.getNameOfUser(), profie_picture_url: this.userDetailsService.getProfilePictureOfUser() } }
         this.comments.unshift(newComment)
         this.commentForm.reset()
