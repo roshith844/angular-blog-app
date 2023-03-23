@@ -39,12 +39,15 @@ export class BlogCommentsComponent implements OnInit {
     const comment: string = this.commentForm.value.comment
 
     this.commentService.addComment(this.blogId, comment).subscribe((response: any) => {
+
       if (response.success === true) {
-        let newComment = { comments: response.data, userDetails: this.userDetailsService.getNameOfUser() }
+        console.log(response)
+        console.log(this.userDetailsService.getProfilePictureOfUser())
+        let newComment = { comments: response.data, userDetails: { name: this.userDetailsService.getNameOfUser(), profie_picture_url: this.userDetailsService.getProfilePictureOfUser()  } }
         this.comments.unshift(newComment)
         this.commentForm.reset()
         this.showSuccess('Success', 'Your comment was published')
-      }else{
+      } else {
         this.showFailure()
       }
     })
@@ -55,8 +58,8 @@ export class BlogCommentsComponent implements OnInit {
       console.log(response)
       if (response.success === true) {
         this.comments = this.comments.filter((element) => element.comments._id !== commentId)
-        this.showSuccess('Comment Deleted Successfully','')
-      }else{
+        this.showSuccess('Comment Deleted Successfully', '')
+      } else {
         this.showFailure()
       }
     })
