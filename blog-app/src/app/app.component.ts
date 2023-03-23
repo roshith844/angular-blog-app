@@ -16,7 +16,6 @@ export class AppComponent implements OnInit {
   ) { }
   ngOnInit(): void {
     this.userDetailsService.getUserDetails().subscribe((response: any) => {
-      console.log(response)
       if (response.loggedIn == true) {
 
         this.userDetailsService.modifyNameOfUser(response.name)
