@@ -19,4 +19,8 @@ export class AdminPostManagementService {
     return this.http.patch(this.BASE_URL + 'reject', { blogId: blogId })
   }
 
+  getBlog(blogId: string) {
+    return this.http.get(this.BASE_URL + 'get/' + blogId)
+  }
+
 }

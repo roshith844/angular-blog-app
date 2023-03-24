@@ -1,0 +1,44 @@
+<section *ngIf="show" class="flex bg-slate-900 absolute top-0 left-0 h-screen w-full z-50 bg-opacity-70">
+    <!-- Modal -->
+    <div class="fixed z-10 inset-0 overflow-y-auto" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+        <div class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+            <!-- Background overlay -->
+            <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" aria-hidden="true"></div>
+            <!-- Modal panel -->
+            <div
+                class="max-w-3xl sm:max-w-4xl md:max-w-6xl lg:max-w-7xl inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full">
+                <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
+                    <main class="pt-8 pb-16 lg:pt-16 lg:pb-24 bg-white dark:bg-gray-900">
+                        <div class="flex justify-between px-4 mx-auto max-w-screen-xl">
+                            <article
+                                class="mx-auto w-full max-w-5xl format format-sm sm:format-base lg:format-lg format-blue dark:format-invert">
+                                <header class="mb-4 lg:mb-6 not-format">
+                                    <h1
+                                        class="mb-4 text-3xl font-extrabold leading-tight text-gray-900 lg:mb-6 lg:text-4xl dark:text-white">
+                                        {{ popUpContent.title }} </h1>
+                                    <div class="flex place-content-between">
+                                    </div>
+                                </header>
+                                <span [innerHTML]="popUpContent.content"></span>
+                            </article>
+                        </div>
+                    </main>
+                    <div class="mt-4 flex justify-end space-x-3">
+                        <button *ngIf="popUpContent.status === 'pending'" (click)="approveBlog(popUpContent._id)"
+                            class="inline-flex justify-center w-32 py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                            Approve Blog
+                        </button>
+                        <button *ngIf="popUpContent.status === 'pending'" (click)="rejectBlog(popUpContent._id)"
+                            class="inline-flex justify-center w-32 py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500">
+                            Reject Blog
+                        </button>
+                        <button type="button" (click)="emitCloseModalEvent()"
+                            class="inline-flex justify-center w-32 py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-gray-700 bg-gray-200 hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500">
+                            Cancel
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

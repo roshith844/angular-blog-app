@@ -10,11 +10,13 @@ import { AdminPostManagementService } from 'src/app/services/admin/posts/admin-p
 })
 export class PostsManagementByAdminComponent implements OnInit {
   posts!: any[]
+  canshowBlogContent = false
+  content!: { _id: string, slug: string, title: string, content: string, status: string }
   constructor(private adminPostManagementService: AdminPostManagementService,
     private toastr: ToastrService,
 
   ) { }
-  dtOptions: DataTables.Settings = {};
+  dtOptions: DataTables.Settings = {}
   dtTrigger: Subject<any> = new Subject<any>()
   ngOnInit(): void {
     this.dtOptions = {
@@ -24,8 +26,6 @@ export class PostsManagementByAdminComponent implements OnInit {
       this.posts = response.data
       this.dtTrigger.next(null)
     })
-
-
   }
 
   approveBlog(postId: string) {
@@ -41,7 +41,6 @@ export class PostsManagementByAdminComponent implements OnInit {
         this.showFailure()
       }
     })
-
   }
 
   rejectBlog(postId: string) {
@@ -65,5 +64,17 @@ export class PostsManagementByAdminComponent implements OnInit {
 
   showFailure() {
     this.toastr.error('Some went wrong', 'Please Try again!')
+  }
+
+  closeModal() {
+    this.canshowBlogContent = false
+  }
+  openContentPopUp(blogId: string) {
+    this.adminPostManagementService.getBlog(blogId).subscribe((response: any) => {
+      console.log("this iscontent")
+      console.log(response.data[0])
+      this.content = response.data[0]
+    })
+    this.canshowBlogContent = true
   }
 }

@@ -42,6 +42,7 @@ import { AdminProfileComponent } from './components/admin/admin-profile/admin-pr
 import { AdminEditProfileComponent } from './components/admin/admin-edit-profile/admin-edit-profile.component';
 import { DataTablesModule } from 'angular-datatables';
 import { NgxUiLoaderModule, NgxUiLoaderHttpModule } from 'ngx-ui-loader';
+import { ViewBlogComponent } from './components/admin/view-blog/view-blog.component';
 
 @NgModule({
   declarations: [
@@ -72,6 +73,7 @@ import { NgxUiLoaderModule, NgxUiLoaderHttpModule } from 'ngx-ui-loader';
     WriterPageComponent,
     AdminProfileComponent,
     AdminEditProfileComponent,
+    ViewBlogComponent,
 
   ],
   imports: [

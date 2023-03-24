@@ -22,7 +22,6 @@ ngOnInit(): void {
       this.userDetailsService.modifyProfilePictureOfUser(response.image)
       this.userDetailsService.modifyIdOfUser(response.userId)
 
-
       if (response.role == 'user') {
         this.userLoginService.markAsLoggedIn()
         this.writerService.markAsNotAWriter()

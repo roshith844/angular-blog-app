@@ -26,7 +26,7 @@
                     [ngClass]="{'text-red-600': post.status === 'rejected', 'text-blue-600': post.status  === 'published', 'text-yellow-400': post.status === 'pending'}">
                     {{ post.status }}</td>
                 <td class="px-4 py-2">
-                    <button routerLink="/blog/{{ post.slug }}"
+                    <button (click)="openContentPopUp(post._id)"
                         class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-3 px-4 mx-3 rounded">
                         View Blog
                     </button>
@@ -39,3 +39,6 @@
         </tbody>
     </table>
 </div>
+<!-- View Blog Popup -->
+<app-view-blog (closeModalEvent)="closeModal()" (rejectBlogEvent)="rejectBlog($event)"
+    (approveBlogEvent)="approveBlog($event)" [show]="canshowBlogContent" [popUpContent]="content"></app-view-blog>
