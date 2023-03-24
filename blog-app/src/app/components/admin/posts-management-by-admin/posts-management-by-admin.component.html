@@ -10,7 +10,7 @@
                 <th class="px-4 py-2">Author</th>
                 <th class="px-4 py-2">Slug</th>
                 <th class="px-4 py-2">Status</th>
-                <th class="px-4 py-2">Actions</th>
+                <th class="px-4 py-2"></th>
             </tr>
         </thead>
         <tbody>
@@ -18,7 +18,7 @@
                 <td class="px-4 py-2">{{ i + 1 }}</td>
                 <td class="px-4 py-2">{{ post.createdAt | date : 'short' }}</td>
                 <td class="px-4 py-2">{{ post.updatedAt | date : 'short' }}</td>
-                <td class="px-4 py-2">{{ post._id }}</td>
+                <td class="px-4 py-2" ><a class="underline hover:text-blue-500" (click)="openContentPopUp(post._id)">{{ post._id }}</a></td>
                 <td class="px-4 py-2">{{ post.title }}</td>
                 <td class="px-4 py-2">{{ post.author_details.name }}</td>
                 <td class="px-4 py-2">{{ post.slug }}</td>
@@ -26,10 +26,6 @@
                     [ngClass]="{'text-red-600': post.status === 'rejected', 'text-blue-600': post.status  === 'published', 'text-yellow-400': post.status === 'pending'}">
                     {{ post.status }}</td>
                 <td class="px-4 py-2">
-                    <button (click)="openContentPopUp(post._id)"
-                        class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-3 px-4 mx-3 rounded">
-                        View Blog
-                    </button>
                     <button *ngIf="post.status === 'pending'" (click)="approveBlog( post._id )"
                         class="ml-2 text-blue-600 hover:text-blue-800">Approve</button>
                     <button *ngIf="post.status === 'pending'" (click)="rejectBlog( post._id )"
