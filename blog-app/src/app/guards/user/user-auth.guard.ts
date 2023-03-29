@@ -15,7 +15,7 @@ export class UserAuthGuard implements CanActivate {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
  
-    if (this.userLoginService.getLoginStatus()) return true
+    if (this.userLoginService.isTokenExists()) return true
     this.toastr.error('Login Required')
     this.router.navigate(['/login'])
     return false;

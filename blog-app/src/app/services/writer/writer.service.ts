@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 @Injectable({
@@ -5,6 +6,7 @@ import { Injectable } from '@angular/core';
 })
 export class WriterService {
   public isWriter : boolean = false
+  constructor(private http: HttpClient) { }
   markAsWriter() {
     this.isWriter = true
   }
@@ -16,5 +18,6 @@ export class WriterService {
     return this.isWriter
   }
 
-  constructor() { }
+
+
 }
