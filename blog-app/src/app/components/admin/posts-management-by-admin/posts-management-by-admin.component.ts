@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { Observable, Subject } from 'rxjs';
+import { AdminWriterChatService } from 'src/app/services/admin/chat/admin-writer-chat.service';
 import { AdminPostManagementService } from 'src/app/services/admin/posts/admin-post-management.service';
 
 @Component({
@@ -9,11 +10,16 @@ import { AdminPostManagementService } from 'src/app/services/admin/posts/admin-p
   styleUrls: ['./posts-management-by-admin.component.css']
 })
 export class PostsManagementByAdminComponent implements OnInit {
+  activeBlogId !: string;
+  activeBlogAuthor !: string
+  activeChatMessages !: any[]
   posts!: any[]
   canshowBlogContent = false
+  canShowChat = false
   content!: { _id: string, slug: string, title: string, content: string, status: string }
   constructor(private adminPostManagementService: AdminPostManagementService,
     private toastr: ToastrService,
+    private adminWriterChatService: AdminWriterChatService
 
   ) { }
   dtOptions: DataTables.Settings = {}
@@ -23,6 +29,8 @@ export class PostsManagementByAdminComponent implements OnInit {
       pagingType: 'full_numbers'
     }
     this.adminPostManagementService.getAllPosts().subscribe((response: any) => {
+      console.log('.....................................')
+      console.log(response.data)
       this.posts = response.data
       this.dtTrigger.next(null)
     })
@@ -68,13 +76,33 @@ export class PostsManagementByAdminComponent implements OnInit {
 
   closeModal() {
     this.canshowBlogContent = false
+    this.canShowChat = false
   }
   openContentPopUp(blogId: string) {
     this.adminPostManagementService.getBlog(blogId).subscribe((response: any) => {
-      console.log("this iscontent")
-      console.log(response.data[0])
       this.content = response.data[0]
     })
     this.canshowBlogContent = true
   }
+  openChat(blogId: string, author: string) {
+    this.adminWriterChatService.getChatMessages(blogId).subscribe((response: any) => {
+      console.log(response)
+      if (response.success === true) this.activeChatMessages = response.data
+    })
+
+    this.activeBlogId = blogId
+    this.activeBlogAuthor = author
+
+    this.adminWriterChatService.markAsRead(blogId).subscribe((response: any) => {
+      console.log(response)
+    })
+
+const POST_TO_MODIFY = this.posts.find(post=> post._id === blogId)
+if(POST_TO_MODIFY){
+  POST_TO_MODIFY.unread = []
+}
+
+    this.canShowChat = true
+  }
+
 }

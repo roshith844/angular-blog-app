@@ -43,6 +43,8 @@ import { AdminEditProfileComponent } from './components/admin/admin-edit-profile
 import { DataTablesModule } from 'angular-datatables';
 import { NgxUiLoaderModule, NgxUiLoaderHttpModule } from 'ngx-ui-loader';
 import { ViewBlogComponent } from './components/admin/view-blog/view-blog.component';
+import { WriterAdminChatComponent } from './components/writer/writer-admin-chat/writer-admin-chat.component';
+import { AdminWriterChatComponent } from './components/admin/admin-writer-chat/admin-writer-chat.component';
 
 @NgModule({
   declarations: [
@@ -74,6 +76,8 @@ import { ViewBlogComponent } from './components/admin/view-blog/view-blog.compon
     AdminProfileComponent,
     AdminEditProfileComponent,
     ViewBlogComponent,
+    WriterAdminChatComponent,
+    AdminWriterChatComponent,
 
   ],
   imports: [

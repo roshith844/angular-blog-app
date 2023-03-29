@@ -27,6 +27,7 @@ export class AdminEditProfileComponent {
   emitCloseModalEvent() {
     this.closeModalEvent.emit(false);
   }
+  
   editProfileForm = this.formBuilder.group({
     name: '',
     email: '',

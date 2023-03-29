@@ -21,4 +21,10 @@ export class WriterPostManangementService {
     this.allBlogs = this.allBlogs.filter(obj => obj._id !== blogId);
   }
 
+  clearUnreadMessagesCount(blogId: string) {
+    const POST_TO_MODIFY = this.allBlogs.find(post => post._id === blogId)
+    if (POST_TO_MODIFY) {
+      POST_TO_MODIFY.unread = []
+    }
+  }
 }

@@ -25,4 +25,8 @@ BASE_URL =  'http://localhost:3000/'
   getLoginStatus(){
     return this.isLoggedIn
   }
+
+  isTokenExists(){
+    return (localStorage.getItem('accessToken')) ? true: false
+  }
 }

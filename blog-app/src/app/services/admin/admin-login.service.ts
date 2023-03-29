@@ -25,4 +25,8 @@ export class AdminLoginService {
   getLoginStatus() {
     return this.isLoggedIn
   }
+
+  isTokenExists(){
+    return (localStorage.getItem('accessToken')) ? true: false
+  }
 }

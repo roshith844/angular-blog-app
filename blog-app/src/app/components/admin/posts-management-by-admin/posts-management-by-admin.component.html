@@ -18,7 +18,8 @@
                 <td class="px-4 py-2">{{ i + 1 }}</td>
                 <td class="px-4 py-2">{{ post.createdAt | date : 'short' }}</td>
                 <td class="px-4 py-2">{{ post.updatedAt | date : 'short' }}</td>
-                <td class="px-4 py-2" ><a class="underline hover:text-blue-500" (click)="openContentPopUp(post._id)">{{ post._id }}</a></td>
+                <td class="px-4 py-2"><a class="underline hover:text-blue-500" (click)="openContentPopUp(post._id)">{{
+                        post._id }}</a></td>
                 <td class="px-4 py-2">{{ post.title }}</td>
                 <td class="px-4 py-2">{{ post.author_details.name }}</td>
                 <td class="px-4 py-2">{{ post.slug }}</td>
@@ -30,6 +31,14 @@
                         class="ml-2 text-blue-600 hover:text-blue-800">Approve</button>
                     <button *ngIf="post.status === 'pending'" (click)="rejectBlog( post._id )"
                         class="ml-2 text-red-600 hover:text-red-800">Reject</button>
+                    <button (click)="openChat(post._id, post.author)" type="button"
+                        class="inline-flex items-center px-5 py-2.5 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                        Messages
+                        <span *ngIf="post.unread.length > 0"
+                            class="inline-flex items-center justify-center w-4 h-4 ml-2 text-xs font-semibold text-blue-800 bg-blue-200 rounded-full">
+                            {{ post.unread[0].count }}
+                        </span>
+                    </button>
                 </td>
             </tr>
         </tbody>
@@ -38,3 +47,5 @@
 <!-- View Blog Popup -->
 <app-view-blog (closeModalEvent)="closeModal()" (rejectBlogEvent)="rejectBlog($event)"
     (approveBlogEvent)="approveBlog($event)" [show]="canshowBlogContent" [popUpContent]="content"></app-view-blog>
+<app-admin-writer-chat (closeModalEvent)="closeModal()" [show]="canShowChat" [chatMessages]="activeChatMessages"
+    [blogId]="activeBlogId" [author]="activeBlogAuthor"></app-admin-writer-chat>

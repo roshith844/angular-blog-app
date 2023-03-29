@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { Subject } from 'rxjs';
+import { WriterAdminChatService } from 'src/app/services/writer/chat/writer-admin-chat.service';
 import { DeleteBlogService } from 'src/app/services/writer/delete-blog.service';
 import { WriterPostManangementService } from 'src/app/services/writer/writer-blog-manangement.service';
 
@@ -10,18 +11,25 @@ import { WriterPostManangementService } from 'src/app/services/writer/writer-blo
   styleUrls: ['./posts-management.component.css']
 })
 export class PostsManagementComponent implements OnInit {
+  activeBlogId !: string;
+  activeBlogAuthor !: string
+  canShowChat = false
   notificationMessage = ''
   dtOptions: DataTables.Settings = {};
   dtTrigger: Subject<any> = new Subject<any>()
+  activeChatMessages !: any[]
   constructor(public writerPostManangementService: WriterPostManangementService,
     private deleteBlogService: DeleteBlogService,
-    private toastr: ToastrService) { }
+    private toastr: ToastrService,
+    private chatService: WriterAdminChatService
+  ) { }
 
   ngOnInit(): void {
     this.dtOptions = {
       pagingType: 'full_numbers'
     }
     this.writerPostManangementService.getBlogs().subscribe((response: any) => {
+    console.log(response)
       this.writerPostManangementService.addAllBlogs(response.data)
       this.dtTrigger.next(null)
     })
@@ -42,5 +50,22 @@ export class PostsManagementComponent implements OnInit {
   }
   closeNotification() {
     this.notificationMessage = ''
+  }
+
+  closeModal() {
+    this.canShowChat = false
+  }
+  openChat(blogId: string, author: string) {
+    this.chatService.getChatMessages(blogId).subscribe((response: any) => {
+      console.log(response)
+      if (response.success === true) this.activeChatMessages = response.data
+    })
+    this.activeBlogId = blogId
+    this.activeBlogAuthor = author
+    this.chatService.markAsRead(blogId).subscribe((response: any) => {
+      console.log(response)
+    })
+    this.writerPostManangementService.clearUnreadMessagesCount(blogId)
+    this.canShowChat = true
   }
 }
