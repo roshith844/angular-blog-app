@@ -8,6 +8,7 @@ import { CreatorManagementByAdminComponent } from './components/admin/creator-ma
 import { PostsManagementByAdminComponent } from './components/admin/posts-management-by-admin/posts-management-by-admin.component';
 import { UserManagementByAdminComponent } from './components/admin/user-management-by-admin/user-management-by-admin.component';
 import { AdminPageComponent } from './components/pages/admin/admin-page/admin-page.component';
+import { PageNotFoundComponent } from './components/pages/page-not-found/page-not-found.component';
 import { UserPageComponent } from './components/pages/user/user-page/user-page.component';
 // import { WriterDashboardComponent } from './components/pages/writer/writer-dashboard/writer-dashboard.component';
 import { WriterPageComponent } from './components/pages/writer/writer-page/writer-page.component';
@@ -57,7 +58,8 @@ const routes: Routes = [
       { path: 'creators', component: CreatorManagementByAdminComponent, canActivate: [AdminAuthGuard] },
       { path: 'profile', component: AdminProfileComponent, canActivate: [AdminAuthGuard] },
     ]
-  }
+  },
+  { path: '**', component:PageNotFoundComponent }
 
 ]
 

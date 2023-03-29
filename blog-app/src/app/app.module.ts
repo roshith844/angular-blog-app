@@ -45,6 +45,7 @@ import { NgxUiLoaderModule, NgxUiLoaderHttpModule } from 'ngx-ui-loader';
 import { ViewBlogComponent } from './components/admin/view-blog/view-blog.component';
 import { WriterAdminChatComponent } from './components/writer/writer-admin-chat/writer-admin-chat.component';
 import { AdminWriterChatComponent } from './components/admin/admin-writer-chat/admin-writer-chat.component';
+import { PageNotFoundComponent } from './components/pages/page-not-found/page-not-found.component';
 
 @NgModule({
   declarations: [
@@ -78,6 +79,7 @@ import { AdminWriterChatComponent } from './components/admin/admin-writer-chat/a
     ViewBlogComponent,
     WriterAdminChatComponent,
     AdminWriterChatComponent,
+    PageNotFoundComponent,
 
   ],
   imports: [
