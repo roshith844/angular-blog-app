@@ -90,7 +90,11 @@ import { PageNotFoundComponent } from './components/pages/page-not-found/page-no
     EditorModule,
     CommonModule,
     BrowserAnimationsModule,
-    ToastrModule.forRoot(),
+    ToastrModule.forRoot({
+      timeOut: 2000,
+      positionClass: 'toast-top-right',
+      preventDuplicates: true,
+    }),
     StoreModule.forRoot({}, {}),
     FormsModule,
     DataTablesModule,
