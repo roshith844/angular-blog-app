@@ -41,7 +41,7 @@ export class BlogCommentsComponent implements OnInit {
     this.commentService.addComment(this.blogId, comment).subscribe((response: any) => {
 
       if (response.success === true) {
-        
+
         let newComment = { comments: response.data, userDetails: { name: this.userDetailsService.getNameOfUser(), profie_picture_url: this.userDetailsService.getProfilePictureOfUser() } }
         this.comments.unshift(newComment)
         this.commentForm.reset()
@@ -53,6 +53,7 @@ export class BlogCommentsComponent implements OnInit {
   }
 
   deleteComment(commentId: any,) {
+    if (!confirm("Are you sure you want to Delete this comment?")) return
     this.commentService.deleteComment(this.blogId, commentId).subscribe((response: any) => {
       console.log(response)
       if (response.success === true) {
