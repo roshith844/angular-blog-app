@@ -5,7 +5,7 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root'
 })
 export class ContentService {
-BASE_URL =  'http://localhost:3000/'
+BASE_URL =  'https://blog-project-api.roshith.com/'
 constructor(private http: HttpClient) { }
 getBlogCardContent(){
   return this.http.get(this.BASE_URL + 'blog/cards')

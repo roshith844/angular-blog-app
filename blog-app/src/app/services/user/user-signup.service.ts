@@ -7,7 +7,7 @@ import { signupFormData } from 'src/app/types/formData'
 })
 export class UserSignupService {
 
-  BASE_URL = 'http://localhost:3000/'
+  BASE_URL = 'https://blog-project-api.roshith.com/'
 
   constructor(private http: HttpClient) {
 

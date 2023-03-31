@@ -6,7 +6,7 @@ import { contentFormData } from 'src/app/types/formData';
   providedIn: 'root'
 })
 export class DeleteBlogService {
-  BASE_URL = 'http://localhost:3000/'
+  BASE_URL = 'https://blog-project-api.roshith.com/'
   constructor(private http: HttpClient) { }
   deleteBlog(articleId: string) {
     return this.http.delete(`${this.BASE_URL}writer/blog/delete/${articleId}`)

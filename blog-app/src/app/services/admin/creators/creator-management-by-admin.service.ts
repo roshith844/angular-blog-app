@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class CreatorManagementByAdminService {
-  BASE_URL = 'http://localhost:3000/admin/creator/'
+  BASE_URL = 'https://blog-project-api.roshith.com/admin/creator/'
 
   constructor(private http: HttpClient) { }
 

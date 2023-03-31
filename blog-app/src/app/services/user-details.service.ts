@@ -7,7 +7,7 @@ export class UserDetailsService {
   public name = 'unknown'
   public profilePictureUrl = ''
   public userId = ''
-  BASE_URL = 'http://localhost:3000/'
+  BASE_URL = 'https://blog-project-api.roshith.com/'
   constructor(private http: HttpClient) { }
   getUserDetails() {
     return this.http.get(this.BASE_URL + 'user-details')

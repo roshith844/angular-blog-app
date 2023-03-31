@@ -6,7 +6,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class WriterPostManangementService {
   public allBlogs: any[] = []
-  BASE_URL = 'http://localhost:3000/writer/'
+  BASE_URL = 'https://blog-project-api.roshith.com/writer/'
   constructor(private http: HttpClient) { }
   getBlogs() {
     return this.http.get(this.BASE_URL + 'blog/all')

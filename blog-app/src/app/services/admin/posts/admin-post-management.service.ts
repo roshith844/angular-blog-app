@@ -5,7 +5,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class AdminPostManagementService {
-  BASE_URL = 'http://localhost:3000/admin/post/'
+  BASE_URL = 'https://blog-project-api.roshith.com/admin/post/'
   constructor(private http: HttpClient) { }
   getAllPosts(): Observable<object> {
     return this.http.get(this.BASE_URL + 'all')

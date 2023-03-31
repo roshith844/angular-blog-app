@@ -6,7 +6,7 @@ import { contentFormData } from 'src/app/types/formData';
   providedIn: 'root'
 })
 export class PostContentService {
-  BASE_URL = 'http://localhost:3000/'
+  BASE_URL = 'https://blog-project-api.roshith.com/'
   constructor(private http: HttpClient) { }
   postContent(content: contentFormData) {
     return this.http.post(this.BASE_URL + 'writer/blog/create', content)

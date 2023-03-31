@@ -5,7 +5,7 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class AdminWriterChatService {
-  BASE_URL = 'http://localhost:3000/admin'
+  BASE_URL = 'https://blog-project-api.roshith.com/admin'
   constructor(private http: HttpClient) { }
 
   postMessage(blogId: string, message: string, author: string) {

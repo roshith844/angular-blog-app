@@ -5,7 +5,7 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class WriterDashboardService {
-  BASE_URL = 'http://localhost:3000/writer/dashboard'
+  BASE_URL = 'https://blog-project-api.roshith.com/writer/dashboard'
 
   constructor(private http: HttpClient) { }
   getStatistics() {

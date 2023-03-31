@@ -4,7 +4,7 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root'
 })
 export class AdminDashboardService {
-  BASE_URL = 'http://localhost:3000/admin/dashboard'
+  BASE_URL = 'https://blog-project-api.roshith.com/admin/dashboard'
 
   constructor(private http: HttpClient) { }
   getStatistics() {

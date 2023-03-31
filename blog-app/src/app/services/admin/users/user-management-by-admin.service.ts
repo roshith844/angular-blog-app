@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class UserManagementByAdminService {
-  BASE_URL = 'http://localhost:3000/admin/user/'
+  BASE_URL = 'https://blog-project-api.roshith.com/admin/user/'
   constructor(private http: HttpClient) { }
 
   getAllUsers() {

@@ -6,7 +6,7 @@ import { contentFormData } from 'src/app/types/formData';
   providedIn: 'root'
 })
 export class UpdateBlogService {
-  BASE_URL = 'http://localhost:3000/'
+  BASE_URL = 'https://blog-project-api.roshith.com/'
   constructor(private http: HttpClient) { }
   updateBlog(data: contentFormData) {
     return this.http.patch(`${this.BASE_URL}writer/blog/update`, data)

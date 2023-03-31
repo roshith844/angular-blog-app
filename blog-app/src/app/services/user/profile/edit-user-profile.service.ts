@@ -5,7 +5,7 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class EditUserProfileService {
-  BASE_URL =  'http://localhost:3000/'
+  BASE_URL =  'https://blog-project-api.roshith.com/'
   constructor(private http: HttpClient) { }
 
   uploadImage(fileToUpload: any){

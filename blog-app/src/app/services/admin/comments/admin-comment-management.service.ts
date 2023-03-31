@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class AdminCommentManagementService {
-  BASE_URL = 'http://localhost:3000/admin/comment/'
+  BASE_URL = 'https://blog-project-api.roshith.com/admin/comment/'
   constructor(private http: HttpClient) { }
   getAllComments(): Observable<object> {
     return this.http.get(this.BASE_URL + 'all')

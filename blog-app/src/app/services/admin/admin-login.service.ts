@@ -7,7 +7,7 @@ import { formData } from 'src/app/types/formData';
 })
 export class AdminLoginService {
   public isLoggedIn: boolean = false
-  BASE_URL = 'http://localhost:3000/'
+  BASE_URL = 'https://blog-project-api.roshith.com/'
   constructor(private http: HttpClient) { }
 
   loginAdmin(formData: formData) {

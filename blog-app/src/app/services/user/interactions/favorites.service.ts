@@ -6,7 +6,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class FavoritesService {
 
-  BASE_URL = 'http://localhost:3000/'
+  BASE_URL = 'https://blog-project-api.roshith.com/'
   constructor(private http: HttpClient) { }
   addOrRemoveFromFavorites( articleId: string) {
     return this.http.patch(this.BASE_URL + 'favorites/add-or-remove', { articleId: articleId })
