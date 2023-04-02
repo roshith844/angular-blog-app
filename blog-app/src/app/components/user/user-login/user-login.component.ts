@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { UserLoginService } from 'src/app/services/user/user-login.service';
 import { type formData } from './../../../types/formData'
+import { WriterService } from 'src/app/services/writer/writer.service';
 
 @Component({
   selector: 'app-user-login',
@@ -17,7 +18,9 @@ export class UserLoginComponent {
   constructor(private formBuilder: FormBuilder,
     private loginService: UserLoginService,
     private router: Router,
-    private toastr: ToastrService) {
+    private toastr: ToastrService,
+    private writerService: WriterService
+  ) {
     this.currentRoute = this.router.url
   }
 
@@ -74,16 +77,26 @@ export class UserLoginComponent {
         password: this.loginForm.value.password
       }
       this.loginService.sendLoginFormData(LOGIN_FORMDATA).subscribe((response: any) => {
+        console.log(response)
         if (response.success == true) {
           localStorage.setItem('accessToken', response.accessToken)
           localStorage.setItem('refreshToken', response.refreshToken)
           this.loginService.markAsLoggedIn()
 
-          if (this.currentRoute === '/login') {
+          if (response.role === 'writer') {
+            this.writerService.markAsWriter()
+            if (this.currentRoute === '/writer/login') {
+              this.router.navigate(['/writer/'])
+            } else {
+              this.router.navigate([''])
+            }
+          } else {
+            this.writerService.markAsNotAWriter()
             this.router.navigate([''])
-          } else if (this.currentRoute === '/writer/login') {
-            this.router.navigate(['/writer/'])
           }
+          // if (this.currentRoute === '/login') {
+          //   this.router.navigate([''])
+          // }
           this.toastr.success('Logged In Successfully')
         } else {
           this.toastr.error('Login Failed', 'Please Signup to Login or Try logging In Again')
