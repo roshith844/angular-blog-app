@@ -14,7 +14,6 @@ export class PostsManagementComponent implements OnInit {
   activeBlogId !: string;
   activeBlogAuthor !: string
   canShowChat = false
-  notificationMessage = ''
   dtOptions: DataTables.Settings = {};
   dtTrigger: Subject<any> = new Subject<any>()
   activeChatMessages !: any[]
@@ -29,7 +28,6 @@ export class PostsManagementComponent implements OnInit {
       pagingType: 'full_numbers'
     }
     this.writerPostManangementService.getBlogs().subscribe((response: any) => {
-    console.log(response)
       this.writerPostManangementService.addAllBlogs(response.data)
       this.dtTrigger.next(null)
     })
@@ -40,18 +38,13 @@ export class PostsManagementComponent implements OnInit {
     this.deleteBlogService.deleteBlog(articleId).subscribe((response: any) => {
       if (response.success === true) {
         this.writerPostManangementService.removeBlog(articleId)
-        this.notificationMessage = 'deleted successfully'
         this.toastr.success('Deleted Successfully')
       } else {
-        this.notificationMessage = 'something went wrong'
         this.toastr.error('Something Went Wrong')
       }
     })
   }
-  closeNotification() {
-    this.notificationMessage = ''
-  }
-
+  
   closeModal() {
     this.canShowChat = false
   }

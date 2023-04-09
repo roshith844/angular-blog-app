@@ -5,6 +5,8 @@ import { ContentService } from 'src/app/services/content.service';
 import { FavoritesService } from 'src/app/services/user/interactions/favorites.service';
 import { UserViewsService } from 'src/app/services/user/statistics/user-views.service';
 import { UserLoginService } from 'src/app/services/user/user-login.service';
+import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
+
 
 @Component({
   selector: 'app-blog-content',
@@ -14,6 +16,7 @@ import { UserLoginService } from 'src/app/services/user/user-login.service';
 export class BlogContentComponent implements OnInit {
 
   articleId = ''
+  sanitizedHtmlContent!: SafeHtml
   data!: any
   slug = ''
   pageViews: number = 0
@@ -22,7 +25,9 @@ export class BlogContentComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
     private contentService: ContentService, public loginService: UserLoginService,
     private favoritesService: FavoritesService,
-    private toastr: ToastrService) { }
+    private toastr: ToastrService,
+    private sanitizer: DomSanitizer
+  ) { }
 
   ngOnInit(): void {
     // Gets param
@@ -34,6 +39,8 @@ export class BlogContentComponent implements OnInit {
       this.data = response.data
       this.articleId = response.data._id
       this.isFavorite = response.isFavorite
+
+      this.sanitizedHtmlContent = this.sanitizer.bypassSecurityTrustHtml(response.data.content);
 
       // views and Visits
       if (sessionStorage.getItem('visit') === null) {

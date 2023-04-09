@@ -44,7 +44,7 @@
                     </div>
                 </div>
             </header>
-            <span [innerHTML]="data.content"></span>
+            <span [innerHTML]="sanitizedHtmlContent"></span>
             <app-blog-comments [blogId]="articleId"></app-blog-comments>
         </article>
     </div>
