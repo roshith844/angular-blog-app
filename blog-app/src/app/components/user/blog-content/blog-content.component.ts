@@ -63,20 +63,19 @@ export class BlogContentComponent implements OnInit {
 
   addToFavorites() {
     const ACCESS_TOKEN = localStorage.getItem('accessToken')
-    if (ACCESS_TOKEN != null) {
-      this.favoritesService.addOrRemoveFromFavorites(this.articleId).subscribe((response: any) => {
-        console.log(response)
-        if (response.status == 'add') {
-          this.isFavorite = true
-          this.showSuccess('Added to Favorites', '')
-        } else if (response.status == 'remove') {
-          this.isFavorite = false
-          this.showSuccess('Removed From Favorites', '')
-        } else {
-          this.showFailure()
-        }
-      })
-    }
+    if (!ACCESS_TOKEN) this.toastr.error('Some went wrong', 'Please Try again!')
+    this.favoritesService.addOrRemoveFromFavorites(this.articleId).subscribe((response: any) => {
+      if (response.status == 'add') {
+        this.isFavorite = true
+        this.showSuccess('Added to Favorites', '')
+      } else if (response.status == 'remove') {
+        this.isFavorite = false
+        this.showSuccess('Removed From Favorites', '')
+      } else {
+        this.showFailure()
+      }
+    })
+
   }
 
   showSuccess(title: string, description: string) {
