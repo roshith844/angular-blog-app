@@ -8,7 +8,7 @@ import { type formData } from './../../types/formData'
 export class UserLoginService {
   public isLoggedIn: boolean = false
 
-BASE_URL =  'http://localhost:3000/'
+BASE_URL =  'https://blog-project-api.roshith.com/'
   constructor(private http: HttpClient) { }
   sendLoginFormData(formData:formData){
   return this.http.post(this.BASE_URL + 'login', formData)
