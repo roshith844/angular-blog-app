@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree } from '@angular/router';
+import { ActivatedRouteSnapshot, Router, RouterStateSnapshot, UrlTree } from '@angular/router';
 import { map } from 'rxjs/operators';
 import { ToastrService } from 'ngx-toastr';
 import { Observable } from 'rxjs';
@@ -11,7 +11,7 @@ import { WriterService } from 'src/app/services/writer/writer.service';
 @Injectable({
   providedIn: 'root'
 })
-export class WriterAuthGuard implements CanActivate {
+export class WriterAuthGuard  {
   constructor(
     private userLoginService: UserLoginService,
     private userDetailsService: UserDetailsService,
