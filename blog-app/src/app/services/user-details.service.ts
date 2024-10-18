@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { environment } from 'src/environments/environment.development';
 @Injectable({
   providedIn: 'root'
 })
@@ -7,10 +8,10 @@ export class UserDetailsService {
   public name = 'unknown'
   public profilePictureUrl = ''
   public userId = ''
-  BASE_URL = 'https://blog-project-api.roshith.com/'
+  BASE_URL =  environment.apiBaseUrl
   constructor(private http: HttpClient) { }
   getUserDetails() {
-    return this.http.get(this.BASE_URL + 'user-details')
+    return this.http.get(this.BASE_URL + '/user-details')
   }
 
   modifyNameOfUser(name: string) {

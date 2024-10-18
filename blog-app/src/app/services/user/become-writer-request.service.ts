@@ -1,13 +1,15 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { environment } from 'src/environments/environment.development';
 
 @Injectable({
   providedIn: 'root'
 })
 export class BecomeWriterRequestService {
-  BASE_URL = 'https://blog-project-api.roshith.com/'
+  BASE_URL = environment.apiBaseUrl
+
   constructor(private http: HttpClient) { }
   applyForWriterRole() {
-    return this.http.patch(this.BASE_URL + 'writer/apply', {})
+    return this.http.patch(this.BASE_URL + '/writer/apply', {})
   }
 }

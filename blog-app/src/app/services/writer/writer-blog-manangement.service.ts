@@ -1,15 +1,17 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { environment } from 'src/environments/environment.development';
 
 @Injectable({
   providedIn: 'root'
 })
 export class WriterPostManangementService {
   public allBlogs: any[] = []
-  BASE_URL = 'https://blog-project-api.roshith.com/writer/'
+  BASE_URL = `${ environment.apiBaseUrl}/writer` 
+
   constructor(private http: HttpClient) { }
   getBlogs() {
-    return this.http.get(this.BASE_URL + 'blog/all')
+    return this.http.get(this.BASE_URL + '/blog/all')
   }
 
   addAllBlogs(data: any[]) {

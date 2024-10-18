@@ -1,11 +1,13 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { environment } from 'src/environments/environment.development';
 @Injectable({
   providedIn: 'root'
 })
 export class AdminPostManagementService {
-  BASE_URL = 'https://blog-project-api.roshith.com/admin/post/'
+  BASE_URL = `${ environment.apiBaseUrl}/admin/post/` 
+
   constructor(private http: HttpClient) { }
   getAllPosts(): Observable<object> {
     return this.http.get(this.BASE_URL + 'all')

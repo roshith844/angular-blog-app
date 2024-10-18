@@ -1,11 +1,13 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { environment } from 'src/environments/environment.development';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AdminWriterChatService {
-  BASE_URL = 'https://blog-project-api.roshith.com/admin'
+  BASE_URL = `${environment.apiBaseUrl}/admin`
+
   constructor(private http: HttpClient) { }
 
   postMessage(blogId: string, message: string, author: string) {
@@ -16,6 +18,6 @@ export class AdminWriterChatService {
     return this.http.get(this.BASE_URL + '/chat/' + blogId)
   }
   markAsRead(blogId: string) {
-    return this.http.patch(this.BASE_URL + '/chat/read', {blogId: blogId})
+    return this.http.patch(this.BASE_URL + '/chat/read', { blogId: blogId })
   }
 }

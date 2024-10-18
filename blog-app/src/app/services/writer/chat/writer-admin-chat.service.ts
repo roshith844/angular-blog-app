@@ -1,11 +1,13 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { environment } from 'src/environments/environment.development';
 
 @Injectable({
   providedIn: 'root'
 })
 export class WriterAdminChatService {
-  BASE_URL = 'https://blog-project-api.roshith.com/writer'
+  BASE_URL = `${ environment.apiBaseUrl}/writer` 
+
   constructor(private http: HttpClient) { }
 
   postMessage(blogId: string, message: string, author: string) {

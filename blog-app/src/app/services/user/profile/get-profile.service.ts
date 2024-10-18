@@ -1,14 +1,15 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { environment } from 'src/environments/environment.development';
 
 @Injectable({
   providedIn: 'root'
 })
 export class GetProfileService {
-  BASE_URL =  'https://blog-project-api.roshith.com/'
+  BASE_URL = environment.apiBaseUrl
   constructor(private http: HttpClient) { }
 
   getProfile(){
-    return this.http.get(this.BASE_URL + 'user/profile/details' )
+    return this.http.get(this.BASE_URL + '/user/profile/details' )
   }
 }

@@ -1,11 +1,12 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { environment } from 'src/environments/environment.development';
 
 @Injectable({
   providedIn: 'root'
 })
 export class WriterDashboardService {
-  BASE_URL = 'https://blog-project-api.roshith.com/writer/dashboard'
+  BASE_URL = `${ environment.apiBaseUrl}/writer/dashboard` 
 
   constructor(private http: HttpClient) { }
   getStatistics() {
