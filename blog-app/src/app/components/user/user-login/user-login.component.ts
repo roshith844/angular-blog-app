@@ -76,12 +76,10 @@ export class UserLoginComponent {
         email: this.loginForm.value.email,
         password: this.loginForm.value.password
       }
+      
       this.loginService.sendLoginFormData(LOGIN_FORMDATA).subscribe((response: any) => {
-        console.log(response)
         if (response.success == true) {
-          localStorage.setItem('accessToken', response.accessToken)
-          localStorage.setItem('refreshToken', response.refreshToken)
-          this.loginService.markAsLoggedIn()
+          this.loginService.markAsLoggedIn( response.accessToken, response.refreshToken )
 
           if (response.role === 'writer') {
             this.writerService.markAsWriter()

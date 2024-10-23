@@ -23,10 +23,10 @@ ngOnInit(): void {
       this.userDetailsService.modifyIdOfUser(response.userId)
 
       if (response.role == 'user') {
-        this.userLoginService.markAsLoggedIn()
+        // this.userLoginService.markAsLoggedIn()
         this.writerService.markAsNotAWriter()
       } else if (response.role == 'writer') {
-        this.userLoginService.markAsLoggedIn()
+        // this.userLoginService.markAsLoggedIn()
         this.writerService.markAsWriter()
       } else if (response.role === 'admin') {
         this.adminLoginService.markAsLoggedIn()

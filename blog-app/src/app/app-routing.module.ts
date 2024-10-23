@@ -47,18 +47,21 @@ const routes: Routes = [
 
     ]
   },
-
   {
-    path: 'admin', component: AdminPageComponent, children: [
-      { path: '', component: AdminDashboardComponent, canActivate: [AdminAuthGuard] },
-      { path: 'login', component: AdminLoginComponent },
-      { path: 'posts', component: PostsManagementByAdminComponent, canActivate: [AdminAuthGuard] },
-      { path: 'comments', component: CommentManagementByAdminComponent, canActivate: [AdminAuthGuard] },
-      { path: 'users', component: UserManagementByAdminComponent, canActivate: [AdminAuthGuard] },
-      { path: 'creators', component: CreatorManagementByAdminComponent, canActivate: [AdminAuthGuard] },
-      { path: 'profile', component: AdminProfileComponent, canActivate: [AdminAuthGuard] },
-    ]
+    path: 'admin',
+    loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule), // Lazy loading AdminModule
   },
+  // {
+  //   path: 'admin', component: AdminPageComponent, children: [
+  //     { path: '', component: AdminDashboardComponent, canActivate: [AdminAuthGuard] },
+  //     { path: 'login', component: AdminLoginComponent },
+  //     { path: 'posts', component: PostsManagementByAdminComponent, canActivate: [AdminAuthGuard] },
+  //     { path: 'comments', component: CommentManagementByAdminComponent, canActivate: [AdminAuthGuard] },
+  //     { path: 'users', component: UserManagementByAdminComponent, canActivate: [AdminAuthGuard] },
+  //     { path: 'creators', component: CreatorManagementByAdminComponent, canActivate: [AdminAuthGuard] },
+  //     { path: 'profile', component: AdminProfileComponent, canActivate: [AdminAuthGuard] },
+  //   ]
+  // },
   { path: '**', component:PageNotFoundComponent }
 
 ]

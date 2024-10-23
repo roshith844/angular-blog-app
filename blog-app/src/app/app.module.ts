@@ -46,6 +46,7 @@ import { ViewBlogComponent } from './components/admin/view-blog/view-blog.compon
 import { WriterAdminChatComponent } from './components/writer/writer-admin-chat/writer-admin-chat.component';
 import { AdminWriterChatComponent } from './components/admin/admin-writer-chat/admin-writer-chat.component';
 import { PageNotFoundComponent } from './components/pages/page-not-found/page-not-found.component';
+import { AdminModule } from './admin/admin.module';
 
 @NgModule({
   declarations: [
@@ -65,22 +66,20 @@ import { PageNotFoundComponent } from './components/pages/page-not-found/page-no
     PostsManagementComponent,
     EditBlogComponent,
     BlogCommentsComponent,
-    AdminLoginComponent,
-    AdminPageComponent,
-    AdminNavbarComponent,
-    AdminDashboardComponent,
-    PostsManagementByAdminComponent,
-    CommentManagementByAdminComponent,
-    UserManagementByAdminComponent,
-    CreatorManagementByAdminComponent,
+    // AdminLoginComponent,
+    // AdminPageComponent,
+    // AdminNavbarComponent,
+    // AdminDashboardComponent,
+    // PostsManagementByAdminComponent,
+    // CommentManagementByAdminComponent,
+    // UserManagementByAdminComponent,
+    // CreatorManagementByAdminComponent,
     WriterPageComponent,
-    AdminProfileComponent,
-    AdminEditProfileComponent,
-    ViewBlogComponent,
+    // AdminProfileComponent,
+    // AdminEditProfileComponent,
     WriterAdminChatComponent,
-    AdminWriterChatComponent,
+    // AdminWriterChatComponent,
     PageNotFoundComponent,
-
   ],
   imports: [
     BrowserModule,
@@ -90,6 +89,7 @@ import { PageNotFoundComponent } from './components/pages/page-not-found/page-no
     EditorModule,
     CommonModule,
     BrowserAnimationsModule,
+    AdminModule,
     ToastrModule.forRoot({
       timeOut: 2000,
       positionClass: 'toast-top-right',

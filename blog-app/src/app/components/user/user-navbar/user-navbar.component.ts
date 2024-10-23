@@ -19,9 +19,7 @@ export class UserNavbarComponent implements OnInit {
     private router: Router) { }
 
   logout() {
-    localStorage.removeItem('accessToken')
-    localStorage.removeItem('refreshToken')
-    this.loginService.markAsLoggedOut()
+    this.loginService.signOut()
     this.toastr.success('Logged Out Successfully')
     this.router.navigate([''])
   }
@@ -30,7 +28,7 @@ export class UserNavbarComponent implements OnInit {
     const ACCESS_TOKEN = localStorage.getItem('accessToken')
     const REFRESH_TOKEN = localStorage.getItem('refreshToken')
     if (ACCESS_TOKEN != null && REFRESH_TOKEN != null) {
-      this.loginService.markAsLoggedIn()
+      // this.loginService.markAsLoggedIn()
     }
   }
 

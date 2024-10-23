@@ -25,7 +25,6 @@ export class HomePageContentComponent implements OnInit {
     const ACCESS_TOKEN = localStorage.getItem('accessToken')
     if (ACCESS_TOKEN != null) {
       this.favoritesService.addOrRemoveFromFavorites(articleId).subscribe((response: any) => {
-        console.log(response)
         if (response.status == 'add') {
           this.blogCardsService.addToFavorites(articleId)
           this.toastr.success('Added to Favorites')
