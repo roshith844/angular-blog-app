@@ -41,8 +41,9 @@ export class BlogCommentsComponent implements OnInit {
     this.commentService.addComment(this.blogId, comment).subscribe((response: any) => {
 
       if (response.success === true) {
-
-        let newComment = { comments: response.data, userDetails: { name: this.userDetailsService.getNameOfUser(), profie_picture_url: this.userDetailsService.getProfilePictureOfUser() } }
+        let newComment = { comments: response.data, 
+          userDetails: { name: this.userDetailsService.getNameOfUser(),
+           profie_picture_url: this.userDetailsService.getProfilePictureOfUser() } }
         this.comments.unshift(newComment)
         this.commentForm.reset()
         this.showSuccess('Success', 'Your comment was published')

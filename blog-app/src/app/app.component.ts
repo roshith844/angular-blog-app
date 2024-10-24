@@ -15,28 +15,28 @@ export class AppComponent implements OnInit {
     private adminLoginService: AdminLoginService
   ) { }
   ngOnInit(): void {
-    // this.userDetailsService.getUserDetails().subscribe((response: any) => {
-    //   console.log('response')
-    //   console.log(response)
-    //   if (response.loggedIn == true) {
-    //     this.userDetailsService.modifyNameOfUser(response.name)
-    //     this.userDetailsService.modifyProfilePictureOfUser(response.image)
-    //     this.userDetailsService.modifyIdOfUser(response.userId)
-    //     if (response.role == 'user') {
-    //       // this.userLoginService.markAsLoggedIn()
-    //       this.writerService.markAsNotAWriter()
-    //     } else if (response.role == 'writer') {
-    //       // this.userLoginService.markAsLoggedIn()
-    //       this.writerService.markAsWriter()
-    //     } else if (response.role === 'admin') {
-    //       this.adminLoginService.markAsLoggedIn()
-    //     } else {
-    //       this.userLoginService.markAsLoggedOut()
-    //       this.writerService.markAsNotAWriter()
-    //       this.adminLoginService.markAsLoggedOut()
-    //     }
-    //   }
+    this.userDetailsService.getUserDetails().subscribe((response: any) => {
+      console.log('response heree')
+      console.log(response)
+      if (response.loggedIn == true) {
+        this.userDetailsService.modifyNameOfUser(response.name)
+        this.userDetailsService.modifyProfilePictureOfUser(response.image)
+        this.userDetailsService.modifyIdOfUser(response.userId)
+        if (response.role == 'user') {
+          // this.userLoginService.markAsLoggedIn()
+          this.writerService.markAsNotAWriter()
+        } else if (response.role == 'writer') {
+          // this.userLoginService.markAsLoggedIn()
+          this.writerService.markAsWriter()
+        } else if (response.role === 'admin') {
+          this.adminLoginService.markAsLoggedIn()
+        } else {
+          this.userLoginService.markAsLoggedOut()
+          this.writerService.markAsNotAWriter()
+          this.adminLoginService.markAsLoggedOut()
+        }
+      }
 
-    // })
+    })
   }
 }
