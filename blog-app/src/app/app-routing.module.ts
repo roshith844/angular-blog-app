@@ -27,47 +27,102 @@ import { UserAuthGuard } from './guards/user/user-auth.guard';
 import { WriterAuthGuard } from './guards/writer/writer-auth.guard';
 const routes: Routes = [
   {
-    path: '', component: UserPageComponent, children: [
+    path: '',
+    component: UserPageComponent,
+    children: [
       { path: '', component: HomePageContentComponent },
       { path: 'login', component: UserLoginComponent },
       { path: 'signup', component: UserSignupComponent },
-      { path: 'profile', component: UserProfileComponent, canActivate: [UserAuthGuard] },
+      {
+        path: 'profile',
+        component: UserProfileComponent,
+        canActivate: [UserAuthGuard],
+      },
       { path: 'blog/:slug', component: BlogContentComponent },
-      { path: 'favorites', component: FavoritesComponent, canActivate: [UserAuthGuard] }
-    ]
+      {
+        path: 'favorites',
+        component: FavoritesComponent,
+        canActivate: [UserAuthGuard],
+      },
+    ],
   },
   {
-    path: 'writer', component: WriterPageComponent, children: [
-      { path: '', component: WriterDashboardComponent, canActivate: [WriterAuthGuard] },
+    path: 'writer',
+    component: WriterPageComponent,
+    children: [
+      {
+        path: '',
+        component: WriterDashboardComponent,
+        canActivate: [WriterAuthGuard],
+      },
       { path: 'login', component: UserLoginComponent },
-      { path: 'write', component: CreateContentComponent, canActivate: [WriterAuthGuard] },
-      { path: 'posts', component: PostsManagementComponent, canActivate: [WriterAuthGuard] },
-      { path: 'edit/:slug', component: EditBlogComponent, canActivate: [WriterAuthGuard] },
-      { path: 'profile', component: UserProfileComponent, canActivate: [WriterAuthGuard] },
-
-    ]
+      {
+        path: 'write',
+        component: CreateContentComponent,
+        canActivate: [WriterAuthGuard],
+      },
+      {
+        path: 'posts',
+        component: PostsManagementComponent,
+        canActivate: [WriterAuthGuard],
+      },
+      {
+        path: 'edit/:slug',
+        component: EditBlogComponent,
+        canActivate: [WriterAuthGuard],
+      },
+      {
+        path: 'profile',
+        component: UserProfileComponent,
+        canActivate: [WriterAuthGuard],
+      },
+    ],
   },
   {
     path: 'admin',
-    loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule), // Lazy loading AdminModule
-  },
-  // {
-  //   path: 'admin', component: AdminPageComponent, children: [
-  //     { path: '', component: AdminDashboardComponent, canActivate: [AdminAuthGuard] },
-  //     { path: 'login', component: AdminLoginComponent },
-  //     { path: 'posts', component: PostsManagementByAdminComponent, canActivate: [AdminAuthGuard] },
-  //     { path: 'comments', component: CommentManagementByAdminComponent, canActivate: [AdminAuthGuard] },
-  //     { path: 'users', component: UserManagementByAdminComponent, canActivate: [AdminAuthGuard] },
-  //     { path: 'creators', component: CreatorManagementByAdminComponent, canActivate: [AdminAuthGuard] },
-  //     { path: 'profile', component: AdminProfileComponent, canActivate: [AdminAuthGuard] },
-  //   ]
-  // },
-  { path: '**', component:PageNotFoundComponent }
+    component: AdminPageComponent,
+    children: [
+      {
+        path: '',
+        component: AdminDashboardComponent,
+        canActivate: [AdminAuthGuard],
+      },
+      { path: 'login', component: AdminLoginComponent },
+      {
+        path: 'posts',
+        component: PostsManagementByAdminComponent,
+        canActivate: [AdminAuthGuard],
+      },
+      {
+        path: 'comments',
+        component: CommentManagementByAdminComponent,
+        canActivate: [AdminAuthGuard],
+      },
+      {
+        path: 'users',
+        component: UserManagementByAdminComponent,
+        canActivate: [AdminAuthGuard],
+      },
+      {
+        path: 'creators',
+        component: CreatorManagementByAdminComponent,
+        canActivate: [AdminAuthGuard],
+      },
+      {
+        path: 'profile',
+        component: AdminProfileComponent,
+        canActivate: [AdminAuthGuard],
+      },
+    ],
 
-]
+    // loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule), // Lazy loading AdminModule
+  },
+
+  { path: '**', component: PageNotFoundComponent },
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

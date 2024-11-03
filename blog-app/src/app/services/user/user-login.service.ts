@@ -7,7 +7,7 @@ import { environment } from 'src/environments/environment.development';
   providedIn: 'root'
 })
 export class UserLoginService {
-  public isLoggedIn: boolean = (localStorage.getItem('accessToken')) ? true : false
+  public isLoggedIn: boolean = false
 
   BASE_URL = environment.apiBaseUrl
 
@@ -16,21 +16,22 @@ export class UserLoginService {
     return this.http.post(this.BASE_URL + '/login', formData)
   }
 
-  markAsLoggedIn(accessToken: string, refreshToken: string) {
-    localStorage.setItem('accessToken', accessToken)
-    localStorage.setItem('refreshToken', refreshToken)
+  markAsLoggedIn() {
+    // localStorage.setItem('accessToken', accessToken)
+    // localStorage.setItem('refreshToken', refreshToken)
     this.isLoggedIn = true;
   }
 
   markAsLoggedOut() {
+    this.isLoggedIn = false
     // localStorage.removeItem('accessToken')
     // localStorage.removeItem('refreshToken')
     // this.isLoggedIn = false;
   }
 
   signOut() {
-    localStorage.removeItem('accessToken')
-    localStorage.removeItem('refreshToken')
+    // localStorage.removeItem('accessToken')
+    // localStorage.removeItem('refreshToken')
     this.isLoggedIn = false;
   }
 
@@ -38,7 +39,7 @@ export class UserLoginService {
     return this.isLoggedIn
   }
 
-  isTokenExists() {
-    return (localStorage.getItem('accessToken')) ? true : false
-  }
+  // isTokenExists() {
+  //   return (localStorage.getItem('accessToken')) ? true : false
+  // }
 }

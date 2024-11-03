@@ -27,7 +27,7 @@ export class AdminLoginService {
     return this.isLoggedIn
   }
 
-  isTokenExists(){
-    return (localStorage.getItem('accessToken')) ? true: false
-  }
+  // isTokenExists(){
+  //   return (localStorage.getItem('accessToken')) ? true: false
+  // }
 }

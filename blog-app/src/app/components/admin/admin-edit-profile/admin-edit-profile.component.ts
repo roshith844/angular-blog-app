@@ -40,7 +40,7 @@ export class AdminEditProfileComponent {
       this.editProfileForm.value.email === null || this.editProfileForm.value.phone === null) return
     this.adminProfileService.editProfile(this.editProfileForm.value).subscribe((response: any) => {
       if (response.success === true) {
-        this.router.navigate(['profile'])
+        this.router.navigate(['admin/profile'])
         this.toastr.success('Profile Updated')
 
       } else {

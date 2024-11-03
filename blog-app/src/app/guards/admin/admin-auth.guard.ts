@@ -16,7 +16,7 @@ export class AdminAuthGuard  {
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    if (this.adminLoginService.isTokenExists()) return true
+    if (this.adminLoginService.getLoginStatus()) return true
     this.toastr.error('Login Required')
     this.router.navigate(['admin/login'])
     return false;

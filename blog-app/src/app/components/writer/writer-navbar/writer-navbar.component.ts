@@ -17,9 +17,7 @@ export class WriterNavbarComponent {
     private toastr: ToastrService,
     private router: Router) { }
   logout() {
-    localStorage.removeItem('accessToken')
-    localStorage.removeItem('refreshToken')
-    this.loginService.markAsLoggedOut()
+    this.loginService.signOut()
     this.toastr.success('Logged Out Successfully')
     this.router.navigate([''])
   }

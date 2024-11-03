@@ -15,7 +15,7 @@ export class UserAuthGuard  {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
  
-    if (this.userLoginService.isTokenExists()) return true
+    if (this.userLoginService.getLoginStatus()) return true
     this.toastr.error('Login Required')
     this.router.navigate(['/login'])
     return false;

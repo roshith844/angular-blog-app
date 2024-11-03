@@ -12,7 +12,7 @@ export class WriterAdminChatComponent implements OnInit {
   @Input() show = true;
   @Input() blogId !: string
   @Input() author !: string
-  @Input() chatMessages !: any[]
+  @Input() chatMessages : any[] = []
   @Output() closeModalEvent = new EventEmitter<boolean>()
 
   onClose = new EventEmitter()

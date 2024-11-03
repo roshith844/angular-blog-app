@@ -15,7 +15,7 @@ import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 export class BlogContentComponent implements OnInit {
   articleId = '';
   sanitizedHtmlContent!: SafeHtml;
-  data : any = null
+  data: any = null;
   slug = '';
   pageViews: number = 0;
   isFavorite: boolean = false;
@@ -65,17 +65,10 @@ export class BlogContentComponent implements OnInit {
         });
     });
 
-    const ACCESS_TOKEN = localStorage.getItem('accessToken');
-    const REFRESH_TOKEN = localStorage.getItem('refreshToken');
-    if (ACCESS_TOKEN != null && REFRESH_TOKEN != null) {
-      this.loginService.markAsLoggedIn(ACCESS_TOKEN, REFRESH_TOKEN);
-    }
+    this.loginService.markAsLoggedIn();
   }
 
   addToFavorites() {
-    const ACCESS_TOKEN = localStorage.getItem('accessToken');
-    if (!ACCESS_TOKEN)
-      this.toastr.error('Some went wrong', 'Please Try again!');
     this.favoritesService
       .addOrRemoveFromFavorites(this.articleId)
       .subscribe((response: any) => {
