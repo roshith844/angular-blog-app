@@ -1,56 +1,48 @@
 <section class="bg-white dark:bg-gray-900">
-    <div class="py-8 px-4 mx-auto max-w-screen-xl lg:py-16 lg:px-6">
-        <div class="mx-auto max-w-screen-sm text-center lg:mb-16 mb-8">
-            <h2 class="mb-4 text-3xl lg:text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white">Coding
+    <div class="py-12 px-6 mx-auto max-w-screen-xl lg:py-20 lg:px-8">
+        <div class="mx-auto max-w-screen-sm text-center mb-10 lg:mb-16">
+            <h2 class="mb-4 text-3xl font-extrabold tracking-tight text-gray-900 dark:text-white lg:text-4xl">
+                Coding
             </h2>
-            <p class="font-light text-gray-500 sm:text-xl dark:text-gray-400">We Will provide you best content related
-                to Coding, Technology and Computers.
+            <p class="text-lg font-light text-gray-500 dark:text-gray-400 sm:text-xl">
+                We will provide you the best content related to Coding, Technology, and Computers.
             </p>
         </div>
         <div class="grid gap-8 lg:grid-cols-2">
             <!-- Article card -->
             <article *ngFor="let card of blogCardsService.blogCards"
-                class="p-6 bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700">
-                <div class="flex justify-between items-center mb-5 text-gray-500">
-                    <span class="text-sm"></span>
-                    <span
-                        class="bg-primary-100 text-primary-800 text-xs font-medium inline-flex items-center px-2.5 py-0.5 rounded dark:bg-primary-200 dark:text-primary-800">
-                        <!-- <svg class="mr-1 w-3 h-3" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M2 6a2 2 0 012-2h6a2 2 0 012 2v8a2 2 0 01-2 2H4a2 2 0 01-2-2V6zM14.553 7.106A1 1 0 0014 8v4a1 1 0 00.553.894l2 1A1 1 0 0018 13V7a1 1 0 00-1.447-.894l-2 1z"></path></svg>
-                        Tutorial -->
-                        <button (click)="addToFavorites(card._id)" *ngIf="loginService.isLoggedIn == true" type="button"
-                            [ngClass]="{'text-red-700': card.isFavorite === true, 'text-blue-700':card.isFavorite === false }"
-                            class=" font-medium rounded-full text-sm text-center inline-flex items-center ml-2">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24"
-                            stroke-width="1.5" stroke="none" class="w-10 h-10">
-                            <path stroke-linecap="round" stroke-linejoin="round"
-                                d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z" />
+                class="p-6 bg-white border border-gray-200 rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700 transition transform hover:scale-105">
+                <div class="flex justify-between items-center mb-4 text-gray-500 dark:text-gray-400">
+                    <span class="text-sm font-semibold uppercase">{{ card.category }}</span>
+                    <button (click)="addToFavorites(card._id)" *ngIf="loginService.isLoggedIn"
+                        [ngClass]="{'text-red-600': card.isFavorite, 'text-blue-600': !card.isFavorite }"
+                        class="text-sm font-medium rounded-full">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" class="w-6 h-6">
+                            <path d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z" />
                         </svg>
-                            <span class="sr-only">Icon description</span>
-                        </button>
-                    </span>
+                        <span class="sr-only">Favorite</span>
+                    </button>
                 </div>
 
-                <h2 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white"><a href="#">{{
-                        card.title }}</a></h2>
-
-                <span class="mb-5 font-light text-gray-500 dark:text-gray-400" [innerHTML]="card.content"></span>
-                <div class="flex justify-between items-center">
-                    <div class="flex items-center space-x-4">
-                        <img class="w-7 h-7 rounded-full"
-                            src="{{ card.author_details.profie_picture_url }}"
-                            alt="Jese Leos avatar" />
-                        <span class="font-medium dark:text-white">
+                <h2 class="mb-2 text-2xl font-bold text-gray-900 dark:text-white">
+                    <a href="#">{{ card.title }}</a>
+                </h2>
+                
+                <p class="mb-5 font-light text-gray-500 dark:text-gray-400" [innerHTML]="card.content"></p>
+                
+                <div class="flex justify-between items-center mt-4">
+                    <div class="flex items-center space-x-3">
+                        <img class="w-8 h-8 rounded-full object-cover"
+                            src="{{ card.author_details.profie_picture_url }}" alt="Author avatar" />
+                        <span class="font-medium text-gray-900 dark:text-white">
                             {{ card.author_details.name }}
                         </span>
                     </div>
                     <a routerLink="blog/{{card.slug}}"
-                        class="inline-flex items-center font-medium text-primary-600 dark:text-primary-500 hover:underline">
+                        class="inline-flex items-center text-primary-600 font-medium dark:text-primary-500 hover:underline">
                         Read more
-                        <svg class="ml-2 w-4 h-4" fill="currentColor" viewBox="0 0 20 20"
-                            xmlns="http://www.w3.org/2000/svg">
-                            <path fill-rule="evenodd"
-                                d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
-                                clip-rule="evenodd"></path>
+                        <svg class="ml-1 w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"></path>
                         </svg>
                     </a>
                 </div>
