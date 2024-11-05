@@ -18,7 +18,6 @@ import { WriterNavbarComponent } from './components/writer/writer-navbar/writer-
 import { CreateContentComponent } from './components/writer/create-content/create-content.component';
 import { EditorModule } from "@tinymce/tinymce-angular";
 import { EditProfileComponent } from './components/user/edit-profile/edit-profile.component';
-import { StoreModule } from '@ngrx/store';
 import { PostsManagementComponent } from './components/writer/posts-management/posts-management.component';
 import { EditBlogComponent } from './components/writer/edit-blog/edit-blog.component';
 import { BlogCommentsComponent } from './components/user/blog-comments/blog-comments.component';
@@ -95,7 +94,6 @@ import { AdminModule } from './admin/admin.module';
       positionClass: 'toast-top-right',
       preventDuplicates: true,
     }),
-    StoreModule.forRoot({}, {}),
     FormsModule,
     DataTablesModule,
     NgxUiLoaderModule,

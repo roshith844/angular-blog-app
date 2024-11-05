@@ -20,7 +20,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { EditorModule } from '@tinymce/tinymce-angular';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
-import { StoreModule } from '@ngrx/store';
 import { DataTablesModule } from 'angular-datatables';
 import { NgxUiLoaderHttpModule, NgxUiLoaderModule } from 'ngx-ui-loader';
 import { AdminEditProfileComponent } from '../components/admin/admin-edit-profile/admin-edit-profile.component';
@@ -59,7 +58,6 @@ import { AdminWriterChatComponent } from '../components/admin/admin-writer-chat/
       positionClass: 'toast-top-right',
       preventDuplicates: true,
     }),
-    StoreModule.forRoot({}, {}),
     FormsModule,
     DataTablesModule,
     NgxUiLoaderModule,
