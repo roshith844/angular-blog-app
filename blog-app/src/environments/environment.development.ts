@@ -1,3 +1,3 @@
 export const environment = {
-     apiBaseUrl : 'https://blog-project-api.roshith.com'
+     apiBaseUrl : 'https://blog-api.roshith.dev'
 };
