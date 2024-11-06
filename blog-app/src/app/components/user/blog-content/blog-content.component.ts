@@ -36,7 +36,6 @@ export class BlogContentComponent implements OnInit {
     this.slug = PARAM;
 
     this.contentService.getBlogContent(PARAM).subscribe((response: any) => {
-      console.log(response);
       this.data = response.data;
       this.articleId = response.data._id;
       this.isFavorite = response.isFavorite;
@@ -64,8 +63,6 @@ export class BlogContentComponent implements OnInit {
           this.pageViews = pageViewsResponse.views;
         });
     });
-
-    this.loginService.markAsLoggedIn();
   }
 
   addToFavorites() {
