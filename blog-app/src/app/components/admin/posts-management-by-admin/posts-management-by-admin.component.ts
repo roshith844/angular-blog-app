@@ -29,8 +29,6 @@ export class PostsManagementByAdminComponent implements OnInit {
       pagingType: 'full_numbers'
     }
     this.adminPostManagementService.getAllPosts().subscribe((response: any) => {
-      console.log('.....................................')
-      console.log(response.data)
       this.posts = response.data
       this.dtTrigger.next(null)
     })
@@ -86,16 +84,13 @@ export class PostsManagementByAdminComponent implements OnInit {
   }
   openChat(blogId: string, author: string) {
     this.adminWriterChatService.getChatMessages(blogId).subscribe((response: any) => {
-      console.log(response)
       if (response.success === true) this.activeChatMessages = response.data
     })
 
     this.activeBlogId = blogId
     this.activeBlogAuthor = author
 
-    this.adminWriterChatService.markAsRead(blogId).subscribe((response: any) => {
-      console.log(response)
-    })
+    this.adminWriterChatService.markAsRead(blogId)
 
 const POST_TO_MODIFY = this.posts.find(post=> post._id === blogId)
 if(POST_TO_MODIFY){

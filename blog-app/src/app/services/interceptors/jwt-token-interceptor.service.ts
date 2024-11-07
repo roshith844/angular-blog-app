@@ -104,19 +104,24 @@ export class JwtTokenInterceptorService implements HttpInterceptor {
       catchError((error: HttpErrorResponse) => {
         if (error.status === 401 && !req.url.includes('/refresh-token')) {
           // Attempt token refresh if the request fails with a 401
-          return this.injector.get(TokenService).refreshToken().pipe(
-            switchMap(() => {
-              // After refreshing, retry the original request
-              return next.handle(req.clone({
-                withCredentials: true, // Include cookies again
-              }));
-            }),
-            catchError((refreshError) => {
-              // Handle refresh failure, e.g., logging out the user
-              this.injector.get(TokenService).logout();
-              return throwError(() => new Error('Refresh token failed, user logged out.'));
-            })
-          );
+          return this.injector
+            .get(TokenService)
+            .refreshToken()
+            .pipe(
+              switchMap(() => {
+                // After refreshing, retry the original request
+                return next.handle(
+                  req.clone({
+                    withCredentials: true, // Include cookies again
+                  })
+                );
+              }),
+              catchError((refreshError) => {
+                return throwError(
+                  () => new Error('Refresh token failed, user logged out.')
+                );
+              })
+            );
         } else {
           // If not a 401 error or if it’s a refresh request, rethrow the original error
           return throwError(() => error);
@@ -125,4 +130,3 @@ export class JwtTokenInterceptorService implements HttpInterceptor {
     );
   }
 }
-

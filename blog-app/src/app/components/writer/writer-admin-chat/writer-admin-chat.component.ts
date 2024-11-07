@@ -33,7 +33,6 @@ export class WriterAdminChatComponent implements OnInit {
 
   sendMessage() {
     if (typeof this.messageForm.value.message !== 'string') return
-    console.log(this.chatMessages)
     this.chatService.postMessage(this.blogId, this.messageForm.value.message, this.author).subscribe((response: any) => {
       if (response.success == true){
         this.chatMessages.push({blogId: this.blogId, content: this.messageForm.value.message, type: 'writer-to-admin'})

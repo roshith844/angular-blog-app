@@ -29,12 +29,11 @@ export class AdminNavbarComponent {
   }
 
   logout() {
-    this.adminLoginService.markAsLoggedOut();
-    this.router.navigate(['/admin/login']);
-    this.toastr.success('Logged Out', 'See You soon!');
-  }
-
-  showSuccess() {
-    this.toastr.success('Logged Out', 'See You soon!');
+    this.adminLoginService.signOutAdmin().then((signedOut) => {
+      if (signedOut) {
+        this.toastr.success('Logged Out', 'See You soon!');
+        this.router.navigate(['/admin/login']);
+      } else this.toastr.error('Something went wrong');
+    });
   }
 }

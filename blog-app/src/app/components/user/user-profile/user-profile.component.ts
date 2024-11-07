@@ -25,7 +25,6 @@ export class UserProfileComponent implements OnInit {
 
   ngOnInit(): void {
     this.getProfileService.getProfile().subscribe((response: any) => {
-      console.log(response)
       this.profile.name = response.name
       this.profile.email = response.email
       this.profile.phone = response.phone

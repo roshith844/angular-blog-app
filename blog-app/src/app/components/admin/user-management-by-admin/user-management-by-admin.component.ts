@@ -27,7 +27,6 @@ export class UserManagementByAdminComponent implements OnInit {
   blockUser(userId: string) {
     if (!confirm("Are you sure you want to Block this user?")) return
     this.userManagementByAdminService.blockUser(userId).subscribe((response: any) => {
-      console.log(response)
       if (response.success == true) {
         const element = this.users.find(item => item._id === userId)
         if (element) {

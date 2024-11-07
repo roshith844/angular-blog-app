@@ -95,7 +95,6 @@ export class UserLoginComponent {
         .subscribe((response: any) => {
           if (response.success == true) {
             this.loginService.markAsLoggedIn();
-
             if (response.role === 'writer') {
               this.writerService.markAsWriter();
               if (this.currentRoute === '/writer/login') {

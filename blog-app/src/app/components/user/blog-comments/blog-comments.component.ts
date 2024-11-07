@@ -56,7 +56,6 @@ export class BlogCommentsComponent implements OnInit {
   deleteComment(commentId: any,) {
     if (!confirm("Are you sure you want to Delete this comment?")) return
     this.commentService.deleteComment(this.blogId, commentId).subscribe((response: any) => {
-      console.log(response)
       if (response.success === true) {
         this.comments = this.comments.filter((element) => element.comments._id !== commentId)
         this.showSuccess('Comment Deleted Successfully', '')

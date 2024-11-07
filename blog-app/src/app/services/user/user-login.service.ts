@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { type formData } from './../../types/formData';
-import { environment } from 'src/environments/environment.development';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root',
@@ -17,35 +17,28 @@ export class UserLoginService {
   }
 
   markAsLoggedIn() {
-    // localStorage.setItem('accessToken', accessToken)
-    // localStorage.setItem('refreshToken', refreshToken)
     this.isLoggedIn = true;
   }
 
   markAsLoggedOut() {
     this.isLoggedIn = false;
-    // localStorage.removeItem('accessToken')
-    // localStorage.removeItem('refreshToken')
-    // this.isLoggedIn = false;
   }
 
-  signOut() {
-    // localStorage.removeItem('accessToken')
-    // localStorage.removeItem('refreshToken')
-    this.removeCookie('accessToken')
-    this.removeCookie('refreshToken')
-    this.isLoggedIn = false;
+  signOutUser(): Promise<boolean> {
+    return new Promise((resolve, reject) => {
+      this.http.post(`${this.BASE_URL}/logout`, {}).subscribe({
+        next: () => {
+          this.isLoggedIn = false;
+          resolve(true); 
+        },
+        error: (err) => {
+          resolve(false); 
+        },
+      });
+    });
   }
 
   getLoginStatus() {
     return this.isLoggedIn;
   }
-
-  private removeCookie(cookieName: string): void {
-    document.cookie = `${cookieName}=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/`;
-  }
-
-  // isTokenExists() {
-  //   return (localStorage.getItem('accessToken')) ? true : false
-  // }
 }

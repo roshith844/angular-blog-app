@@ -46,11 +46,7 @@ export class BlogContentComponent implements OnInit {
 
       // views and Visits
       if (sessionStorage.getItem('visit') === null) {
-        this.viewsService
-          .incrementPageViewsAndVisits(this.articleId)
-          .subscribe((res) => {
-            console.log(res);
-          });
+        this.viewsService.incrementPageViewsAndVisits(this.articleId);
       } else {
         this.viewsService.incrementPageViews(this.articleId).subscribe();
       }

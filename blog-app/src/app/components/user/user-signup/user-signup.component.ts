@@ -34,7 +34,6 @@ export class UserSignupComponent {
   }
 
   onSubmit() {
-    console.log(this.signupForm.value)
     const NAME = this.signupForm.value.name
     const EMAIL = this.signupForm.value.email
     const PHONE = this.signupForm.value.phone

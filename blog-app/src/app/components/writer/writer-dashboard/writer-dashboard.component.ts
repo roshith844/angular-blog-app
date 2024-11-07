@@ -15,7 +15,6 @@ export class WriterDashboardComponent {
   constructor(private writerDashboardService:  WriterDashboardService ) { }
   ngOnInit(): void {
     this.writerDashboardService.getStatistics().subscribe((response: any) => {
-      console.log('writer dashboard status', response)
       this.statusCount.published = Number(response.statusCount.published)
       this.statusCount.rejected = Number(response.statusCount.rejected)
       this.statusCount.pending = Number(response.statusCount.pending)

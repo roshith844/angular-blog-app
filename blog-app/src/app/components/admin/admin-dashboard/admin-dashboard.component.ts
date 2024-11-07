@@ -15,7 +15,6 @@ export class AdminDashboardComponent implements OnInit {
   constructor(private adminDashboardService: AdminDashboardService) { }
   ngOnInit(): void {
     this.adminDashboardService.getStatistics().subscribe((response: any) => {
-      console.log(response)
       this.statusCount.published = Number(response.statusCount.published)
       this.statusCount.rejected = Number(response.statusCount.rejected)
       this.statusCount.pending = Number(response.statusCount.pending)

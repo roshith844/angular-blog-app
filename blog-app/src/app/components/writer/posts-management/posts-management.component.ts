@@ -50,14 +50,11 @@ export class PostsManagementComponent implements OnInit {
   }
   openChat(blogId: string, author: string) {
     this.chatService.getChatMessages(blogId).subscribe((response: any) => {
-      console.log(response)
       if (response.success === true) this.activeChatMessages = response.data
     })
     this.activeBlogId = blogId
     this.activeBlogAuthor = author
-    this.chatService.markAsRead(blogId).subscribe((response: any) => {
-      console.log(response)
-    })
+    this.chatService.markAsRead(blogId)
     this.writerPostManangementService.clearUnreadMessagesCount(blogId)
     this.canShowChat = true
   }

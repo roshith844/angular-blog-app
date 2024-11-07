@@ -8,18 +8,22 @@ import { WriterService } from 'src/app/services/writer/writer.service';
 @Component({
   selector: 'app-writer-navbar',
   templateUrl: './writer-navbar.component.html',
-  styleUrls: ['./writer-navbar.component.css']
+  styleUrls: ['./writer-navbar.component.css'],
 })
 export class WriterNavbarComponent {
-  constructor(public loginService: UserLoginService,
+  constructor(
+    public loginService: UserLoginService,
     private becomeWriterService: BecomeWriterRequestService,
     public writerService: WriterService,
     private toastr: ToastrService,
-    private router: Router) { }
+    private router: Router
+  ) {}
   logout() {
-    this.loginService.signOut()
-    this.toastr.success('Logged Out Successfully')
-    this.router.navigate([''])
+    this.loginService.signOutUser().then((signedOut: boolean) => {
+      if (signedOut) {
+        this.toastr.success('Logged Out Successfully');
+        this.router.navigate(['']);
+      } else this.toastr.error('Something went wrong');
+    });
   }
-
 }

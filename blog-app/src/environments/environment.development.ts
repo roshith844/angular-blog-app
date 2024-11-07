@@ -1,3 +1,3 @@
 export const environment = {
-     apiBaseUrl : 'https://blog-api.roshith.dev'
+     apiBaseUrl : 'http://localhost:3000'
 };
