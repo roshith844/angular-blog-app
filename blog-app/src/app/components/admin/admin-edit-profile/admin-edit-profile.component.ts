@@ -51,8 +51,6 @@ export class AdminEditProfileComponent {
   }
 
   handleFileInput(file: any) {
-    const TOKEN = localStorage.getItem('admin-accessToken')
-    if(!TOKEN) return
     if (file === null) return
 
     file = file.target.files

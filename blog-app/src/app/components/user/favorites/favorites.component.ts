@@ -11,8 +11,6 @@ export class FavoritesComponent implements OnInit {
   favoriteCards: any[] = []
   constructor(private favoritesService: FavoritesService) { }
   ngOnInit(): void {
-    const ACCESS_TOKEN = localStorage.getItem('accessToken')
-    if (ACCESS_TOKEN == null) return
     this.favoritesService.getFavoriteCards().subscribe((response: any) => {
       this.favoriteCards = response.data
     })

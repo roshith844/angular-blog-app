@@ -10,7 +10,7 @@ import { WriterService } from 'src/app/services/writer/writer.service';
   templateUrl: './user-navbar.component.html',
   styleUrls: ['./user-navbar.component.css'],
 })
-export class UserNavbarComponent /* implements OnInit */ {
+export class UserNavbarComponent {
   isMenuOptionsVisible = false;
   constructor(
     public loginService: UserLoginService,
@@ -28,14 +28,6 @@ export class UserNavbarComponent /* implements OnInit */ {
       } else this.toastr.error('Something went wrong');
     });
   }
-
-  // ngOnInit(): void {
-  // const ACCESS_TOKEN = localStorage.getItem('accessToken')
-  // const REFRESH_TOKEN = localStorage.getItem('refreshToken')
-  // if (ACCESS_TOKEN != null && REFRESH_TOKEN != null) {
-  //   this.loginService.markAsLoggedIn(ACCESS_TOKEN, REFRESH_TOKEN)
-  // }
-  // }
 
   applyForWriterRole() {
     this.becomeWriterService.applyForWriterRole().subscribe((response: any) => {

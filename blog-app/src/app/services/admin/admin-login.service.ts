@@ -41,22 +41,4 @@ export class AdminLoginService {
     return this.isLoggedIn;
   }
 
-  private removeCookie(
-    cookieName: string,
-    path: string = '/',
-    domain: string = ''
-  ): void {
-    // Set expiry date to a time in the past
-    const cookieString = `${cookieName}=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=${path}; domain=${domain}`;
-    document.cookie = cookieString;
-
-    // If the cookie was set with the `Secure` flag, ensure that the request is over HTTPS.
-    if (window.location.protocol === 'https:') {
-      document.cookie = `${cookieName}=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=${path}; domain=${domain}; Secure; SameSite=None`;
-    }
-  }
-
-  // isTokenExists(){
-  //   return (localStorage.getItem('accessToken')) ? true: false
-  // }
 }
