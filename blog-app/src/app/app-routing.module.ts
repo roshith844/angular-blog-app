@@ -1,5 +1,10 @@
 import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import {
+  provideRouter,
+  RouterModule,
+  Routes,
+  TitleStrategy,
+} from '@angular/router';
 import { AdminDashboardComponent } from './components/admin/admin-dashboard/admin-dashboard.component';
 import { AdminLoginComponent } from './components/admin/admin-login/admin-login.component';
 import { AdminProfileComponent } from './components/admin/admin-profile/admin-profile.component';
@@ -25,22 +30,30 @@ import { WriterDashboardComponent } from './components/writer/writer-dashboard/w
 import { AdminAuthGuard } from './guards/admin/admin-auth.guard';
 import { UserAuthGuard } from './guards/user/user-auth.guard';
 import { WriterAuthGuard } from './guards/writer/writer-auth.guard';
+import { TemplatePageTitleStrategy } from './strategy/template-page-title-strategy.service';
+
 const routes: Routes = [
   {
     path: '',
     component: UserPageComponent,
     children: [
-      { path: '', component: HomePageContentComponent },
-      { path: 'login', component: UserLoginComponent },
-      { path: 'signup', component: UserSignupComponent },
+      { path: '', title: 'Home', component: HomePageContentComponent },
+      { path: 'login', title: 'Login', component: UserLoginComponent },
+      { path: 'signup', title: 'Sign Up', component: UserSignupComponent },
       {
         path: 'profile',
+        title: 'Profile',
         component: UserProfileComponent,
         canActivate: [UserAuthGuard],
       },
-      { path: 'blog/:slug', component: BlogContentComponent },
+      {
+        path: 'blog/:slug',
+        title: 'Blog Content',
+        component: BlogContentComponent,
+      },
       {
         path: 'favorites',
+        title: 'Favorites',
         component: FavoritesComponent,
         canActivate: [UserAuthGuard],
       },
@@ -52,27 +65,32 @@ const routes: Routes = [
     children: [
       {
         path: '',
+        title: 'Writer Dashboard',
         component: WriterDashboardComponent,
         canActivate: [WriterAuthGuard],
       },
-      { path: 'login', component: UserLoginComponent },
+      { path: 'login', title: 'Login', component: UserLoginComponent },
       {
         path: 'write',
+        title: 'Create Content',
         component: CreateContentComponent,
         canActivate: [WriterAuthGuard],
       },
       {
         path: 'posts',
+        title: 'Posts Management',
         component: PostsManagementComponent,
         canActivate: [WriterAuthGuard],
       },
       {
         path: 'edit/:slug',
+        title: 'Edit Blog',
         component: EditBlogComponent,
         canActivate: [WriterAuthGuard],
       },
       {
         path: 'profile',
+        title: 'Profile',
         component: UserProfileComponent,
         canActivate: [WriterAuthGuard],
       },
@@ -84,45 +102,52 @@ const routes: Routes = [
     children: [
       {
         path: '',
+        title: 'Admin Dashboard',
         component: AdminDashboardComponent,
         canActivate: [AdminAuthGuard],
       },
-      { path: 'login', component: AdminLoginComponent },
+      { path: 'login', title: 'Login', component: AdminLoginComponent },
       {
         path: 'posts',
+        title: 'Posts Management',
         component: PostsManagementByAdminComponent,
         canActivate: [AdminAuthGuard],
       },
       {
         path: 'comments',
+        title: 'Comment Management',
         component: CommentManagementByAdminComponent,
         canActivate: [AdminAuthGuard],
       },
       {
         path: 'users',
+        title: 'User Management',
         component: UserManagementByAdminComponent,
         canActivate: [AdminAuthGuard],
       },
       {
         path: 'creators',
+        title: 'Creator Management',
         component: CreatorManagementByAdminComponent,
         canActivate: [AdminAuthGuard],
       },
       {
         path: 'profile',
+        title: 'Profile',
         component: AdminProfileComponent,
         canActivate: [AdminAuthGuard],
       },
     ],
-
-    // loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule), // Lazy loading AdminModule
   },
-
-  { path: '**', component: PageNotFoundComponent },
+  { path: '**', title: 'Page Not Found', component: PageNotFoundComponent },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
+  providers: [
+    provideRouter(routes),
+    { provide: TitleStrategy, useClass: TemplatePageTitleStrategy },
+  ],
 })
 export class AppRoutingModule {}
