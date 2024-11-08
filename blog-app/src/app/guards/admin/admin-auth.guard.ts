@@ -1,25 +1,52 @@
 import { Injectable } from '@angular/core';
-import { ActivatedRouteSnapshot, Router, RouterStateSnapshot, UrlTree } from '@angular/router';
+import {
+  ActivatedRouteSnapshot,
+  Router,
+  RouterStateSnapshot,
+  UrlTree,
+} from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { Observable } from 'rxjs';
-import { WriterService } from 'src/app/services/writer/writer.service';
-import { AdminLoginService } from 'src/app/services/admin/admin-login.service';
+import { map, Observable } from 'rxjs';
+import { UserDetailsService } from 'src/app/services/user-details.service';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
-export class AdminAuthGuard  {
-  constructor(private adminLoginService: AdminLoginService,
-    private writerService: WriterService,
+export class AdminAuthGuard {
+  constructor(
+    private userDetailsService: UserDetailsService,
     private router: Router,
-    private toastr: ToastrService) { }
+    private toastr: ToastrService
+  ) {}
   canActivate(
     route: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    if (this.adminLoginService.getLoginStatus()) return true
-    this.toastr.error('Login Required')
-    this.router.navigate(['admin/login'])
-    return false;
+    state: RouterStateSnapshot
+  ):
+    | Observable<boolean | UrlTree>
+    | Promise<boolean | UrlTree>
+    | boolean
+    | UrlTree {
+    return this.userDetailsService.getUserDetails().pipe(
+      map((response: any) => {
+        if (response.loggedIn === true) {
+          if (response.role === 'admin') {
+            return true;
+          } else {
+            this.toastr.error('Something went wrong');
+            this.router.navigate(['']);
+            return false;
+          }
+        } else {
+          this.toastr.error('Something went wrong');
+          this.router.navigate(['']);
+          return false;
+        }
+      })
+    );
   }
 
+  // if (this.adminLoginService.getLoginStatus()) return true
+  // this.toastr.error('Login Required')
+  // this.router.navigate(['admin/login'])
+  // return false;
 }

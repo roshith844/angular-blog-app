@@ -1,24 +1,44 @@
 import { Injectable } from '@angular/core';
-import { ActivatedRouteSnapshot, Router, RouterStateSnapshot, UrlTree } from '@angular/router';
+import {
+  Router,
+  UrlTree,
+} from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { Observable } from 'rxjs';
-import { UserLoginService } from 'src/app/services/user/user-login.service';
+import { map, Observable } from 'rxjs';
+import { UserDetailsService } from 'src/app/services/user-details.service';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
-export class UserAuthGuard  {
-  constructor(private userLoginService: UserLoginService,
+export class UserAuthGuard {
+  constructor(
+    private userDetailsService: UserDetailsService,
     private router: Router,
-    private toastr: ToastrService) { }
+    private toastr: ToastrService
+  ) {}
   canActivate(
-    route: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
- 
-    if (this.userLoginService.getLoginStatus()) return true
-    this.toastr.error('Login Required')
-    this.router.navigate(['/login'])
-    return false;
-  }
+  ):
+    | Observable<boolean | UrlTree>
+    | Promise<boolean | UrlTree>
+    | boolean
+    | UrlTree {
 
+    return this.userDetailsService.getUserDetails().pipe(
+      map((response: any) => {
+        if (response.loggedIn === true) {
+          if (response.role === 'writer' || response.role === 'user') {
+            return true;
+          } else {
+            this.toastr.error('Something went wrong');
+            this.router.navigate(['']);
+            return false;
+          }
+        } else {
+          this.toastr.error('Something went wrong');
+          this.router.navigate(['']);
+          return false;
+        }
+      })
+    );
+  }
 }
